@@ -1,5 +1,6 @@
 ---
 name: tooyoung:expense-receipt
+version: 0.1.0
 description: AI 订阅报销收据识别与统计。识别目录下的 PDF/PNG 收据，提取人员、产品、金额、日期，自动去重，支持多币种（USD、TRY），输出明细表和按人汇总。触发词：报销统计、收据识别、统计报销、AI 订阅费用
 ---
 

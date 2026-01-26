@@ -1,5 +1,6 @@
 ---
 name: tooyoung:excalidraw-artist
+version: 0.1.0
 description: 创建 Excalidraw 手绘风格图表（架构图、流程图、泳道图、时序图、线框图）。触发词：画图、架构图、流程图、泳道图、excalidraw、diagram
 ---
 

@@ -1,76 +1,92 @@
 ---
 name: personal:mac-docker
-description: 个人 Docker 服务管理配置。包含服务清单、路径、端口映射。触发词：docker、容器、heimdall、portainer、qinglong
+description: 个人 Docker 服务管理配置。包含服务清单、路径、端口映射、常用命令。触发词：docker、容器、heimdall、portainer、qinglong
+version: 0.1.0
 ---
 
 # Mac Docker 服务管理
 
-> **个人配置示例**：路径和服务列表需根据实际环境修改。
+> **个人配置**：使用前将 `$BASE_PATH` 替换为实际路径（如 `~/docker`）。
 
-管理本机 Docker 容器化服务，包括启停、日志查看、状态检查。
-
-## 配置说明
-
-使用前请修改以下路径为你的实际路径：
+## 目录结构
 
 ```
-BASE_PATH=~/docker
+$BASE_PATH/
+├── docker-compose/    # compose 文件
+├── envs/              # 环境变量
+├── appdata/           # 持久化数据
+└── appdirectory/      # NPM 数据
 ```
-
-## 服务目录
-
-| 目录 | 说明 |
-|------|------|
-| `$BASE_PATH/docker-compose/` | docker-compose 文件 |
-| `$BASE_PATH/envs/` | 环境变量配置 |
-| `$BASE_PATH/appdata/` | 持久化数据卷 |
-| `$BASE_PATH/appdirectory/` | 额外服务数据 |
 
 ## 服务清单
 
-| 服务 | compose 文件 | 端口 | 说明 |
-|------|-------------|------|------|
-| Heimdall | heimdall-compose.yml | 5233, 5234 | 仪表盘 |
-| Nginx PM | nginx-pm-compose.yml | 80, 81, 443 | 反向代理 |
-| Portainer | portainer-compose.yml | 9000 | Docker 管理 |
-| Qinglong | qinglong-compose.yml | 5700 | 定时任务 |
-| MySQL | mysql-compose.yml | 3306 | 数据库 |
-| Mermaid | mermaid-compose.yml | 3301 | 图表渲染 |
-| Subconverter | subconverter-compose.yml | 25500 | 订阅转换 |
-| Sub-web | sub-web-compose.yml | 18080 | 订阅前端 |
+| 服务 | Compose 文件 | 端口 | 访问地址 |
+|------|-------------|------|----------|
+| Heimdall | heimdall-compose.yml | 5233, 5234 | http://localhost:5233 |
+| Nginx PM | nginx-pm-compose.yml | 80, 81, 443 | http://localhost:81 |
+| Portainer | portainer-compose.yml | 9000 | http://localhost:9000 |
+| Qinglong | qinglong-compose.yml | 5700 | http://localhost:5700 |
+| MySQL | mysql-compose.yml | 3306 | localhost:3306 |
+| Mermaid | mermaid-compose.yml | 3301 | http://localhost:3301 |
+| Subconverter | subconverter-compose.yml | 25500 | http://localhost:25500 |
+| Sub-web | sub-web-compose.yml | 18080 | http://localhost:18080 |
 
-## 常用操作
+## 常用命令
 
 ```bash
-# 查看所有容器
+# 状态查看
 docker ps -a --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+docker stats --no-stream
 
-# 启动服务
+# 服务管理（替换 [service] 为服务名）
 docker compose -f $BASE_PATH/docker-compose/[service]-compose.yml up -d
-
-# 停止服务
 docker compose -f $BASE_PATH/docker-compose/[service]-compose.yml down
-
-# 重启服务
 docker compose -f $BASE_PATH/docker-compose/[service]-compose.yml restart
+docker compose -f $BASE_PATH/docker-compose/[service]-compose.yml logs -f --tail 100
 
-# 查看日志
-docker logs [container-name] --tail 100
+# 容器操作
+docker logs [container] --tail 100
+docker restart [container]
+
+# 清理
+docker image prune -f
+docker system prune -a
 ```
 
-## 访问地址
+## 故障排查
 
-| 服务 | 地址 |
-|------|------|
-| Heimdall | http://localhost:5233 |
-| Nginx PM | http://localhost:81 |
-| Portainer | http://localhost:9000 |
-| Qinglong | http://localhost:5700 |
-| Mermaid | http://localhost:3301 |
-| Sub-web | http://localhost:18080 |
+```bash
+# 启动失败
+docker logs [container] 2>&1
+docker compose -f [file] config
 
-## 数据备份
+# 端口冲突
+lsof -i :[port]
 
-重要目录：
-- `$BASE_PATH/appdata/`
-- `$BASE_PATH/appdirectory/`
+# 磁盘占用
+docker system df
+
+# 网络检查
+docker network ls
+docker inspect [container] | grep -A 20 "Networks"
+```
+
+## 时区配置
+
+```yaml
+# docker-compose.yml
+environment:
+  - TZ=Asia/Shanghai
+```
+
+## 备份
+
+关键目录：
+- `$BASE_PATH/appdata/` — 应用数据
+- `$BASE_PATH/appdirectory/` — NPM 数据
+
+## 备注
+
+- 重启策略：`restart: unless-stopped`
+- Portainer 挂载 Docker socket
+- NPM 管理 SSL 证书（Let's Encrypt）

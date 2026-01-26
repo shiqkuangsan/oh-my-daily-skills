@@ -31,11 +31,13 @@ claude --plugin-dir /path/to/oh-my-daily-skills
 
 ### Personal Skills (`personal:`)
 
-个人配置类 skill，包含特定环境的路径和配置。目录以 `_` 开头，使用前需根据实际环境修改。
+> ⚠️ **不可直接使用** — 这是个人配置的参考模板，包含占位符路径。使用前需：
+> 1. 复制到你的 `~/.claude/skills/` 目录
+> 2. 将 `$BASE_PATH` 等占位符替换为实际路径
 
 | Skill | Command | Description |
 |-------|---------|-------------|
-| _mac-docker | `/personal:mac-docker` | Docker 服务管理配置（个人示例） |
+| _mac-docker | `/personal:mac-docker` | Docker 服务管理配置模板 |
 
 ## Structure
 
@@ -61,6 +63,16 @@ oh-my-daily-skills/
 |------|--------|-----------|------|
 | 通用 skill | `skill-name` | `tooyoung:` | `tooyoung:chainlit-builder` |
 | 个人 skill | `_skill-name` | `personal:` | `personal:mac-docker` |
+
+## Versioning
+
+遵循 [Semantic Versioning](https://semver.org/) 规范：
+
+| 版本号 | 变更类型 | 示例 |
+|--------|----------|------|
+| x.0.0 (MAJOR) | 破坏性变更 | 重构 skill 结构、移除功能 |
+| 0.x.0 (MINOR) | 新增功能 | 添加新命令、新章节 |
+| 0.0.x (PATCH) | 修复/优化 | 文档修正、格式调整 |
 
 ## License
 

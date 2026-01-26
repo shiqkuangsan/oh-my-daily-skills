@@ -37,3 +37,11 @@ Personal skills (prefixed with `_`) contain environment-specific paths and confi
 - Always include `version` field in frontmatter
 - Keep SKILL.md focused; move advanced content to `references/` subdirectory
 - Personal skills must include a note indicating they require path modifications for reuse
+
+## Versioning
+
+遵循 [Semantic Versioning](https://semver.org/)：
+
+- **MAJOR (x.0.0)**: 破坏性变更（重构结构、移除功能）
+- **MINOR (0.x.0)**: 新增功能（添加命令、新章节）
+- **PATCH (0.0.x)**: 修复优化（文档修正、格式调整）
