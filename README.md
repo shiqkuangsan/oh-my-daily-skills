@@ -4,6 +4,15 @@
 
 A collection of daily-use skills for Claude Code.
 
+## Specification
+
+This project follows the [Agent Skills Specification](https://agentskills.io/specification), ensuring standardized skill format and interoperability:
+
+- ✅ **Standard YAML Frontmatter** - Each skill includes `name`, `description`, and `metadata.version`
+- ✅ **Semantic Versioning** - Version management following [semver](https://semver.org/)
+- ✅ **Compatibility Field** - Personal skills declare environment requirements
+- ✅ **Structured Organization** - Clear separation of general and personal skills
+
 ## Installation
 
 ```bash

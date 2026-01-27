@@ -4,6 +4,15 @@
 
 Claude Code 日常技能合集。
 
+## 标准规范
+
+本项目遵循 [Agent Skills 规范](https://agentskills.io/specification)，确保技能格式标准化和互操作性：
+
+- ✅ **标准 YAML Frontmatter** - 每个技能包含 `name`、`description` 和 `metadata.version`
+- ✅ **语义化版本** - 遵循 [semver](https://semver.org/) 进行版本管理
+- ✅ **兼容性字段** - 个人技能声明环境要求
+- ✅ **结构化组织** - 通用技能与个人技能明确分离
+
 ## 安装
 
 ```bash
