@@ -15,16 +15,14 @@ This project follows the [Agent Skills Specification](https://agentskills.io/spe
 
 ## Installation
 
-```bash
-/install oh-my-daily-skills@shiqkuangsan
-```
-
-Or clone and use locally:
+Clone the repository and use it locally:
 
 ```bash
 git clone https://github.com/shiqkuangsan/oh-my-daily-skills.git
 claude --plugin-dir /path/to/oh-my-daily-skills
 ```
+
+Alternatively, you can copy individual skills to your `~/.claude/skills/` directory for personal use.
 
 ## Local Configuration
 

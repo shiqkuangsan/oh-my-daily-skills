@@ -15,16 +15,14 @@ Claude Code 日常技能合集。
 
 ## 安装
 
-```bash
-/install oh-my-daily-skills@shiqkuangsan
-```
-
-或本地克隆使用：
+克隆仓库并本地使用：
 
 ```bash
 git clone https://github.com/shiqkuangsan/oh-my-daily-skills.git
 claude --plugin-dir /path/to/oh-my-daily-skills
 ```
+
+或者，你也可以将单个技能复制到 `~/.claude/skills/` 目录下个人使用。
 
 ## 本地配置
 
