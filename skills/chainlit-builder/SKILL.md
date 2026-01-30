@@ -1,30 +1,30 @@
 ---
 name: tooyoung:chainlit-builder
-description: 快速搭建 Chainlit AI 对话 Demo。用于产品演示、概念验证、领导汇报场景。触发词：chainlit、搭建 demo、chat demo、对话演示
+description: Quickly build Chainlit AI chat demos for product demos, proof-of-concept, and stakeholder presentations. Trigger words: chainlit, build demo, chat demo, conversation demo
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # Chainlit Demo Builder
 
-快速搭建 AI 对话 Demo，用于产品演示和概念验证。
+Build AI chat demos quickly for product demonstrations and proof-of-concept.
 
-## 使用场景
+## Use Cases
 
-- 给领导演示 AI 产品概念
-- 快速验证对话交互想法
-- 搭建内部 POC Demo
+- Demonstrate AI product concepts to stakeholders
+- Rapidly validate conversation interaction ideas
+- Build internal POC demos
 
-## 快速启动（3 分钟出 Demo）
+## Quick Start (3-minute demo)
 
-### Step 1: 初始化项目
+### Step 1: Initialize Project
 
 ```bash
 mkdir demo && cd demo
 uv init && uv add chainlit openai
 ```
 
-### Step 2: 创建 app.py
+### Step 2: Create app.py
 
 ```python
 import chainlit as cl
@@ -37,7 +37,7 @@ async def main(message: cl.Message):
     response = await client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[
-            {"role": "system", "content": "你是一个helpful assistant。"},
+            {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": message.content}
         ],
         stream=True
@@ -50,16 +50,16 @@ async def main(message: cl.Message):
     await msg.send()
 ```
 
-### Step 3: 运行
+### Step 3: Run
 
 ```bash
 uv run chainlit run app.py -w
-# 访问 http://localhost:8000
+# Visit http://localhost:8000
 ```
 
-## Demo 场景模板
+## Demo Scenario Templates
 
-### 场景 A：多轮对话（带记忆）
+### Scenario A: Multi-turn Conversation (with memory)
 
 ```python
 import chainlit as cl
@@ -70,7 +70,7 @@ client = AsyncOpenAI()
 @cl.on_chat_start
 async def start():
     cl.user_session.set("history", [
-        {"role": "system", "content": "你是XX产品的智能助手。"}
+        {"role": "system", "content": "You are the AI assistant for XX product."}
     ])
 
 @cl.on_message
@@ -96,7 +96,7 @@ async def main(message: cl.Message):
     history.append({"role": "assistant", "content": full_response})
 ```
 
-### 场景 B：文件上传 + 分析
+### Scenario B: File Upload + Analysis
 
 ```python
 import chainlit as cl
@@ -107,18 +107,18 @@ client = AsyncOpenAI()
 @cl.on_chat_start
 async def start():
     files = await cl.AskFileMessage(
-        content="请上传要分析的文件",
+        content="Please upload the file to analyze",
         accept=["text/plain", "application/pdf"],
         max_size_mb=10
     ).send()
 
     if files:
         file = files[0]
-        # 读取文件内容
+        # Read file content
         with open(file.path, "r") as f:
             content = f.read()
         cl.user_session.set("file_content", content)
-        await cl.Message(f"已加载文件：{file.name}，可以开始提问").send()
+        await cl.Message(f"File loaded: {file.name}, you can start asking questions").send()
 
 @cl.on_message
 async def main(message: cl.Message):
@@ -127,7 +127,7 @@ async def main(message: cl.Message):
     response = await client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[
-            {"role": "system", "content": f"基于以下文档回答问题：\n\n{file_content[:8000]}"},
+            {"role": "system", "content": f"Answer questions based on this document:\n\n{file_content[:8000]}"},
             {"role": "user", "content": message.content}
         ],
         stream=True
@@ -140,7 +140,7 @@ async def main(message: cl.Message):
     await msg.send()
 ```
 
-### 场景 C：工具调用展示（Step 可视化）
+### Scenario C: Tool Calling Demo (Step Visualization)
 
 ```python
 import chainlit as cl
@@ -154,7 +154,7 @@ tools = [
         "type": "function",
         "function": {
             "name": "search_knowledge",
-            "description": "搜索知识库",
+            "description": "Search the knowledge base",
             "parameters": {
                 "type": "object",
                 "properties": {"query": {"type": "string"}},
@@ -166,8 +166,8 @@ tools = [
 
 @cl.step(type="tool")
 async def search_knowledge(query: str):
-    """模拟知识库搜索"""
-    return f"找到关于「{query}」的 3 条相关记录..."
+    """Simulate knowledge base search"""
+    return f"Found 3 relevant records for '{query}'..."
 
 @cl.on_message
 async def main(message: cl.Message):
@@ -183,58 +183,58 @@ async def main(message: cl.Message):
         for tool_call in msg.tool_calls:
             args = json.loads(tool_call.function.arguments)
             result = await search_knowledge(args["query"])
-            # 继续对话...
+            # Continue conversation...
 
-    await cl.Message(content=msg.content or "处理完成").send()
+    await cl.Message(content=msg.content or "Processing complete").send()
 ```
 
-## 美化配置（让 Demo 更专业）
+## Styling Configuration (Make demos look professional)
 
-创建 `.chainlit/config.toml`：
+Create `.chainlit/config.toml`:
 
 ```toml
 [project]
-name = "XX产品 AI 助手"
+name = "XX Product AI Assistant"
 
 [UI]
-name = "智能助手"
+name = "AI Assistant"
 default_theme = "light"
-# 可选：custom_css = "/public/style.css"
+# Optional: custom_css = "/public/style.css"
 
 [features]
-prompt_playground = false  # demo 时关闭
+prompt_playground = false  # Disable for demos
 ```
 
-创建 `chainlit.md`（欢迎页）：
+Create `chainlit.md` (welcome page):
 
 ```markdown
-# 欢迎使用 XX 智能助手
+# Welcome to XX AI Assistant
 
-这是一个 AI 驱动的智能问答系统，支持：
-- 多轮对话
-- 文档分析
-- 知识检索
+This is an AI-powered intelligent Q&A system that supports:
+- Multi-turn conversation
+- Document analysis
+- Knowledge retrieval
 
-请在下方输入您的问题。
+Please enter your question below.
 ```
 
-## 常见问题
+## Troubleshooting
 
-### 代理导致启动失败
+### Proxy causing startup failure
 
 ```bash
 NO_PROXY="*" uv run chainlit run app.py -w
 ```
 
-### Python 版本问题
+### Python version issues
 
-Chainlit 需要 Python < 3.14：
+Chainlit requires Python < 3.14:
 
 ```toml
 # pyproject.toml
 requires-python = ">=3.10,<3.14"
 ```
 
-## 进阶需求
+## Advanced Topics
 
-如需更多 API 细节（认证、自定义组件、部署等），使用 Context7 查询 Chainlit 官方文档。
+For more API details (authentication, custom components, deployment, etc.), use Context7 to query the official Chainlit documentation.

@@ -1,10 +1,10 @@
-# Excalidraw 图表示例
+# Excalidraw Diagram Examples
 
-三种常见图表的完整 JSON 示例，可直接复制使用。
+Complete JSON examples for three common diagram types, ready to copy and use.
 
-## 1. 简单流程图
+## 1. Simple Flowchart
 
-一个基础的是/否决策流程图。
+A basic yes/no decision flowchart.
 
 ```json
 {
@@ -43,7 +43,7 @@
       "y": 112,
       "width": 60,
       "height": 25,
-      "text": "开始",
+      "text": "Start",
       "fontSize": 20,
       "fontFamily": 1,
       "textAlign": "center",
@@ -79,7 +79,7 @@
       "y": 225,
       "width": 70,
       "height": 25,
-      "text": "条件?",
+      "text": "Condition?",
       "fontSize": 18,
       "fontFamily": 1,
       "textAlign": "center",
@@ -112,7 +112,7 @@
       "y": 227,
       "width": 70,
       "height": 25,
-      "text": "执行",
+      "text": "Execute",
       "fontSize": 18,
       "fontFamily": 1,
       "textAlign": "center",
@@ -161,9 +161,9 @@
 }
 ```
 
-## 2. 三层架构图
+## 2. Three-Tier Architecture
 
-Client → Server → Database 的典型架构。
+Classic Client → Server → Database architecture.
 
 ```json
 {
@@ -354,9 +354,9 @@ Client → Server → Database 的典型架构。
 }
 ```
 
-## 3. 时序图
+## 3. Sequence Diagram
 
-登录认证流程的时序图。
+Login authentication sequence diagram.
 
 ```json
 {
@@ -608,9 +608,9 @@ Client → Server → Database 的典型架构。
 }
 ```
 
-## 使用建议
+## Usage Tips
 
-1. **从简单开始**：先创建形状，再添加文字，最后画箭头
-2. **保持间距一致**：元素间 50-100px
-3. **增量测试**：粘贴到 excalidraw.com 验证效果
-4. **根据场景调整**：示例是参考，配色和布局可按需修改
+1. **Start simple**: Create shapes first, add text, then draw arrows
+2. **Keep spacing consistent**: 50-100px between elements
+3. **Test incrementally**: Paste into excalidraw.com to verify
+4. **Adapt to context**: Examples are references, adjust colors and layout as needed

@@ -1,91 +1,91 @@
 ---
 name: tooyoung:excalidraw-artist
-description: 创建 Excalidraw 手绘风格图表（架构图、流程图、泳道图、时序图、线框图）。触发词：画图、架构图、流程图、泳道图、excalidraw、diagram
+description: Create Excalidraw hand-drawn style diagrams (architecture, flowchart, swimlane, sequence, wireframe). Trigger words: draw diagram, architecture diagram, flowchart, swimlane, excalidraw, diagram
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # Excalidraw Artist
 
-创建专业的 Excalidraw 手绘风格图表，输出 `.excalidraw` 文件。
+Create professional hand-drawn style diagrams with Excalidraw, outputting `.excalidraw` files.
 
-## 支持的图表类型
+## Supported Diagram Types
 
-| 类型 | 适用场景 |
-|------|----------|
-| 架构图 | 系统设计、微服务、分层架构 |
-| 流程图 | 业务流程、审批流程、部署流程 |
-| 泳道图 | 多角色协作、跨部门流程 |
-| 时序图 | API 调用、消息流转 |
-| 线框图 | UI 原型、页面布局 |
+| Type | Use Cases |
+|------|-----------|
+| Architecture | System design, microservices, layered architecture |
+| Flowchart | Business processes, approval workflows, deployment flows |
+| Swimlane | Multi-role collaboration, cross-department processes |
+| Sequence | API calls, message flows |
+| Wireframe | UI prototypes, page layouts |
 
-## 快速开始
+## Quick Start
 
 ```bash
-# 用户请求示例
-"画一个微服务架构图，包含网关、用户服务、订单服务"
-"画个审批流程图"
-"帮我画个登录时序图"
+# Example user requests
+"Draw a microservices architecture with gateway, user service, order service"
+"Create an approval flowchart"
+"Draw a login sequence diagram"
 ```
 
-输出文件可在 [excalidraw.com](https://excalidraw.com) 打开编辑。
+Output files can be opened and edited at [excalidraw.com](https://excalidraw.com).
 
-## 设计原则
+## Design Principles
 
-### 布局
-- 水平流程：从左到右
-- 垂直层级：从上到下
-- 间距一致：元素间 40-60px
-- 整体宽度：1200-1600px
+### Layout
+- Horizontal flow: left to right
+- Vertical hierarchy: top to bottom
+- Consistent spacing: 40-60px between elements
+- Overall width: 1200-1600px
 
-### 配色（推荐，可根据场景调整）
+### Color Palette (recommended, adjustable per context)
 
-**商务风格**（默认）：
-| 用途 | 颜色 |
-|------|------|
-| 主色 | #1e3a5f |
-| 次色 | #4a90d9 |
-| 背景 | #f1f5f9 |
-| 强调 | #10b981 |
-| 边框 | #6b7b8c |
+**Business Style** (default):
+| Purpose | Color |
+|---------|-------|
+| Primary | #1e3a5f |
+| Secondary | #4a90d9 |
+| Background | #f1f5f9 |
+| Accent | #10b981 |
+| Border | #6b7b8c |
 
-**极简风格**：主色 #1f2937，边框 #9ca3af，背景 #ffffff
+**Minimal Style**: Primary #1f2937, Border #9ca3af, Background #ffffff
 
-### 元素选择
+### Element Selection
 
-| 类型 | 形状 | 用途 |
-|------|------|------|
-| 核心组件 | 圆角矩形 | 服务、模块 |
-| 流程节点 | 矩形 | 步骤、操作 |
-| 决策点 | 菱形 | 判断、分支 |
-| 数据源 | 圆柱形 | 数据库 |
-| 起止点 | 椭圆 | 开始、结束 |
+| Type | Shape | Usage |
+|------|-------|-------|
+| Core Component | Rounded Rectangle | Services, modules |
+| Process Node | Rectangle | Steps, actions |
+| Decision Point | Diamond | Conditions, branches |
+| Data Source | Cylinder | Databases |
+| Start/End | Ellipse | Start, end |
 
-### 连接线
+### Connectors
 
-| 样式 | 用途 |
-|------|------|
-| 实线箭头 | 主流程 |
-| 虚线箭头 | 可选/异步 |
-| 双向箭头 | 双向调用 |
+| Style | Usage |
+|-------|-------|
+| Solid Arrow | Main flow |
+| Dashed Arrow | Optional/async |
+| Bidirectional Arrow | Two-way calls |
 
-## 工作流程
+## Workflow
 
-1. **理解需求** → 确定图表类型、识别关键元素
-2. **规划布局** → 确定尺寸、划分区域
-3. **构建元素** → 参考 `references/examples.md` 的 JSON 结构
-4. **输出文件** → 生成 `.excalidraw` 文件
+1. **Understand Requirements** → Determine diagram type, identify key elements
+2. **Plan Layout** → Define dimensions, divide regions
+3. **Build Elements** → Reference JSON structures in `references/examples.md`
+4. **Output File** → Generate `.excalidraw` file
 
-## 参考文档
+## Reference Documentation
 
-| 文件 | 内容 |
-|------|------|
-| `references/examples.md` | 3 种图表的完整 JSON 示例 |
-| `references/element-ref.md` | 元素属性速查表 |
+| File | Content |
+|------|---------|
+| `references/examples.md` | Complete JSON examples for 3 diagram types |
+| `references/element-ref.md` | Element properties quick reference |
 
-## 注意事项
+## Notes
 
-- 复杂图表建议分步骤描述需求
-- 大型图表（>30 元素）建议拆分
-- 生成后可在 Excalidraw 中微调
-- 中英混合标注增强可读性
+- For complex diagrams, describe requirements step by step
+- Large diagrams (>30 elements) should be split
+- Fine-tune in Excalidraw after generation
+- Mix Chinese/English labels for readability

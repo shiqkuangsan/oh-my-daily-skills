@@ -1,8 +1,8 @@
-# Excalidraw 元素属性速查
+# Excalidraw Element Properties Reference
 
-## 基础结构
+## Basic Structure
 
-每个 `.excalidraw` 文件的顶层结构：
+Top-level structure of every `.excalidraw` file:
 
 ```json
 {
@@ -18,20 +18,20 @@
 }
 ```
 
-## 元素类型
+## Element Types
 
-| type | 用途 | 特有属性 |
-|------|------|----------|
-| `rectangle` | 矩形/圆角矩形 | roundness |
-| `ellipse` | 椭圆/圆 | - |
-| `diamond` | 菱形（决策） | - |
-| `line` | 直线/折线 | points |
-| `arrow` | 箭头连线 | points, startArrowhead, endArrowhead, startBinding, endBinding |
-| `text` | 文字 | text, fontSize, fontFamily, textAlign, containerId |
+| type | Usage | Unique Properties |
+|------|-------|-------------------|
+| `rectangle` | Rectangle/rounded rectangle | roundness |
+| `ellipse` | Ellipse/circle | - |
+| `diamond` | Diamond (decision) | - |
+| `line` | Line/polyline | points |
+| `arrow` | Arrow connector | points, startArrowhead, endArrowhead, startBinding, endBinding |
+| `text` | Text | text, fontSize, fontFamily, textAlign, containerId |
 
-## 通用属性
+## Common Properties
 
-每个元素都有的属性：
+Properties shared by all elements:
 
 ```json
 {
@@ -59,32 +59,32 @@
 }
 ```
 
-## 属性说明
+## Property Details
 
-### 样式属性
+### Style Properties
 
-| 属性 | 值 | 说明 |
-|------|-----|------|
-| `fillStyle` | `"solid"`, `"hachure"`, `"cross-hatch"` | 填充样式 |
-| `strokeStyle` | `"solid"`, `"dashed"`, `"dotted"` | 线条样式 |
-| `strokeWidth` | 1, 2, 4 | 线宽 |
-| `roughness` | 0, 1, 2 | 手绘感（0=平滑，2=粗糙） |
-| `opacity` | 0-100 | 透明度 |
+| Property | Values | Description |
+|----------|--------|-------------|
+| `fillStyle` | `"solid"`, `"hachure"`, `"cross-hatch"` | Fill style |
+| `strokeStyle` | `"solid"`, `"dashed"`, `"dotted"` | Line style |
+| `strokeWidth` | 1, 2, 4 | Line width |
+| `roughness` | 0, 1, 2 | Hand-drawn feel (0=smooth, 2=rough) |
+| `opacity` | 0-100 | Transparency |
 
-### 圆角 (roundness)
+### Roundness
 
 ```json
-// 圆角矩形
+// Rounded rectangle
 "roundness": { "type": 3 }
 
-// 椭圆/菱形
+// Ellipse/diamond
 "roundness": { "type": 2 }
 
-// 无圆角
+// No rounding
 "roundness": null
 ```
 
-### 文字属性
+### Text Properties
 
 ```json
 {
@@ -94,23 +94,23 @@
   "fontFamily": 1,
   "textAlign": "center",
   "verticalAlign": "middle",
-  "containerId": "parent-element-id"  // 绑定到容器
+  "containerId": "parent-element-id"  // Bind to container
 }
 ```
 
-| fontFamily | 字体 |
+| fontFamily | Font |
 |------------|------|
-| 1 | Virgil（手写） |
+| 1 | Virgil (handwritten) |
 | 2 | Helvetica |
-| 3 | Cascadia（等宽） |
+| 3 | Cascadia (monospace) |
 
-| textAlign | 水平对齐 |
-|-----------|----------|
-| `"left"` | 左对齐 |
-| `"center"` | 居中 |
-| `"right"` | 右对齐 |
+| textAlign | Horizontal Alignment |
+|-----------|----------------------|
+| `"left"` | Left |
+| `"center"` | Center |
+| `"right"` | Right |
 
-### 箭头属性
+### Arrow Properties
 
 ```json
 {
@@ -131,30 +131,30 @@
 }
 ```
 
-| arrowhead | 样式 |
-|-----------|------|
-| `null` | 无箭头 |
-| `"arrow"` | 普通箭头 |
-| `"bar"` | 竖线 |
-| `"dot"` | 圆点 |
-| `"triangle"` | 三角形 |
+| arrowhead | Style |
+|-----------|-------|
+| `null` | No arrowhead |
+| `"arrow"` | Standard arrow |
+| `"bar"` | Vertical bar |
+| `"dot"` | Circle |
+| `"triangle"` | Triangle |
 
-### 分组
+### Grouping
 
 ```json
-// 将元素分组
+// Group elements
 "groupIds": ["group-1"]
 
-// 嵌套分组
+// Nested groups
 "groupIds": ["group-1", "subgroup-a"]
 ```
 
-### 元素绑定
+### Element Binding
 
-容器与文字绑定：
+Container and text binding:
 
 ```json
-// 容器（矩形）
+// Container (rectangle)
 {
   "id": "box",
   "type": "rectangle",
@@ -163,7 +163,7 @@
   ]
 }
 
-// 文字
+// Text
 {
   "id": "box-text",
   "type": "text",
@@ -171,40 +171,40 @@
 }
 ```
 
-## 常用配色
+## Color Palette
 
-### 商务风格
+### Business Style
 
-| 用途 | 颜色 |
-|------|------|
-| 主色/文字 | `#1e3a5f` |
-| 次色 | `#4a90d9` |
-| 背景蓝 | `#dbeafe` |
-| 背景绿 | `#dcfce7` |
-| 背景黄 | `#fef3c7` |
-| 强调绿 | `#10b981` |
-| 边框灰 | `#6b7b8c` |
-| 浅灰 | `#9ca3af` |
+| Purpose | Color |
+|---------|-------|
+| Primary/Text | `#1e3a5f` |
+| Secondary | `#4a90d9` |
+| Background Blue | `#dbeafe` |
+| Background Green | `#dcfce7` |
+| Background Yellow | `#fef3c7` |
+| Accent Green | `#10b981` |
+| Border Gray | `#6b7b8c` |
+| Light Gray | `#9ca3af` |
 
-### 状态颜色
+### Status Colors
 
-| 状态 | 背景色 | 边框色 |
-|------|--------|--------|
-| 成功 | `#dcfce7` | `#10b981` |
-| 警告 | `#fef3c7` | `#f59e0b` |
-| 错误 | `#fee2e2` | `#ef4444` |
-| 信息 | `#dbeafe` | `#3b82f6` |
+| Status | Background | Border |
+|--------|------------|--------|
+| Success | `#dcfce7` | `#10b981` |
+| Warning | `#fef3c7` | `#f59e0b` |
+| Error | `#fee2e2` | `#ef4444` |
+| Info | `#dbeafe` | `#3b82f6` |
 
-## 坐标与布局
+## Coordinates & Layout
 
-- **x, y**: 左上角坐标
-- **width, height**: 尺寸
-- **建议间距**: 元素间 50-100px
-- **建议宽度**: 整体 1200-1600px
+- **x, y**: Top-left corner coordinates
+- **width, height**: Dimensions
+- **Recommended spacing**: 50-100px between elements
+- **Recommended width**: Overall 1200-1600px
 
-## 最小化示例
+## Minimal Example
 
-一个矩形 + 文字：
+A rectangle + text:
 
 ```json
 {
