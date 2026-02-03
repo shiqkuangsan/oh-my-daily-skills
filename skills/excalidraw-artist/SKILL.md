@@ -2,7 +2,7 @@
 name: tooyoung:excalidraw-artist
 description: Create Excalidraw hand-drawn style diagrams (architecture, flowchart, swimlane, sequence, wireframe). Trigger words: draw diagram, architecture diagram, flowchart, swimlane, excalidraw, diagram
 metadata:
-  version: "0.2.0"
+  version: "1.0.0"
 ---
 
 # Excalidraw Artist

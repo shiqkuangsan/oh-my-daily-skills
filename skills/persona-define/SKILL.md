@@ -2,7 +2,7 @@
 name: tooyoung:persona-define
 description: 为 Claude Code 定义个性化身份风格（人设）。触发词：定义人设、创建身份、persona、角色设定、CLAUDE.local.md
 metadata:
-  version: "0.1.0"
+  version: "1.0.0"
 ---
 
 # Persona Define

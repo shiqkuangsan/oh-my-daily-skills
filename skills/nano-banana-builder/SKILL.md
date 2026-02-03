@@ -2,7 +2,7 @@
 name: tooyoung:nano-banana-builder
 description: Build full-stack web applications powered by Google Gemini's Nano Banana & Nano Banana Pro image generation APIs. Use when creating Next.js image generation apps, text-to-image tools, or iterative image editors.
 metadata:
-  version: "0.1.0"
+  version: "1.0.0"
 ---
 
 # Nano Banana Builder

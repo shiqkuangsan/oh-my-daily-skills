@@ -3,7 +3,7 @@ name: personal:mac-docker
 description: 个人 Docker 服务管理配置。包含服务清单、路径、端口映射、常用命令。触发词：docker、容器、heimdall、portainer、qinglong
 compatibility: 需要 Docker Desktop。使用前将 $BASE_PATH 替换为实际路径
 metadata:
-  version: "0.1.0"
+  version: "1.0.0"
 ---
 
 # Mac Docker 服务管理

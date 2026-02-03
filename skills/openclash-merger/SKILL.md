@@ -2,7 +2,7 @@
 name: tooyoung:openclash-merger
 description: 将 vless+reality 等新协议配置转换为带 ACL4SSR Full NoAuto 规则的配置文件，支持分组+分流，可直接上传 OpenClash 使用。触发词：合并 OpenClash、转换订阅、Clash 配置
 metadata:
-  version: "0.1.0"
+  version: "1.0.0"
 ---
 
 # OpenClash 订阅配置合并
