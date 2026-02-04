@@ -19,6 +19,9 @@ npm-debug.log*
 .env.local
 .env.*.local
 
+# AI
+.playwright-mcp
+
 # Local Config
 CLAUDE.local.md
 CLAUDE.local.md.bak
