@@ -82,6 +82,7 @@ This file is:
 
 | Skill | Command | Description |
 |-------|---------|-------------|
+| _expense-receipt | `/personal:expense-receipt` | AI subscription expense receipt recognition (personal) |
 | _mac-docker | `/personal:mac-docker` | Docker service management config template |
 
 ## Structure
@@ -98,6 +99,7 @@ oh-my-daily-skills/
 │   ├── nano-banana-builder/
 │   ├── openclash-merger/
 │   ├── threejs-builder/
+│   ├── _expense-receipt/   # Personal skill (prefix with _)
 │   └── _mac-docker/        # Personal skill (prefix with _)
 └── README.md
 ```

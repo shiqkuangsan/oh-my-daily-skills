@@ -82,6 +82,7 @@ touch CLAUDE.local.md
 
 | 技能 | 命令 | 描述 |
 |------|------|------|
+| _expense-receipt | `/personal:expense-receipt` | AI 订阅报销收据识别（个人版） |
 | _mac-docker | `/personal:mac-docker` | Docker 服务管理配置模板 |
 
 ## 项目结构
@@ -98,6 +99,7 @@ oh-my-daily-skills/
 │   ├── nano-banana-builder/
 │   ├── openclash-merger/
 │   ├── threejs-builder/
+│   ├── _expense-receipt/   # 个人技能（前缀 _）
 │   └── _mac-docker/        # 个人技能（前缀 _）
 └── README.md
 ```
