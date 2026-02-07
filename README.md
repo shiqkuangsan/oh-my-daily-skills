@@ -83,17 +83,17 @@ This file is:
 | shitcode            | `/shitcode`                     | Write intentionally bad code for teaching or entertainment      |
 | threejs-builder     | `/tooyoung:threejs-builder`     | Create Three.js web applications                                |
 
-### Personal Skills (`personal:`)
+### Personal Skills (Templates)
 
-> ⚠️ **Not Ready to Use** — These are personal configuration templates with placeholder paths. Before use:
+> ⚠️ **Not Ready to Use** — These are personal configuration templates in the `personal/` directory with placeholder paths. They are NOT distributed via plugin or `npx skills`. Before use:
 >
 > 1. Copy to your `~/.claude/skills/` directory
 > 2. Replace placeholders like `$BASE_PATH` with actual paths
 
-| Skill             | Command                     | Description                                            |
-| ----------------- | --------------------------- | ------------------------------------------------------ |
-| \_expense-receipt | `/personal:expense-receipt` | AI subscription expense receipt recognition (personal) |
-| \_mac-docker      | `/personal:mac-docker`      | Docker service management config template              |
+| Skill           | Description                                            |
+| --------------- | ------------------------------------------------------ |
+| expense-receipt | AI subscription expense receipt recognition (personal) |
+| mac-docker      | Docker service management config template              |
 
 ## Structure
 
@@ -112,18 +112,19 @@ oh-my-daily-skills/
 │   ├── openclash-merger/
 │   ├── persona-define/
 │   ├── shitcode/
-│   ├── threejs-builder/
-│   ├── _expense-receipt/   # Personal skill (prefix with _)
-│   └── _mac-docker/        # Personal skill (prefix with _)
+│   └── threejs-builder/
+├── personal/                # Personal templates (not distributed)
+│   ├── expense-receipt/
+│   └── mac-docker/
 └── README.md
 ```
 
 ## Naming Convention
 
-| Type           | Directory     | Name Prefix | Example                     |
-| -------------- | ------------- | ----------- | --------------------------- |
-| General skill  | `skill-name`  | `tooyoung:` | `tooyoung:chainlit-builder` |
-| Personal skill | `_skill-name` | `personal:` | `personal:mac-docker`       |
+| Type           | Directory              | Example                |
+| -------------- | ---------------------- | ---------------------- |
+| General skill  | `skills/skill-name/`   | `skills/ink-reader/`   |
+| Personal skill | `personal/skill-name/` | `personal/mac-docker/` |
 
 ## Versioning
 

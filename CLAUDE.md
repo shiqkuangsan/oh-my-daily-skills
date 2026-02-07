@@ -36,12 +36,12 @@ metadata:
 
 ### Naming Convention
 
-| Type           | Directory     | Name Prefix | Example                     |
-| -------------- | ------------- | ----------- | --------------------------- |
-| General skill  | `skill-name`  | `tooyoung:` | `tooyoung:chainlit-builder` |
-| Personal skill | `_skill-name` | `personal:` | `personal:mac-docker`       |
+| Type           | Directory              | Example                |
+| -------------- | ---------------------- | ---------------------- |
+| General skill  | `skills/skill-name/`   | `skills/ink-reader/`   |
+| Personal skill | `personal/skill-name/` | `personal/mac-docker/` |
 
-Personal skills (prefixed with `_`) contain environment-specific paths and configurations.
+General skills 通过 plugin 和 `npx skills` 分发。Personal skills 在 `personal/` 目录下，不参与分发，仅作为配置模板参考。
 
 ## Key Guidelines
 
@@ -49,6 +49,14 @@ Personal skills (prefixed with `_`) contain environment-specific paths and confi
 - version 字段放在 `metadata` 下，值用引号包裹
 - Personal skills 使用 `compatibility` 字段说明环境要求
 - SKILL.md 保持精简，高级内容移至 `references/` 目录
+
+## Plugin Version
+
+每次增删或修改 skill 后，必须同步更新 `.claude-plugin/plugin.json` 的 `version` 字段，遵循语义化版本：
+
+- 新增 skill → MINOR bump（如 `1.0.1` → `1.1.0`）
+- 修改现有 skill → PATCH bump（如 `1.1.0` → `1.1.1`）
+- 破坏性变更（重命名/删除 skill）→ MAJOR bump
 
 ## Markdown Lint & Format
 

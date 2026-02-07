@@ -83,17 +83,17 @@ touch CLAUDE.local.md
 | shitcode            | `/shitcode`                     | 编写"烂代码"用于教学或娱乐演示                        |
 | threejs-builder     | `/tooyoung:threejs-builder`     | Three.js Web 应用创建                                 |
 
-### 个人技能 (`personal:`)
+### 个人技能（模板）
 
-> ⚠️ **不可直接使用** — 这是个人配置的参考模板，包含占位符路径。使用前需：
+> ⚠️ **不可直接使用** — 这是 `personal/` 目录下的个人配置参考模板，包含占位符路径，不会通过 plugin 或 `npx skills` 分发。使用前需：
 >
 > 1. 复制到你的 `~/.claude/skills/` 目录
 > 2. 将 `$BASE_PATH` 等占位符替换为实际路径
 
-| 技能              | 命令                        | 描述                          |
-| ----------------- | --------------------------- | ----------------------------- |
-| \_expense-receipt | `/personal:expense-receipt` | AI 订阅报销收据识别（个人版） |
-| \_mac-docker      | `/personal:mac-docker`      | Docker 服务管理配置模板       |
+| 技能            | 描述                          |
+| --------------- | ----------------------------- |
+| expense-receipt | AI 订阅报销收据识别（个人版） |
+| mac-docker      | Docker 服务管理配置模板       |
 
 ## 项目结构
 
@@ -112,18 +112,19 @@ oh-my-daily-skills/
 │   ├── openclash-merger/
 │   ├── persona-define/
 │   ├── shitcode/
-│   ├── threejs-builder/
-│   ├── _expense-receipt/   # 个人技能（前缀 _）
-│   └── _mac-docker/        # 个人技能（前缀 _）
+│   └── threejs-builder/
+├── personal/                # 个人模板（不分发）
+│   ├── expense-receipt/
+│   └── mac-docker/
 └── README.md
 ```
 
 ## 命名规范
 
-| 类型     | 目录名        | name 前缀   | 示例                        |
-| -------- | ------------- | ----------- | --------------------------- |
-| 通用技能 | `skill-name`  | `tooyoung:` | `tooyoung:chainlit-builder` |
-| 个人技能 | `_skill-name` | `personal:` | `personal:mac-docker`       |
+| 类型     | 目录                   | 示例                   |
+| -------- | ---------------------- | ---------------------- |
+| 通用技能 | `skills/skill-name/`   | `skills/ink-reader/`   |
+| 个人技能 | `personal/skill-name/` | `personal/mac-docker/` |
 
 ## 版本规范
 
