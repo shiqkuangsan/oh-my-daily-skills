@@ -67,6 +67,7 @@ claude --plugin-dir /path/to/oh-my-daily-skills
 | --------------- | ------------------------------ |
 | expense-receipt | AI 订阅报销收据识别（个人版）  |
 | mac-docker      | Docker 服务管理配置模板        |
+| mole            | Mac 深度清理优化命令顾问       |
 | shitcode        | 编写"烂代码"用于教学或娱乐演示 |
 
 ## 本地配置
@@ -103,6 +104,7 @@ oh-my-daily-skills/
 ├── personal/                # 个人模板（不分发）
 │   ├── expense-receipt/
 │   ├── mac-docker/
+│   ├── mole/
 │   └── shitcode/
 ├── CLAUDE.md
 └── README.md
