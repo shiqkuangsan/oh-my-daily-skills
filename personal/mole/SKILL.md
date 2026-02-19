@@ -1,12 +1,11 @@
 ---
 name: personal:mole
-description: "Mac 深度清理优化命令顾问。根据需求输出可复制的 mo 命令，辅助磁盘分析和配置管理。触发词：mole、mo、清理Mac、磁盘空间、系统优化、卸载App"
-compatibility: 需要 macOS 并安装 Mole (brew install mole)
-metadata:
-  version: "1.1.0"
+description: "当用户提到 mole、mo 命令，或想清理 Mac 磁盘空间、卸载 App 残留文件、优化系统性能、分析磁盘占用、清理构建产物（node_modules/Xcode/build 等）、管理 Mole 配置时使用。也适用于用户说"释放存储"、"系统卡顿"、"找安装包"等 macOS 深度清理场景。"
 ---
 
 # Mole - Mac 深度清理优化（命令顾问模式）
+
+> **前提**：需要 macOS 并安装 Mole（`brew install mole`）
 
 Mole 所有命令均为交互式 TUI，需要 TTY 环境，无法在 Claude Code 内执行。
 本 skill 的职责是：**根据用户需求，输出正确的命令供用户复制到终端执行。**
@@ -34,7 +33,7 @@ Mole 所有命令均为交互式 TUI，需要 TTY 环境，无法在 Claude Code
 {实际命令}
 ​```
 
-💡 {补充说明，如清理范围、注意事项}
+说明：{补充说明，如清理范围、注意事项}
 ````
 
 ## 命令速查
@@ -74,13 +73,23 @@ Mole 所有命令均为交互式 TUI，需要 TTY 环境，无法在 Claude Code
 
 ## 场景 → 命令映射
 
-| 用户说              | 输出命令                                                       |
-| ------------------- | -------------------------------------------------------------- |
-| 清理 Mac / 释放空间 | `mo clean --dry-run` → `mo clean`                              |
-| 卸载某个 App        | `mo uninstall`                                                 |
-| 系统卡顿 / 优化     | `mo optimize --dry-run` → `mo optimize`                        |
-| 磁盘占用分析        | `mo analyze`                                                   |
-| 查看系统状态        | `mo status`                                                    |
-| 清理 node_modules   | `mo purge`                                                     |
-| 清理安装包          | `mo installer`                                                 |
-| 全面维护            | 依次：`mo clean` → `mo purge` → `mo installer` → `mo optimize` |
+| 用户说              | 输出命令                              |
+| ------------------- | ------------------------------------- |
+| 清理 Mac / 释放空间 | `mo clean --dry-run` → `mo clean`     |
+| 卸载某个 App        | `mo uninstall`                        |
+| 系统卡顿 / 优化     | `mo optimize --dry-run` → `mo optimize` |
+| 磁盘占用分析        | `mo analyze`                          |
+| 查看系统状态        | `mo status`                           |
+| 清理 node_modules   | `mo purge`                            |
+| 清理安装包          | `mo installer`                        |
+
+## 全面维护流程
+
+依次执行以下步骤（每步确认 dry-run 后再执行实际命令）：
+
+```bash
+mo clean      # 清理缓存/日志
+mo purge      # 清理构建产物
+mo installer  # 清理安装包
+mo optimize   # 重建数据库/刷新服务
+```
