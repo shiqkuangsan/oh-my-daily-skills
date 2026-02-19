@@ -67,6 +67,7 @@ Copy individual skill directories to `~/.claude/skills/` for personal use.
 | --------------- | ---------------------------------------------------------- |
 | expense-receipt | AI subscription expense receipt recognition (personal)     |
 | mac-docker      | Docker service management config template                  |
+| media-summarize | Summarize video/audio/podcast/URL to Chinese Markdown      |
 | mole            | Mac deep cleaning & optimization command advisor           |
 | shitcode        | Write intentionally bad code for teaching or entertainment |
 
@@ -104,6 +105,7 @@ oh-my-daily-skills/
 ├── personal/                # Personal templates (not distributed)
 │   ├── expense-receipt/
 │   ├── mac-docker/
+│   ├── media-summarize/
 │   ├── mole/
 │   └── shitcode/
 ├── CLAUDE.md

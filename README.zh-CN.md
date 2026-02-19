@@ -63,12 +63,13 @@ claude --plugin-dir /path/to/oh-my-daily-skills
 > 1. 复制到你的 `~/.claude/skills/` 目录
 > 2. 将 `$BASE_PATH` 等占位符替换为实际路径
 
-| 技能            | 描述                           |
-| --------------- | ------------------------------ |
-| expense-receipt | AI 订阅报销收据识别（个人版）  |
-| mac-docker      | Docker 服务管理配置模板        |
-| mole            | Mac 深度清理优化命令顾问       |
-| shitcode        | 编写"烂代码"用于教学或娱乐演示 |
+| 技能            | 描述                                   |
+| --------------- | -------------------------------------- |
+| expense-receipt | AI 订阅报销收据识别（个人版）          |
+| mac-docker      | Docker 服务管理配置模板                |
+| media-summarize | 视频/音频/播客/链接总结为中文 Markdown |
+| mole            | Mac 深度清理优化命令顾问               |
+| shitcode        | 编写"烂代码"用于教学或娱乐演示         |
 
 ## 本地配置
 
@@ -104,6 +105,7 @@ oh-my-daily-skills/
 ├── personal/                # 个人模板（不分发）
 │   ├── expense-receipt/
 │   ├── mac-docker/
+│   ├── media-summarize/
 │   ├── mole/
 │   └── shitcode/
 ├── CLAUDE.md

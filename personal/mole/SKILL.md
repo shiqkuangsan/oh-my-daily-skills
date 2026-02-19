@@ -73,15 +73,15 @@ Mole 所有命令均为交互式 TUI，需要 TTY 环境，无法在 Claude Code
 
 ## 场景 → 命令映射
 
-| 用户说              | 输出命令                              |
-| ------------------- | ------------------------------------- |
-| 清理 Mac / 释放空间 | `mo clean --dry-run` → `mo clean`     |
-| 卸载某个 App        | `mo uninstall`                        |
+| 用户说              | 输出命令                                |
+| ------------------- | --------------------------------------- |
+| 清理 Mac / 释放空间 | `mo clean --dry-run` → `mo clean`       |
+| 卸载某个 App        | `mo uninstall`                          |
 | 系统卡顿 / 优化     | `mo optimize --dry-run` → `mo optimize` |
-| 磁盘占用分析        | `mo analyze`                          |
-| 查看系统状态        | `mo status`                           |
-| 清理 node_modules   | `mo purge`                            |
-| 清理安装包          | `mo installer`                        |
+| 磁盘占用分析        | `mo analyze`                            |
+| 查看系统状态        | `mo status`                             |
+| 清理 node_modules   | `mo purge`                              |
+| 清理安装包          | `mo installer`                          |
 
 ## 全面维护流程
 
