@@ -85,6 +85,8 @@ This file is:
 - ✅ **Project-specific** - Only affects this project
 - ✅ **Higher priority** - Overrides default behaviors
 
+A common use case is defining a custom persona with the `persona-define` skill, which generates identity and style configurations into this file.
+
 ## Structure
 
 ```
