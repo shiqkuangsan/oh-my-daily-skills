@@ -47,6 +47,7 @@ claude --plugin-dir /path/to/oh-my-daily-skills
 | ------------------- | ------------------------------- | ------------------------------------------ |
 | blobity-cursor      | `/tooyoung:blobity-cursor`      | 为任意落地页添加 Blobity 光标特效          |
 | chainlit-builder    | `/tooyoung:chainlit-builder`    | 搭建 Chainlit AI 对话 Demo 用于产品演示    |
+| codebase-stats      | `/tooyoung:codebase-stats`      | 按文件类型和自动检测模块统计代码行数       |
 | easy-openrouter     | `/tooyoung:easy-openrouter`     | 通过 OpenRouter 测试和比较 LLM 模型        |
 | excalidraw-artist   | `/tooyoung:excalidraw-artist`   | 创建 Excalidraw 手绘风格图表               |
 | gh-star-list        | `/tooyoung:gh-star-list`        | 用 AI 自动将 GitHub Stars 分类整理到 Lists |
@@ -96,6 +97,7 @@ oh-my-daily-skills/
 ├── skills/
 │   ├── blobity-cursor/
 │   ├── chainlit-builder/
+│   ├── codebase-stats/
 │   ├── easy-openrouter/
 │   ├── excalidraw-artist/
 │   ├── gh-star-list/

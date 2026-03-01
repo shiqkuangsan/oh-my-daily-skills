@@ -47,6 +47,7 @@ Copy individual skill directories to `~/.claude/skills/` for personal use.
 | ------------------- | ------------------------------- | --------------------------------------------------------- |
 | blobity-cursor      | `/tooyoung:blobity-cursor`      | Add Blobity canvas cursor effect to any landing page      |
 | chainlit-builder    | `/tooyoung:chainlit-builder`    | Scaffold Chainlit AI chat demos for product presentations |
+| codebase-stats      | `/tooyoung:codebase-stats`      | Count lines of code by file type and auto-detected module |
 | easy-openrouter     | `/tooyoung:easy-openrouter`     | Test and compare LLM models via OpenRouter                |
 | excalidraw-artist   | `/tooyoung:excalidraw-artist`   | Create Excalidraw hand-drawn style diagrams               |
 | gh-star-list        | `/tooyoung:gh-star-list`        | Categorize GitHub starred repos into Lists using AI       |
@@ -96,6 +97,7 @@ oh-my-daily-skills/
 ├── skills/
 │   ├── blobity-cursor/
 │   ├── chainlit-builder/
+│   ├── codebase-stats/
 │   ├── easy-openrouter/
 │   ├── excalidraw-artist/
 │   ├── gh-star-list/
