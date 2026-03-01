@@ -2,7 +2,7 @@
 name: tooyoung:codebase-stats
 description: "Count lines of code by file type and auto-detected module for any codebase. Supports monorepo, full-stack, Java multi-module, Go, Python, and Rust workspaces. Trigger words: codebase stats, loc, count lines, code stats, codebase-stats"
 metadata:
-  version: "0.1.0"
+  version: "1.0.0"
 ---
 
 # Codebase Stats

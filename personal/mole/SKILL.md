@@ -1,6 +1,9 @@
 ---
 name: personal:mole
 description: "当用户提到 mole、mo 命令，或想清理 Mac 磁盘空间、卸载 App 残留文件、优化系统性能、分析磁盘占用、清理构建产物（node_modules/Xcode/build 等）、管理 Mole 配置时使用。也适用于用户说"释放存储"、"系统卡顿"、"找安装包"等 macOS 深度清理场景。"
+compatibility: "macOS with Mole installed (brew install mole)"
+metadata:
+  version: "1.0.0"
 ---
 
 # Mole - Mac 深度清理优化（命令顾问模式）

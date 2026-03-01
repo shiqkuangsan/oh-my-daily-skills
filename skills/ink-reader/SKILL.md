@@ -2,7 +2,7 @@
 name: tooyoung:ink-reader
 description: "Intelligently read any URL content with auto platform detection and fallback strategies. Supports WeChat, Zhihu, Bilibili, Toutiao, Weibo, Xiaohongshu, Douyin, X/Twitter, and generic websites. Trigger words: read url, read link, read this, fetch url, grab content, ink-reader"
 metadata:
-  version: "0.1.0"
+  version: "1.0.0"
 ---
 
 # Ink Reader
@@ -110,7 +110,7 @@ Parse the URL domain and match against the platform table above.
 Content is **valid** when ALL of these are true:
 
 - Length > 100 characters after trimming
-- Does NOT contain these verification markers: "环境异常", "完成验证", "请完成验证", "access denied", "please verify"
+- Does NOT contain these verification markers: "环境异常", "完成验证", "请完成验证", "access denied", "please verify", "subscribe to continue", "sign in to read", "create a free account"
 - Is NOT a login wall or CAPTCHA page
 
 If content fails validation, treat it as a failure and try the next strategy.
@@ -187,8 +187,8 @@ saved_at: "{YYYY-MM-DD HH:MM:SS}"
 {Body content}
 ```
 
-1. Sanitize title for filename: remove `<>:"/\|?*`, replace whitespace with `-`, truncate to 50 chars.
-2. Report: "Saved to `./ink-reader-clips/{filename}`"
+- Sanitize title for filename: remove `<>:"/\|?*`, replace whitespace with `-`, truncate to 50 chars.
+- Report: "Saved to `./ink-reader-clips/{filename}`"
 
 Do NOT auto-save. Only save when explicitly asked.
 
