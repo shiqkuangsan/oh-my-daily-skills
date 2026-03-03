@@ -53,6 +53,7 @@ Copy individual skill directories to `~/.claude/skills/` for personal use.
 | gh-star-list        | `/tooyoung:gh-star-list`        | Categorize GitHub starred repos into Lists using AI       |
 | ink-reader          | `/tooyoung:ink-reader`          | Read any URL with auto platform detection and fallback    |
 | nano-banana-builder | `/tooyoung:nano-banana-builder` | Build image generation apps with Google Gemini APIs       |
+| neoblo-landing-page | `/tooyoung:neoblo-landing-page` | Build Neobrutalism + Blobity landing pages from scratch   |
 | openclash-merger    | `/tooyoung:openclash-merger`    | Merge OpenClash subscription configs with rule groups     |
 | persona-define      | `/tooyoung:persona-define`      | Define personalized identity style for Claude Code        |
 | threejs-builder     | `/tooyoung:threejs-builder`     | Create Three.js 3D web applications                       |
@@ -103,6 +104,7 @@ oh-my-daily-skills/
 │   ├── gh-star-list/
 │   ├── ink-reader/
 │   ├── nano-banana-builder/
+│   ├── neoblo-landing-page/
 │   ├── openclash-merger/
 │   ├── persona-define/
 │   └── threejs-builder/

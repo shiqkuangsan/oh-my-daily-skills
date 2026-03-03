@@ -53,6 +53,7 @@ claude --plugin-dir /path/to/oh-my-daily-skills
 | gh-star-list        | `/tooyoung:gh-star-list`        | 用 AI 自动将 GitHub Stars 分类整理到 Lists |
 | ink-reader          | `/tooyoung:ink-reader`          | 智能读取 URL 内容，自动识别平台和抓取策略  |
 | nano-banana-builder | `/tooyoung:nano-banana-builder` | 基于 Google Gemini API 构建图像生成应用    |
+| neoblo-landing-page | `/tooyoung:neoblo-landing-page` | 构建 Neobrutalism + Blobity 风格落地页     |
 | openclash-merger    | `/tooyoung:openclash-merger`    | 合并 OpenClash 订阅配置并生成分流规则      |
 | persona-define      | `/tooyoung:persona-define`      | 为 Claude Code 定义个性化身份风格（人设）  |
 | threejs-builder     | `/tooyoung:threejs-builder`     | 创建 Three.js 3D Web 应用                  |
@@ -103,6 +104,7 @@ oh-my-daily-skills/
 │   ├── gh-star-list/
 │   ├── ink-reader/
 │   ├── nano-banana-builder/
+│   ├── neoblo-landing-page/
 │   ├── openclash-merger/
 │   ├── persona-define/
 │   └── threejs-builder/
