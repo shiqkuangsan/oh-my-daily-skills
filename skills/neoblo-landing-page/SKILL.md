@@ -2,7 +2,7 @@
 name: tooyoung:neoblo-landing-page
 description: "Build static landing pages with Neobrutalism design + Blobity cursor. Design tokens, page structure, components, 3D card tilt, theme toggle, i18n."
 metadata:
-  version: "0.1.0"
+  version: "1.0.0"
 ---
 
 # Neoblo Landing Page
