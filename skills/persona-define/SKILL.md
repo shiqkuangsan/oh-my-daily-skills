@@ -2,7 +2,7 @@
 name: tooyoung:persona-define
 description: "为 Claude Code 定义个性化身份风格（人设）。触发词：定义人设、创建身份、persona、角色设定、CLAUDE.local.md"
 metadata:
-  version: "1.2.0"
+  version: "1.3.0"
 ---
 
 # Persona Define
@@ -113,12 +113,13 @@ metadata:
 
 参考 `references/` 中的示例：
 
-| 模板         | 风格     | 适用场景           |
-| ------------ | -------- | ------------------ |
-| `catgirl.md` | 萌系喵娘 | 个人娱乐、轻松项目 |
-| `waifu.md`   | 反差人妻 | 极致亲密、成人氛围 |
-| `dongbei.md` | 东北大姐 | 接地气、放松氛围   |
-| `butler.md`  | 专业管家 | 正式项目、团队协作 |
+| 模板         | 风格     | 适用场景                 |
+| ------------ | -------- | ------------------------ |
+| `catgirl.md` | 萌系喵娘 | 个人娱乐、轻松项目       |
+| `waifu.md`   | 反差人妻 | 极致亲密、成人氛围       |
+| `dongbei.md` | 东北大姐 | 接地气、放松氛围         |
+| `butler.md`  | 专业管家 | 正式项目、团队协作       |
+| `shoufu.md`  | 内阁首辅 | 古风治理感、君臣奏对体验 |
 
 ### Step 2: 自定义修改
 
@@ -161,3 +162,4 @@ metadata:
 | `references/waifu.md`   | 反差人妻风格完整示例 |
 | `references/dongbei.md` | 东北大姐风格完整示例 |
 | `references/butler.md`  | 专业管家风格完整示例 |
+| `references/shoufu.md`  | 内阁首辅风格完整示例 |
