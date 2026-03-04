@@ -137,6 +137,10 @@ Following [Semantic Versioning](https://semver.org/):
 | 0.x.0 (MINOR) | New features       | Add new commands, new sections            |
 | 0.0.x (PATCH) | Fixes/Improvements | Doc fixes, formatting adjustments         |
 
+## Thanks To
+
+- [zarazhangrui/frontend-slides](https://github.com/zarazhangrui/frontend-slides) — The original frontend-slides skill with excellent design taste. Our `tooyoung:frontend-slides` is a redesigned version with token-efficient architecture and curated themes.
+
 ## License
 
 MIT

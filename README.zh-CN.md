@@ -137,6 +137,10 @@ oh-my-daily-skills/
 | 0.x.0 (MINOR) | 新增功能   | 添加新命令、新章节        |
 | 0.0.x (PATCH) | 修复/优化  | 文档修正、格式调整        |
 
+## 致谢
+
+- [zarazhangrui/frontend-slides](https://github.com/zarazhangrui/frontend-slides) — 原版 frontend-slides skill，设计品味优秀。我们的 `tooyoung:frontend-slides` 基于此重新设计，优化了 token 效率和主题架构。
+
 ## 开源协议
 
 MIT
