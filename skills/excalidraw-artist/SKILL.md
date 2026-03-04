@@ -2,7 +2,7 @@
 name: tooyoung:excalidraw-artist
 description: "Create Excalidraw hand-drawn style diagrams (architecture, flowchart, swimlane, sequence, wireframe). Trigger words: draw diagram, architecture diagram, flowchart, swimlane, excalidraw, diagram"
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Excalidraw Artist
@@ -11,13 +11,14 @@ Create professional hand-drawn style diagrams with Excalidraw, outputting `.exca
 
 ## Supported Diagram Types
 
-| Type         | Use Cases                                                |
-| ------------ | -------------------------------------------------------- |
-| Architecture | System design, microservices, layered architecture       |
-| Flowchart    | Business processes, approval workflows, deployment flows |
-| Swimlane     | Multi-role collaboration, cross-department processes     |
-| Sequence     | API calls, message flows                                 |
-| Wireframe    | UI prototypes, page layouts                              |
+| Type         | Use Cases                                                                |
+| ------------ | ------------------------------------------------------------------------ |
+| Architecture | System design, microservices, layered architecture                       |
+| Flowchart    | Business processes, approval workflows, deployment flows                 |
+| Swimlane     | Multi-role collaboration, cross-department processes, quarterly roadmaps |
+| Timeline     | Gantt-style roadmaps, milestone schedules, release plans                 |
+| Sequence     | API calls, message flows                                                 |
+| Wireframe    | UI prototypes, page layouts                                              |
 
 ## Quick Start
 
@@ -74,20 +75,24 @@ Output files can be opened and edited at [excalidraw.com](https://excalidraw.com
 ## Workflow
 
 1. **Understand Requirements** → Determine diagram type, identify key elements
-2. **Plan Layout** → Define dimensions, divide regions
-3. **Build Elements** → Reference JSON structures in `references/examples.md`
-4. **Output File** → Generate `.excalidraw` file
+2. **Plan Layout** → Define dimensions, divide regions; for grid layouts calculate column/row system first (see `references/element-ref.md` → Grid Layout Calculation)
+3. **Design Color Scheme** → Use preset palette or design semantic colors for priority/category encoding (see `references/element-ref.md` → Semantic Color Coding)
+4. **Build Elements** → Reference JSON structures in `references/examples.md`; use semantic IDs for 10+ elements
+5. **Verify Bindings** → Check every container↔text pair has bidirectional references
+6. **Output File** → Generate `.excalidraw` file
 
 ## Reference Documentation
 
-| File                        | Content                                    |
-| --------------------------- | ------------------------------------------ |
-| `references/examples.md`    | Complete JSON examples for 3 diagram types |
-| `references/element-ref.md` | Element properties quick reference         |
+| File                        | Content                                                                                                              |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `references/examples.md`    | Complete JSON examples for 4 diagram types (flowchart, architecture, sequence, swimlane)                             |
+| `references/element-ref.md` | Element properties, text binding formulas, grid layout calculation, semantic colors, ID conventions, troubleshooting |
 
 ## Notes
 
 - For complex diagrams, describe requirements step by step
-- Large diagrams (>30 elements) should be split
+- Large diagrams (>80 elements) may be slow to open; consider splitting
+- Use semantic ID prefixes for 10+ elements (see element-ref.md → ID Naming Convention)
+- Calculate grid coordinates before placing elements in grid/swimlane layouts
 - Fine-tune in Excalidraw after generation
 - Mix Chinese/English labels for readability
