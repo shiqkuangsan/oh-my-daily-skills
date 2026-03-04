@@ -50,6 +50,7 @@ Copy individual skill directories to `~/.claude/skills/` for personal use.
 | codebase-stats      | `/tooyoung:codebase-stats`      | Count lines of code by file type and auto-detected module |
 | easy-openrouter     | `/tooyoung:easy-openrouter`     | Test and compare LLM models via OpenRouter                |
 | excalidraw-artist   | `/tooyoung:excalidraw-artist`   | Create Excalidraw hand-drawn style diagrams               |
+| frontend-slides     | `/tooyoung:frontend-slides`     | Create viewport-fitted HTML slide presentations           |
 | gh-star-list        | `/tooyoung:gh-star-list`        | Categorize GitHub starred repos into Lists using AI       |
 | ink-reader          | `/tooyoung:ink-reader`          | Read any URL with auto platform detection and fallback    |
 | nano-banana-builder | `/tooyoung:nano-banana-builder` | Build image generation apps with Google Gemini APIs       |
@@ -101,6 +102,7 @@ oh-my-daily-skills/
 │   ├── codebase-stats/
 │   ├── easy-openrouter/
 │   ├── excalidraw-artist/
+│   ├── frontend-slides/
 │   ├── gh-star-list/
 │   ├── ink-reader/
 │   ├── nano-banana-builder/

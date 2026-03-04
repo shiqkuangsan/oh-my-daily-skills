@@ -50,6 +50,7 @@ claude --plugin-dir /path/to/oh-my-daily-skills
 | codebase-stats      | `/tooyoung:codebase-stats`      | 按文件类型和自动检测模块统计代码行数       |
 | easy-openrouter     | `/tooyoung:easy-openrouter`     | 通过 OpenRouter 测试和比较 LLM 模型        |
 | excalidraw-artist   | `/tooyoung:excalidraw-artist`   | 创建 Excalidraw 手绘风格图表               |
+| frontend-slides     | `/tooyoung:frontend-slides`     | 创建适配视口的 HTML 幻灯片演示文稿         |
 | gh-star-list        | `/tooyoung:gh-star-list`        | 用 AI 自动将 GitHub Stars 分类整理到 Lists |
 | ink-reader          | `/tooyoung:ink-reader`          | 智能读取 URL 内容，自动识别平台和抓取策略  |
 | nano-banana-builder | `/tooyoung:nano-banana-builder` | 基于 Google Gemini API 构建图像生成应用    |
@@ -101,6 +102,7 @@ oh-my-daily-skills/
 │   ├── codebase-stats/
 │   ├── easy-openrouter/
 │   ├── excalidraw-artist/
+│   ├── frontend-slides/
 │   ├── gh-star-list/
 │   ├── ink-reader/
 │   ├── nano-banana-builder/
