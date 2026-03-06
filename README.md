@@ -43,21 +43,22 @@ Copy individual skill directories to `~/.claude/skills/` for personal use.
 
 ### General Skills (`tooyoung:`)
 
-| Skill               | Command                         | Description                                               |
-| ------------------- | ------------------------------- | --------------------------------------------------------- |
-| blobity-cursor      | `/tooyoung:blobity-cursor`      | Add Blobity canvas cursor effect to any landing page      |
-| chainlit-builder    | `/tooyoung:chainlit-builder`    | Scaffold Chainlit AI chat demos for product presentations |
-| codebase-stats      | `/tooyoung:codebase-stats`      | Count lines of code by file type and auto-detected module |
-| easy-openrouter     | `/tooyoung:easy-openrouter`     | Test and compare LLM models via OpenRouter                |
-| excalidraw-artist   | `/tooyoung:excalidraw-artist`   | Create Excalidraw hand-drawn style diagrams               |
-| frontend-slides     | `/tooyoung:frontend-slides`     | Create viewport-fitted HTML slide presentations           |
-| gh-star-list        | `/tooyoung:gh-star-list`        | Categorize GitHub starred repos into Lists using AI       |
-| ink-reader          | `/tooyoung:ink-reader`          | Read any URL with auto platform detection and fallback    |
-| nano-banana-builder | `/tooyoung:nano-banana-builder` | Build image generation apps with Google Gemini APIs       |
-| neoblo-landing-page | `/tooyoung:neoblo-landing-page` | Build Neobrutalism + Blobity landing pages from scratch   |
-| openclash-merger    | `/tooyoung:openclash-merger`    | Merge OpenClash subscription configs with rule groups     |
-| persona-define      | `/tooyoung:persona-define`      | Define personalized identity style for Claude Code        |
-| threejs-builder     | `/tooyoung:threejs-builder`     | Create Three.js 3D web applications                       |
+| Skill               | Command                         | Description                                                |
+| ------------------- | ------------------------------- | ---------------------------------------------------------- |
+| blobity-cursor      | `/tooyoung:blobity-cursor`      | Add Blobity canvas cursor effect to any landing page       |
+| chainlit-builder    | `/tooyoung:chainlit-builder`    | Scaffold Chainlit AI chat demos for product presentations  |
+| codebase-stats      | `/tooyoung:codebase-stats`      | Count lines of code by file type and auto-detected module  |
+| easy-openrouter     | `/tooyoung:easy-openrouter`     | Test and compare LLM models via OpenRouter                 |
+| excalidraw-artist   | `/tooyoung:excalidraw-artist`   | Create Excalidraw hand-drawn style diagrams                |
+| frontend-slides     | `/tooyoung:frontend-slides`     | Create viewport-fitted HTML slide presentations            |
+| gh-star-list        | `/tooyoung:gh-star-list`        | Categorize GitHub starred repos into Lists using AI        |
+| ink-reader          | `/tooyoung:ink-reader`          | Read any URL with auto platform detection and fallback     |
+| ming-court-code     | `/tooyoung:ming-court-code`     | Ming Dynasty court protocol with three auto-selected tiers |
+| nano-banana-builder | `/tooyoung:nano-banana-builder` | Build image generation apps with Google Gemini APIs        |
+| neoblo-landing-page | `/tooyoung:neoblo-landing-page` | Build Neobrutalism + Blobity landing pages from scratch    |
+| openclash-merger    | `/tooyoung:openclash-merger`    | Merge OpenClash subscription configs with rule groups      |
+| persona-define      | `/tooyoung:persona-define`      | Define personalized identity style for Claude Code         |
+| threejs-builder     | `/tooyoung:threejs-builder`     | Create Three.js 3D web applications                        |
 
 ### Personal Skills (Templates)
 
@@ -105,6 +106,7 @@ oh-my-daily-skills/
 │   ├── frontend-slides/
 │   ├── gh-star-list/
 │   ├── ink-reader/
+│   ├── ming-court-code/
 │   ├── nano-banana-builder/
 │   ├── neoblo-landing-page/
 │   ├── openclash-merger/
@@ -140,6 +142,7 @@ Following [Semantic Versioning](https://semver.org/):
 ## Thanks To
 
 - [zarazhangrui/frontend-slides](https://github.com/zarazhangrui/frontend-slides) — The original frontend-slides skill with excellent design taste. Our `tooyoung:frontend-slides` is a redesigned version with token-efficient architecture and curated themes.
+- [cft0808/edict](https://github.com/cft0808/edict) — The Tang Dynasty "Three Departments and Six Ministries" multi-agent framework. Its institutional design philosophy inspired our `tooyoung:ming-court-code`, reimagined through the Ming Dynasty court system for Claude Code workflows.
 
 ## License
 

@@ -53,6 +53,7 @@ claude --plugin-dir /path/to/oh-my-daily-skills
 | frontend-slides     | `/tooyoung:frontend-slides`     | 创建适配视口的 HTML 幻灯片演示文稿         |
 | gh-star-list        | `/tooyoung:gh-star-list`        | 用 AI 自动将 GitHub Stars 分类整理到 Lists |
 | ink-reader          | `/tooyoung:ink-reader`          | 智能读取 URL 内容，自动识别平台和抓取策略  |
+| ming-court-code     | `/tooyoung:ming-court-code`     | 明廷典：三档自适应的明制开发工作流协议     |
 | nano-banana-builder | `/tooyoung:nano-banana-builder` | 基于 Google Gemini API 构建图像生成应用    |
 | neoblo-landing-page | `/tooyoung:neoblo-landing-page` | 构建 Neobrutalism + Blobity 风格落地页     |
 | openclash-merger    | `/tooyoung:openclash-merger`    | 合并 OpenClash 订阅配置并生成分流规则      |
@@ -105,6 +106,7 @@ oh-my-daily-skills/
 │   ├── frontend-slides/
 │   ├── gh-star-list/
 │   ├── ink-reader/
+│   ├── ming-court-code/
 │   ├── nano-banana-builder/
 │   ├── neoblo-landing-page/
 │   ├── openclash-merger/
@@ -140,6 +142,7 @@ oh-my-daily-skills/
 ## 致谢
 
 - [zarazhangrui/frontend-slides](https://github.com/zarazhangrui/frontend-slides) — 原版 frontend-slides skill，设计品味优秀。我们的 `tooyoung:frontend-slides` 基于此重新设计，优化了 token 效率和主题架构。
+- [cft0808/edict](https://github.com/cft0808/edict) — 唐朝三省六部制多 Agent 协作框架，其制度化设计哲学启发了 `tooyoung:ming-court-code`，我们以明朝朝廷制度重新构想了 Claude Code 开发工作流协议。
 
 ## 开源协议
 
