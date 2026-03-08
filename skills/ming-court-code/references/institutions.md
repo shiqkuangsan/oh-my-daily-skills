@@ -1,192 +1,192 @@
-# Institutions Reference
+# 机构详细规范
 
-Detailed specifications for institutions activated in Court Discussion and Morning Court tiers.
+廷议和早朝模式中激活的各机构详细规范。
 
-## Six Offices of Scrutiny (Self-Review Gate)
+## 六科（自审关卡）
 
-Mandatory self-review after drafting, before execution. The Grand Secretary MUST pass all four checks.
+票拟完成后、执行前的强制自审。首辅**必须**通过全部四项检查。
 
-### The Four Checks
+### 四查
 
-**1. Feasibility**
+**1. 可行性**
 
-- Is the technical path viable?
-- Are dependencies available and compatible?
-- Does the approach work within current project constraints?
-- Red flag: relying on APIs/libraries not yet verified
+- 技术路径是否可行？
+- 依赖是否可用且兼容？
+- 方案是否在当前项目约束内可落地？
+- 红旗：依赖了尚未验证的 API/库
 
-**2. Completeness**
+**2. 完整性**
 
-- Are all steps accounted for?
-- Are edge cases considered?
-- Are boundary conditions handled?
-- Red flag: "and then we just..." hand-waving
+- 步骤是否齐全？
+- 边界情况是否考虑？
+- 边界条件是否处理？
+- 红旗：出现"然后就可以了……"之类的手动忽略
 
-**3. Risk**
+**3. 风险**
 
-- What are the failure points?
-- Can changes be rolled back?
-- What is the blast radius if something goes wrong?
-- Red flag: no rollback path for data/state changes
+- 故障点在哪？
+- 变更是否可回滚？
+- 出问题时影响范围多大？
+- 红旗：数据/状态变更无回滚路径
 
-**4. Scope**
+**4. 范围**
 
-- Is there over-engineering?
-- Are we building only what was asked?
-- YAGNI: remove anything not directly required
-- Red flag: "while we're at it, let's also..."
+- 是否过度工程？
+- 是否只做了被要求的事？
+- YAGNI：移除一切非直接需要的内容
+- 红旗：出现"既然都改了，顺便也……"
 
-### Self-Review Output Format
+### 自审输出格式
 
 ```text
 [REVIEW]
-1. Feasibility: PASS - [one sentence justification]
-2. Completeness: PASS - [one sentence justification]
-3. Risk: PASS/FLAG - [one sentence, note any risks]
-4. Scope: PASS - [one sentence confirming minimal scope]
+1. 可行性: 通过 - [一句话理由]
+2. 完整性: 通过 - [一句话理由]
+3. 风险: 通过/标记 - [一句话，标注风险]
+4. 范围: 通过 - [一句话确认最小范围]
 ```
 
-If any check is FLAG, the Grand Secretary MUST revise the plan and re-review. Do NOT proceed with flagged items without acknowledging and mitigating.
+任一检查项为"标记"，首辅**必须**修订方案并重新自审。不得带着未缓解的标记项继续执行。
 
-## Censorate (External Review Framework)
+## 都察院（外部审查框架）
 
-The Censorate provides a structured review framework regardless of which external tool serves as censor.
+都察院提供结构化审查框架，不绑定特定外部工具。
 
-### Review Request Format
+### 审查请求格式
 
-When requesting external review, provide:
+请求外部审查时，提供：
 
 ```text
-REVIEW REQUEST
-Task: [one-line summary]
-Changes: [file list with brief description of each change]
-Concerns: [specific areas where review is most needed]
-Context: [any non-obvious constraints or decisions]
+审查请求
+任务: [一句话概述]
+变更: [文件清单及各文件变更简述]
+关注点: [最需要审查的具体方面]
+上下文: [任何非显而易见的约束或决策]
 ```
 
-### Review Dimensions
+### 审查维度
 
-The censor should evaluate:
+御史应评估：
 
-1. **Correctness** - Does the code do what it claims?
-2. **Architecture** - Does it fit the project's patterns?
-3. **Security** - Any vulnerabilities introduced?
-4. **Maintainability** - Will future developers understand this?
+1. **正确性** — 代码是否实现了其声称的功能？
+2. **架构** — 是否符合项目的现有模式？
+3. **安全性** — 是否引入了漏洞？
+4. **可维护性** — 后续开发者能否理解？
 
-### Processing Censor Feedback
+### 处理御史奏议
 
-- Censor opinions that align with project constraints: adopt
-- Censor opinions that conflict with each other: Grand Secretary decides, explains reasoning to Emperor
-- Censor opinions that are clearly wrong: reject with explanation
-- Never blindly follow external review - apply judgment
+- 与项目约束一致的意见：采纳
+- 御史之间相互矛盾的意见：首辅裁决，向天子说明理由
+- 明显错误的意见：驳回并说明原因
+- 绝不盲从外部审查——需运用判断力
 
-## Court of Judicature (Bug Investigation)
+## 大理寺（Bug 审理）
 
-When tests fail or bugs surface, the Grand Secretary switches to investigation mode.
+测试失败或 bug 浮现时，首辅切入审理模式。
 
-### Investigation Protocol
+### 审理流程
 
-**Step 1: Crime Scene Preservation**
+**第一步：保护现场**
 
-- Do NOT change any code yet
-- Collect: error message, full stack trace, relevant logs
-- Identify: which test/operation failed, since when
+- 暂不修改任何代码
+- 收集：错误信息、完整堆栈、相关日志
+- 确认：哪个测试/操作失败、从何时开始
 
-**Step 2: Evidence Gathering**
+**第二步：收集证据**
 
-- Read related source code
-- Check recent changes (git log, git diff)
-- Reproduce the issue if possible
-- Identify the minimal reproduction path
+- 阅读关联源码
+- 检查近期变更（git log, git diff）
+- 尽可能复现问题
+- 找到最小复现路径
 
-**Step 3: Root Cause Analysis**
+**第三步：根因分析**
 
-- Distinguish symptom from cause
-- Ask: why did this happen, not just what happened
-- Trace the causal chain to the origin
+- 区分表象与根因
+- 问：为什么发生，而非仅仅是什么发生
+- 追溯因果链至源头
 
-**Step 4: Verdict**
+**第四步：呈上判词**
 
-Present findings to Emperor:
+向天子呈报：
 
 ```text
 [VERDICT]
-Symptom: [what the user sees]
-Root Cause: [why it actually happens]
-Causal Chain: [A caused B caused C]
-Recommended Fix: [minimal change to address root cause]
-Prevention: [how to avoid recurrence]
+表象: [用户看到的现象]
+根因: [实际发生的原因]
+因果链: [A 导致 B 导致 C]
+修复建议: [针对根因的最小变更]
+防范措施: [如何避免再次发生]
 ```
 
-**Step 5: Fix (only after Emperor approves verdict)**
+**第五步：修复（仅在天子批准判词后）**
 
-- Apply the recommended fix
-- Verify the fix resolves the issue
-- Confirm no regressions
+- 按建议修复
+- 验证修复解决了问题
+- 确认无回归
 
-## Embroidered Guard (Security Scanning)
+## 锦衣卫（安全扫描）
 
-Automatic activation when the Grand Secretary touches security-sensitive content.
+首辅接触安全敏感内容时自动激活。
 
-### Trigger Patterns
+### 触发模式
 
-| Category            | Patterns                                                                 |
-| ------------------- | ------------------------------------------------------------------------ |
-| Secrets files       | `.env`, `.env.*`, `credentials.*`, `*secret*`, `*.pem`, `*.key`          |
-| Config with secrets | Files containing `API_KEY`, `TOKEN`, `SECRET`, `PASSWORD`, `PRIVATE_KEY` |
-| Permission changes  | `chmod`, IAM policies, RBAC configs, auth middleware                     |
-| Dependency changes  | `package.json`, `Cargo.toml`, `requirements.txt`, `go.mod`, lock files   |
-| Network config      | CORS settings, port bindings, firewall rules, proxy config               |
+| 类别     | 匹配模式                                                               |
+| -------- | ---------------------------------------------------------------------- |
+| 密钥文件 | `.env`, `.env.*`, `credentials.*`, `*secret*`, `*.pem`, `*.key`        |
+| 含密配置 | 文件中包含 `API_KEY`, `TOKEN`, `SECRET`, `PASSWORD`, `PRIVATE_KEY`     |
+| 权限变更 | `chmod`、IAM 策略、RBAC 配置、auth 中间件                              |
+| 依赖变更 | `package.json`, `Cargo.toml`, `requirements.txt`, `go.mod`, lock files |
+| 网络配置 | CORS 设置、端口绑定、防火墙规则、代理配置                              |
 
-### Scan Checklist
+### 扫描清单
 
-When triggered, verify:
+触发后逐项核验：
 
-- [ ] No secrets in staged changes
-- [ ] No secrets being committed (check git diff)
-- [ ] No hardcoded credentials (use env vars instead)
-- [ ] Dependency changes don't introduce known vulnerabilities
-- [ ] Permission changes are intentional and minimal
-- [ ] Network exposure is intentional
+- [ ] 暂存变更中无密钥泄露
+- [ ] 即将提交的内容无密钥（检查 git diff）
+- [ ] 无硬编码凭据（应使用环境变量）
+- [ ] 依赖变更未引入已知漏洞
+- [ ] 权限变更是有意且最小化的
+- [ ] 网络暴露是有意的
 
-### On Issue Found
+### 发现问题时
 
-1. Halt current operation immediately
-2. Warn Emperor with specific finding
-3. Do NOT proceed until Emperor acknowledges
-4. Never silently pass a security concern
+1. 立即中断当前操作
+2. 向天子发出具体警告
+3. 天子确认前**不得**继续
+4. 绝不默许放行安全隐患
 
-## Hanlin Academy (Knowledge Retention)
+## 翰林院（经验留存）
 
-Records reusable experience after task completion.
+任务完成后记录可复用的经验。
 
-### Recording Triggers
+### 记录触发条件
 
-- Discovered a pitfall that wasted time
-- Emperor corrected the Grand Secretary's approach
-- Same type of issue appeared in two separate tasks
-- Found a project-specific convention not documented elsewhere
+- 发现浪费时间的踩坑点
+- 被天子纠正了方案
+- 同类问题在两个不同任务中出现
+- 发现了未被记录的项目特有惯例
 
-### Record Format
+### 记录格式
 
 ```text
-- WRONG: [what was done incorrectly]
-  RIGHT: [what should be done instead]
-  Scenario: [when this mistake is likely to occur]
-  Prevention: [how to catch it early next time]
+- 错误: [错误做法]
+  正确: [正确做法]
+  场景: [什么情况下容易犯]
+  防范: [下次如何提前发现]
 ```
 
-### Storage Location
+### 存储位置
 
-Records should be written to the project's established experience location. If no such location exists, suggest creating one to the Emperor. Common locations:
+记录应写入项目约定的经验位置。若无此位置，向天子建议创建。常见位置：
 
-- `CLAUDE.md` (for project-level conventions)
-- `docs/lessons.md` (for detailed experience logs)
-- Memory files (if persistent memory is configured)
+- `CLAUDE.md`（项目级惯例）
+- `docs/lessons.md`（详细经验日志）
+- Memory 文件（如配置了持久记忆）
 
-### What NOT to Record
+### 不应记录的内容
 
-- Session-specific context that won't recur
-- Obvious facts from documentation
-- Speculative conclusions from a single incident
-- Anything that duplicates existing project docs
+- 不会再现的会话特定上下文
+- 文档中已有的显而易见的事实
+- 仅基于单次事件的推测性结论
+- 与现有项目文档重复的内容

@@ -1,6 +1,6 @@
 {
   "name": "oh-my-daily-skills",
-  "version": "2.8.0",
+  "version": "2.8.1",
   "description": "Daily-driver skills for Claude Code — URL reading, diagram drawing, LLM benchmarking, 3D scenes, chat demos, and more.",
   "author": {
     "name": "shiqkuangsan"

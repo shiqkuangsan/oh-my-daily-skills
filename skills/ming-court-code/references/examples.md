@@ -1,242 +1,238 @@
-# Examples
+# 示例
 
-Full walkthrough for each tier, showing stage markers and expected behavior.
+三级工作流完整演练，展示阶段标记和预期行为。
 
-## Oral Edict Example
+## 口谕示例
 
-> Emperor: "Rename the `getUserData` function to `fetchUserProfile` across the codebase."
+> 天子："把 `getUserData` 函数全局重命名为 `fetchUserProfile`。"
 
-**Grand Secretary:**
+**首辅：**
 
 ```text
 [DRAFT]
-Plan: grep for all occurrences of getUserData, rename to fetchUserProfile,
-update imports and call sites. Straightforward find-and-replace with
-verification that no references are missed.
+方案：grep 搜索所有 getUserData 出现位置，重命名为 fetchUserProfile，
+更新 import 和调用点。标准的查找替换加验证，确保无遗漏引用。
 ```
 
-_Executes: searches codebase, renames function, updates all references._
+_执行：搜索代码库，重命名函数，更新所有引用。_
 
 ```text
 [REPORT]
-Changes:
-  src/api/user.ts        +1 -1  (function declaration)
-  src/hooks/useUser.ts   +1 -1  (import + call site)
-  src/pages/Profile.tsx   +1 -1  (call site)
-  tests/user.test.ts     +2 -2  (test references)
-Total: 4 files, +5 -5
+变更:
+  src/api/user.ts        +1 -1  (函数声明)
+  src/hooks/useUser.ts   +1 -1  (import + 调用点)
+  src/pages/Profile.tsx   +1 -1  (调用点)
+  tests/user.test.ts     +2 -2  (测试引用)
+合计: 4 文件, +5 -5
 ```
 
-**What did NOT happen:** No plan file, no self-review, no experience recording. Quick in, quick out.
+**口谕模式中不发生的：** 无 plan 文件，无自审，无经验记录。快进快出。
 
 ---
 
-## Court Discussion Example
+## 廷议示例
 
-> Emperor: "Add JWT authentication to the Express API. Support login, token refresh, and protected route middleware."
+> 天子："给这个 Express API 加上 JWT 认证，支持登录、token 刷新和路由保护中间件。"
 
-**Grand Secretary:**
+**首辅：**
 
 ```text
 [DRAFT]
-Plan written to plan file.
+方案已写入 plan 文件。
 
-Steps:
-1. Install jsonwebtoken and bcrypt dependencies
-2. Create auth middleware for token verification
-3. Add POST /auth/login endpoint with credential validation
-4. Add POST /auth/refresh endpoint for token renewal
-5. Apply middleware to protected routes
-6. Add tests for all auth flows
+步骤:
+1. 安装 jsonwebtoken 和 bcrypt 依赖
+2. 创建 auth 中间件用于 token 验证
+3. 添加 POST /auth/login 端点，校验凭据
+4. 添加 POST /auth/refresh 端点，刷新 token
+5. 将中间件应用到受保护路由
+6. 编写全部认证流程测试
 
-Acceptance Criteria:
-- Login returns access + refresh tokens
-- Expired access token returns 401
-- Valid refresh token issues new access token
-- Protected routes reject unauthenticated requests
-- All tests pass
+验收标准:
+- 登录返回 access + refresh tokens
+- 过期 access token 返回 401
+- 有效 refresh token 可签发新 access token
+- 受保护路由拒绝未认证请求
+- 全部测试通过
 ```
 
 ```text
 [REVIEW]
-1. Feasibility: PASS - jsonwebtoken is mature, Express middleware pattern is standard
-2. Completeness: PASS - covers login, refresh, middleware, tests
-3. Risk: PASS - JWT is stateless, rollback is removing middleware + routes
-4. Scope: PASS - no session store, no OAuth, no role-based access (not requested)
+1. 可行性: 通过 - jsonwebtoken 成熟稳定，Express 中间件模式标准
+2. 完整性: 通过 - 覆盖登录、刷新、中间件、测试
+3. 风险: 通过 - JWT 无状态，回滚即移除中间件 + 路由
+4. 范围: 通过 - 不做 session 存储、不做 OAuth、不做 RBAC（未被要求）
 ```
 
-_Executes step by step, checking off todos..._
+_逐步执行，打勾追踪……_
 
-_Step 1: installs dependencies..._
+_第 1 步：安装依赖……_
 
-**Embroidered Guard activates** (dependency change detected):
+**锦衣卫激活**（检测到依赖变更）：
 
-> Scanned package.json changes. jsonwebtoken@9.0.0 and bcrypt@5.1.0
-> added. No known vulnerabilities in current versions. CLEAR.
+> 扫描 package.json 变更。jsonwebtoken@9.0.0 和 bcrypt@5.1.0
+> 已添加。当前版本无已知漏洞。通过。
 
-_Steps 2-5: implements auth system..._
+_第 2-5 步：实现认证系统……_
 
-_Step 6: writes and runs tests..._
+_第 6 步：编写并运行测试……_
 
-_One test fails: refresh token test expects 200 but gets 401._
+_一个测试失败：refresh token 测试预期 200 但返回 401。_
 
-**Court of Judicature activates** (test failure):
+**大理寺激活**（测试失败）：
 
 ```text
 [VERDICT]
-Symptom: POST /auth/refresh returns 401 instead of 200
-Root Cause: Refresh token verification uses ACCESS_SECRET instead of
-REFRESH_SECRET. Both tokens are valid JWT but signed with different secrets.
-Causal Chain: Copy-pasted verify() call from access token middleware without
-changing the secret parameter.
-Recommended Fix: Change jwt.verify(token, ACCESS_SECRET) to
-jwt.verify(token, REFRESH_SECRET) in refreshToken handler (line 47).
-Prevention: Extract secret selection into a helper that takes token type
-as parameter.
+表象: POST /auth/refresh 返回 401 而非 200
+根因: refresh token 验证使用了 ACCESS_SECRET 而非 REFRESH_SECRET。
+两种 token 都是合法 JWT，但使用不同密钥签名。
+因果链: 从 access token 中间件复制了 verify() 调用，但未修改密钥参数。
+修复建议: 将 refreshToken 处理函数（第 47 行）中的
+jwt.verify(token, ACCESS_SECRET) 改为 jwt.verify(token, REFRESH_SECRET)。
+防范措施: 将密钥选择抽取为按 token 类型参数化的辅助函数。
 ```
 
-_Emperor approves verdict. Grand Secretary applies fix. All tests pass._
+_天子批准判词。首辅修复。全部测试通过。_
 
 ```text
 [REPORT]
-Acceptance Criteria:
-- [x] Login returns access + refresh tokens
-- [x] Expired access token returns 401
-- [x] Valid refresh token issues new access token
-- [x] Protected routes reject unauthenticated requests
-- [x] All tests pass (8/8)
+验收标准:
+- [x] 登录返回 access + refresh tokens
+- [x] 过期 access token 返回 401
+- [x] 有效 refresh token 签发新 access token
+- [x] 受保护路由拒绝未认证请求
+- [x] 全部测试通过 (8/8)
 
-Changes:
-  package.json              +2 -0  (new dependencies)
-  src/middleware/auth.ts     +45 -0 (new file: JWT middleware)
-  src/routes/auth.ts         +62 -0 (new file: login + refresh)
-  src/routes/index.ts        +3 -1  (apply middleware)
-  tests/auth.test.ts         +89 -0 (new file: 8 test cases)
-Total: 5 files, +201 -1
+变更:
+  package.json              +2 -0  (新依赖)
+  src/middleware/auth.ts     +45 -0 (新文件: JWT 中间件)
+  src/routes/auth.ts         +62 -0 (新文件: 登录 + 刷新)
+  src/routes/index.ts        +3 -1  (应用中间件)
+  tests/auth.test.ts         +89 -0 (新文件: 8 个测试用例)
+合计: 5 文件, +201 -1
 ```
 
-**Hanlin Academy records:**
+**翰林院记录：**
 
 ```text
-- WRONG: Copy-paste jwt.verify() calls with hardcoded secret per call site
-  RIGHT: Extract token verification into helper that accepts token type
-  Scenario: Any code that handles multiple JWT token types
-  Prevention: When implementing multi-token JWT, always parameterize the secret
+- 错误: 复制粘贴 jwt.verify() 调用并在每个调用点硬编码密钥
+  正确: 将 token 验证抽取为接受 token 类型参数的辅助函数
+  场景: 任何处理多种 JWT token 类型的代码
+  防范: 实现多 token JWT 时，始终参数化密钥选择
 ```
 
 ---
 
-## Morning Court Example
+## 早朝示例
 
-> Emperor: "Set up Docker deployment for the API, write deployment documentation, and run a security audit on the codebase."
+> 天子："给这个 API 搭建 Docker 部署，写部署文档，再对代码库做一次安全审计。"
 
-**Grand Secretary:**
+**首辅：**
 
 ```text
 [DRAFT]
-This task requires three distinct professional domains in parallel.
-Recommending Morning Court mode.
+此任务涉及三个独立专业领域需并行处理。
+建议启用早朝模式。
 
-Dispatch Plan:
-- Ministry of Works (gongbu): Dockerfile + docker-compose + CI pipeline
-- Ministry of Rites (libu): Deployment documentation (README section + standalone guide)
-- Ministry of Justice (xingbu): Security audit (dependency scan + code review + OWASP check)
+派发计划:
+- 工部: Dockerfile + docker-compose + CI 流水线
+- 礼部: 部署文档（README 章节 + 独立指南）
+- 刑部: 安全审计（依赖扫描 + 代码审查 + OWASP 检查）
 
-Dependencies: None between ministries. All can run in parallel.
-Works provides Docker config, Rites documents deployment, Justice audits existing code.
+依赖关系: 各部之间无依赖，可全部并行。
+工部提供 Docker 配置，礼部写部署文档，刑部审计现有代码。
 
-Acceptance Criteria:
-- Works: docker-compose up starts the API successfully
-- Rites: Docs cover build, run, env vars, troubleshooting
-- Justice: Security report with severity ratings, no critical issues unresolved
+验收标准:
+- 工部: docker-compose up 能成功启动 API
+- 礼部: 文档覆盖构建、运行、环境变量、故障排查
+- 刑部: 安全报告含严重等级评定，无未解决的 critical 问题
 ```
 
 ```text
 [REVIEW]
-1. Feasibility: PASS - three independent domains, standard tooling
-2. Completeness: PASS - covers infrastructure, documentation, security
-3. Risk: PASS - all parallel, no cross-dependency, each can fail independently
-4. Scope: PASS - no Kubernetes, no monitoring setup, no load testing (not requested)
+1. 可行性: 通过 - 三个独立领域，标准工具链
+2. 完整性: 通过 - 覆盖基础设施、文档、安全
+3. 风险: 通过 - 全部并行，无交叉依赖，各部可独立失败
+4. 范围: 通过 - 不做 Kubernetes、不做监控搭建、不做压力测试（未被要求）
 ```
 
-**Office of Transmission dispatches:**
+**通政使司派发：**
 
 ```text
-[DISPATCH] -> Ministry of Works
-Task: Create Docker deployment configuration
-Acceptance Criteria:
-  - Dockerfile with multi-stage build
-  - docker-compose.yml with API + database services
-  - .dockerignore for clean builds
-  - docker-compose up starts API and responds to health check
-Context: Express API with PostgreSQL, Node 20, runs on port 3000
-Deliver to: Office of Transmission upon completion
+[DISPATCH] -> 工部
+任务: 创建 Docker 部署配置
+验收标准:
+  - 多阶段构建的 Dockerfile
+  - 包含 API + 数据库服务的 docker-compose.yml
+  - 用于干净构建的 .dockerignore
+  - docker-compose up 启动 API 并响应健康检查
+上下文: Express API + PostgreSQL, Node 20, 运行在端口 3000
+完成后报: 通政使司
 
-[DISPATCH] -> Ministry of Rites
-Task: Write deployment documentation
-Acceptance Criteria:
-  - Add Deployment section to README
-  - Cover: prerequisites, build steps, environment variables, startup, troubleshooting
-  - Include both Docker and manual deployment paths
-Context: Docker setup being created in parallel, document based on standard patterns
-Deliver to: Office of Transmission upon completion
+[DISPATCH] -> 礼部
+任务: 编写部署文档
+验收标准:
+  - 在 README 中添加部署章节
+  - 覆盖：前置条件、构建步骤、环境变量、启动、故障排查
+  - 包含 Docker 和手动部署两种路径
+上下文: Docker 配置正在并行创建，基于标准模式编写文档
+完成后报: 通政使司
 
-[DISPATCH] -> Ministry of Justice
-Task: Security audit of existing codebase
-Acceptance Criteria:
-  - Dependency vulnerability scan (npm audit or equivalent)
-  - Code review for OWASP Top 10 (injection, XSS, auth issues)
-  - Report with findings rated by severity (critical/high/medium/low)
-  - No critical issues left unresolved
-Context: Express API with JWT auth, PostgreSQL, handles user data
-Deliver to: Office of Transmission upon completion
+[DISPATCH] -> 刑部
+任务: 对现有代码库进行安全审计
+验收标准:
+  - 依赖漏洞扫描（npm audit 或等效工具）
+  - OWASP Top 10 代码审查（注入、XSS、认证问题）
+  - 报告含按严重等级（critical/high/medium/low）的发现
+  - 无未解决的 critical 问题
+上下文: Express API + JWT 认证 + PostgreSQL，处理用户数据
+完成后报: 通政使司
 ```
 
-_Three ministries execute in parallel..._
+_三部并行执行……_
 
-**Office of Transmission collects results:**
+**通政使司汇总结果：**
 
 ```text
-[COLLECTION SUMMARY]
-Dispatched: 3 ministries
-Completed: 3 / Blocked: 0
+[汇总报告]
+已派发: 3 部
+已完成: 3 / 阻塞: 0
 
-Ministry of Works (gongbu):
-  Status: Complete
-  Output: Dockerfile (multi-stage, 85MB final image), docker-compose.yml
-  (API + PostgreSQL + health check), .dockerignore added
+工部:
+  状态: 完成
+  产出: Dockerfile（多阶段构建，最终镜像 85MB），docker-compose.yml
+  （API + PostgreSQL + 健康检查），.dockerignore 已添加
 
-Ministry of Rites (libu):
-  Status: Complete
-  Output: README Deployment section (120 lines), covers Docker + manual
-  paths, env var table, troubleshooting FAQ
+礼部:
+  状态: 完成
+  产出: README 部署章节（120 行），覆盖 Docker + 手动路径，
+  环境变量表，故障排查 FAQ
 
-Ministry of Justice (xingbu):
-  Status: Complete
-  Output: Security report - 0 critical, 1 high (outdated express-session),
-  2 medium (missing rate limiting, verbose error messages in production).
-  High issue fixed (dependency updated). Medium issues documented with
-  recommended fixes.
+刑部:
+  状态: 完成
+  产出: 安全报告 - 0 critical, 1 high（过时的 express-session），
+  2 medium（缺少速率限制、生产环境错误信息过于详细）。
+  三项均已记录严重等级与修复建议。
 ```
 
-**Grand Secretary unified review:**
+**首辅统一审查：**
 
-- Works: docker-compose up tested, API responds on :3000. PASS.
-- Rites: Docs reference correct env vars and match docker-compose.yml. PASS.
-- Justice: High issue resolved. Medium issues acceptable for now with documentation. PASS.
+- 工部：docker-compose up 已测试，API 在 :3000 响应。通过。
+- 礼部：文档引用的环境变量正确且与 docker-compose.yml 一致。通过。
+- 刑部：报告 1 high + 2 medium。首辅指派兵部升级 express-session，high 已修复。Medium 暂可接受且已记录。通过。
 
 ```text
 [REPORT]
-All three ministries delivered against acceptance criteria.
+三部均按验收标准交付。
 
-Changes:
-  Dockerfile               +24 -0  (new file)
-  docker-compose.yml       +35 -0  (new file)
-  .dockerignore             +8 -0  (new file)
-  README.md               +120 -2  (deployment section)
-  docs/security-audit.md   +67 -0  (new file: audit report)
-  package.json              +1 -1  (express-session upgrade)
-Total: 6 files, +255 -3
+变更:
+  Dockerfile               +24 -0  (新文件)
+  docker-compose.yml       +35 -0  (新文件)
+  .dockerignore             +8 -0  (新文件)
+  README.md               +120 -2  (部署章节)
+  docs/security-audit.md   +67 -0  (新文件: 审计报告)
+  package.json              +1 -1  (express-session 升级)
+合计: 6 文件, +255 -3
 
-Security: 1 high resolved, 2 medium documented for future sprint.
+安全: 1 high 已修复, 2 medium 已记录待后续迭代处理。
 ```

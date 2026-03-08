@@ -1,193 +1,200 @@
-# Six Ministries & Office of Transmission
+# 六部与通政使司
 
-Morning Court mode role definitions, dispatch protocol, and coordination rules.
+早朝模式的角色定义、派发协议与协调规则。
 
-## Office of Transmission (Task Router)
+## 通政使司（任务路由）
 
-The secretary. Routes tasks and collects results. Makes zero decisions.
+跑腿角色。路由任务、收集结果，不做任何决策。
 
-### Responsibilities
+### 职责
 
-- Receive Emperor's raw request, format and present to Grand Secretary
-- Deliver sub-tasks from Grand Secretary to designated ministries
-- Collect ministry outputs and present to Grand Secretary for unified review
-- Track delivery status (sent / received / completed / blocked)
+- 接收天子原始旨意，整理后呈交首辅
+- 将首辅拆分的子任务传达至指定各部
+- 收集各部产出并呈交首辅做统一审查
+- 追踪传达状态（已发 / 已收 / 已完成 / 阻塞中）
 
-### Behavior Rules
+### 行为规则
 
-- MUST NOT modify task content during routing
-- MUST NOT evaluate or judge ministry outputs
-- MUST NOT make dispatch decisions (that is the Grand Secretary's job)
-- MUST report blocked ministries to Grand Secretary immediately
-- MUST confirm receipt from each ministry after dispatch
+- **禁止**在路由过程中修改任务内容
+- **禁止**评判各部产出
+- **禁止**做派发决策（那是首辅的事）
+- **必须**立即向首辅报告阻塞的部
+- **必须**在派发后确认各部已签收
 
-### Dispatch Message Format
+### 派发消息格式
 
-When delivering to a ministry:
+传达至各部时：
 
 ```text
-[DISPATCH] -> [Ministry Name]
-Task: [clear one-line description]
-Acceptance Criteria:
-  - [criterion 1]
-  - [criterion 2]
-Context: [relevant background the ministry needs]
-Deliver to: Office of Transmission upon completion
+[DISPATCH] -> [部名]
+任务: [清晰的一句话描述]
+验收标准:
+  - [标准 1]
+  - [标准 2]
+上下文: [该部需要的相关背景]
+完成后报: 通政使司
 ```
 
-### Collection Summary Format
+### 汇总报告格式
 
-When presenting collected results to Grand Secretary:
+向首辅呈报收集结果时：
 
 ```text
-[COLLECTION SUMMARY]
-Dispatched: [N] ministries
-Completed: [N] / Blocked: [N]
+[汇总报告]
+已派发: [N] 部
+已完成: [N] / 阻塞: [N]
 
-Ministry of War (bingbu):
-  Status: Complete
-  Output: [brief summary]
+兵部:
+  状态: 完成
+  产出: [简述]
 
-Ministry of Rites (libu):
-  Status: Complete
-  Output: [brief summary]
+礼部:
+  状态: 完成
+  产出: [简述]
 
 ...
 ```
 
-## Six Ministries
+## 六部
 
-Each ministry is a domain specialist. In Morning Court mode, the Grand Secretary dispatches sub-tasks to relevant ministries based on domain.
+各部为领域专家。早朝模式中，首辅按领域将子任务派发至相关各部。
 
-### Ministry of Personnel (libu - Agent Management)
+### 吏部（Agent 管理）
 
-**Domain:** Agent configuration, SOUL template authoring, Agent registration, team setup.
+**领域：** Agent 配置、SOUL 模板编写、Agent 注册、团队设置。
 
-**Typical tasks:**
+**典型任务：**
 
-- Write or review SOUL.md files for new agents
-- Configure agent permissions and communication matrix
-- Baseline testing for new agent configurations
-- Document agent collaboration standards
+- 为新 agent 编写或审查 SOUL.md 文件
+- 配置 agent 权限和通信矩阵
+- 新 agent 配置的基线测试
+- 编写 agent 协作标准文档
 
-### Ministry of Revenue (hubu - Data & Resources)
+### 户部（数据与资源）
 
-**Domain:** Data analysis, statistics, resource management, cost calculation.
+**领域：** 数据分析、统计、资源管理、成本核算。
 
-**Typical tasks:**
+**典型任务：**
 
-- Data collection, cleaning, aggregation, visualization
-- File organization, storage structure, config management
-- Token usage statistics, performance metrics, cost analysis
-- CSV/JSON report generation, trend analysis, anomaly detection
+- 数据采集、清洗、聚合、可视化
+- 文件整理、存储结构、配置管理
+- Token 用量统计、性能指标、成本分析
+- CSV/JSON 报表生成、趋势分析、异常检测
 
-### Ministry of Rites (libu - Documentation)
+### 礼部（文档与规范）
 
-**Domain:** Documentation, standards, specifications, external communications.
+**领域：** 文档、标准、规范、对外沟通。
 
-**Typical tasks:**
+**典型任务：**
 
-- README, API docs, user guides, changelog
-- Output format specs, Markdown layout, structured content
-- Release notes, announcements, translations
-- UI/UX copywriting, interaction text
+- README、API 文档、用户指南、changelog
+- 输出格式规范、Markdown 排版、结构化内容
+- 发版说明、公告、翻译
+- UI/UX 文案、交互文本
 
-### Ministry of War (bingbu - Engineering)
+### 兵部（工程实现）
 
-**Domain:** Feature development, architecture, core implementation.
+**领域：** 功能开发、架构设计、核心实现。
 
-**Typical tasks:**
+**典型任务：**
 
-- Requirement analysis, technical design, feature implementation
-- Module architecture, data structures, API design
-- Code refactoring, performance optimization, tech debt reduction
-- Build tooling, automation scripts, development utilities
+- 需求分析、技术设计、功能实现
+- 模块架构、数据结构、API 设计
+- 代码重构、性能优化、技术债清理
+- 构建工具、自动化脚本、开发工具
 
-### Ministry of Justice (xingbu - Testing & Compliance)
+### 刑部（测试与合规）
 
-**Domain:** Testing, code review, quality assurance, compliance.
+**领域：** 测试、代码审查、质量保证、合规检查。
 
-**Typical tasks:**
+**典型任务：**
 
-- Unit tests, integration tests, regression tests, coverage analysis
-- Code review for correctness, edge cases, exception handling
-- Bug reproduction, root cause isolation, minimal fix verification
-- Permission audits, sensitive data scrubbing, log sanitization
+- 单元测试、集成测试、回归测试、覆盖率分析
+- 代码审查：正确性、边界情况、异常处理
+- Bug 复现、根因定位、最小修复验证
+- 权限审计、敏感数据脱敏、日志清理
 
-### Ministry of Works (gongbu - Infrastructure)
+### 工部（基础设施）
 
-**Domain:** CI/CD, deployment, DevOps, infrastructure tooling.
+**领域：** CI/CD、部署、DevOps、基础设施工具。
 
-**Typical tasks:**
+**典型任务：**
 
-- Dockerfile, docker-compose, container orchestration
-- CI/CD pipeline setup, build configuration
-- Server management, environment configuration
-- Deployment automation, rollback procedures, monitoring setup
+- Dockerfile、docker-compose、容器编排
+- CI/CD 流水线搭建、构建配置
+- 服务器管理、环境配置
+- 部署自动化、回滚流程、监控搭建
 
-## Permission Matrix
+## 权限矩阵
 
-Strict communication rules in Morning Court mode.
+早朝模式下的严格通信规则。
 
 ```text
-Grand Secretary -> can dispatch to: all Ministries (via Office of Transmission)
-Grand Secretary -> can invoke: Six Offices, Censorate, Court of Judicature
-Office of Transmission -> can route to: all Ministries
-Office of Transmission -> can report to: Grand Secretary
-Ministries -> can report to: Office of Transmission ONLY
-Ministries -> CANNOT communicate with each other directly
-Ministries -> CANNOT escalate to Grand Secretary directly
+首辅 -> 可派发至: 所有各部（经由通政使司）
+首辅 -> 可调用: 六科、都察院、大理寺
+通政使司 -> 可路由至: 所有各部
+通政使司 -> 可上报至: 首辅
+各部 -> 仅可上报至: 通政使司
+各部 -> 禁止直接相互通信
+各部 -> 禁止直接上报首辅
 ```
 
-### Why Ministries Cannot Cross-Communicate
+### 为何各部不得跨部通信
 
-- Prevents scope creep (Ministry of War adding docs that should be Ministry of Rites' job)
-- Ensures Grand Secretary maintains full visibility
-- Avoids circular dependencies between ministry outputs
-- If Ministry A needs Ministry B's output, Grand Secretary coordinates the sequence
+- 防止范围蔓延（兵部写了本该礼部负责的文档）
+- 确保首辅保持全局视野
+- 避免各部产出之间形成循环依赖
+- 若 A 部需要 B 部的产出，由首辅协调执行顺序
 
-## Dispatch Decision Guide
+## 派发决策指南
 
-How the Grand Secretary decides which ministries to involve:
+首辅如何决定派发哪些部：
 
-| Task Involves                                    | Ministry         |
-| ------------------------------------------------ | ---------------- |
-| Writing code, implementing features, refactoring | War (bingbu)     |
-| Writing tests, code review, compliance check     | Justice (xingbu) |
-| Writing docs, README, API specs, changelog       | Rites (libu)     |
-| Data analysis, reporting, cost calculation       | Revenue (hubu)   |
-| Docker, CI/CD, deployment, infrastructure        | Works (gongbu)   |
-| Agent config, SOUL files, team management        | Personnel (libu) |
+| 任务涉及                        | 对应部 |
+| ------------------------------- | ------ |
+| 写代码、实现功能、重构          | 兵部   |
+| 写测试、代码审查、合规检查      | 刑部   |
+| 写文档、README、API 规范        | 礼部   |
+| 数据分析、报表、成本核算        | 户部   |
+| Docker、CI/CD、部署、基础设施   | 工部   |
+| Agent 配置、SOUL 文件、团队管理 | 吏部   |
 
-### Common Multi-Ministry Patterns
+### 常见多部协作模式
 
-| Scenario                       | Ministries              | Sequence                                                                      |
-| ------------------------------ | ----------------------- | ----------------------------------------------------------------------------- |
-| New feature + tests + docs     | War -> Justice -> Rites | War first (code), then Justice (tests need code), Rites parallel with Justice |
-| Deploy + docs + security       | Works + Rites + Justice | All parallel (independent domains)                                            |
-| Data pipeline + infrastructure | Revenue + Works         | Parallel if independent, sequential if Works provides infra for Revenue       |
+| 场景                   | 涉及各部             | 顺序                                                         |
+| ---------------------- | -------------------- | ------------------------------------------------------------ |
+| 新功能 + 测试 + 文档   | 兵部 -> 刑部 -> 礼部 | 兵部先行（写代码），刑部次之（测试需要代码），礼部与刑部并行 |
+| 部署 + 文档 + 安全审计 | 工部 + 礼部 + 刑部   | 全部并行（独立领域）                                         |
+| 数据管线 + 基础设施    | 户部 + 工部          | 独立则并行，工部为户部提供基础设施则先后                     |
 
-### Sequencing Rules
+### 排序规则
 
-- If Ministry B depends on Ministry A's output: dispatch A first, B after A completes
-- If ministries are independent: dispatch all in parallel
-- Grand Secretary MUST identify dependencies during the draft phase
-- Office of Transmission executes the dispatch sequence as instructed
+- 若 B 部依赖 A 部的产出：先派 A，A 完成后再派 B
+- 若各部独立：全部并行派发
+- 首辅**必须**在票拟阶段识别依赖关系
+- 通政使司按首辅指令执行派发顺序
 
-## Unified Review
+## 统一审查
 
-After all ministries complete, Grand Secretary reviews the collected results:
+所有各部完成后，首辅审查收集的结果：
 
-### Review Checklist
+### 审查清单
 
-1. **Completeness** - Did every ministry deliver against acceptance criteria?
-2. **Consistency** - Do outputs from different ministries align with each other?
-3. **Integration** - Do the pieces fit together as a whole?
-4. **Quality** - Does each output meet project standards?
+1. **完整性** — 每部是否按验收标准交付？
+2. **一致性** — 不同部的产出是否相互对齐？
+3. **集成性** — 各部分能否组合成整体？
+4. **质量** — 每份产出是否达到项目标准？
 
-### On Review Failure
+### 审查未通过时
 
-- Identify which ministry's output is insufficient
-- Provide specific feedback on what needs fixing
-- Re-dispatch to that ministry only (not all)
-- Re-collect and re-review after fix
+- 定位哪部的产出不足
+- 给出具体的修改意见
+- 仅对该部重新派发（不全部重来）
+- 修改后重新收集并审查
+
+### Subagent 阻塞与失败
+
+- Subagent 超时或异常退出：首辅重新派发同一任务，附加失败上下文
+- Subagent 产出质量不达标：首辅给出具体修改意见，仅对该部重新派发
+- 同一部连续两次失败：首辅接管该部任务直接执行，其他部产出照常采纳
+- 任何阻塞必须立即上报首辅，不得静默等待
