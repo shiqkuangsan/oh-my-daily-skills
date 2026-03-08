@@ -21,9 +21,9 @@ graph LR
     A["口谕 (快速执行)<br/><i>约 80% 的任务</i>"] -->|"3+ 步骤<br/>跨层变更"| B["廷议 (结构化计划)<br/><i>Plan + 自审</i>"]
     B -->|"2+ 并行<br/>专业领域"| C["早朝 (多 Agent 并行)<br/><i>Subagent 协作</i>"]
 
-    style A fill:#dbeafe,stroke:#1e3a5f,stroke-width:2px
-    style B fill:#fef3c7,stroke:#b45309,stroke-width:2px
-    style C fill:#fee2e2,stroke:#dc2626,stroke-width:2px
+    style A fill:#60a5fa,stroke:#1e3a8a,color:#1a1a1a,stroke-width:2px
+    style B fill:#fbbf24,stroke:#92400e,color:#1a1a1a,stroke-width:2px
+    style C fill:#f87171,stroke:#7f1d1d,color:#1a1a1a,stroke-width:2px
 ```
 
 就这样。你正常跟 CC 说话，它自动选模式并告知你用了哪一档。
@@ -40,10 +40,10 @@ graph LR
     D --> X["执行"]
     X --> R["[REPORT]<br/>文件清单 + 统计"]
 
-    style E fill:#fef3c7,stroke:#b45309
-    style D fill:#dbeafe,stroke:#1e3a5f
-    style X fill:#dcfce7,stroke:#059669
-    style R fill:#f3e8ff,stroke:#7c3aed
+    style E fill:#fbbf24,stroke:#92400e,color:#1a1a1a
+    style D fill:#60a5fa,stroke:#1e3a8a,color:#1a1a1a
+    style X fill:#34d399,stroke:#064e3b,color:#1a1a1a
+    style R fill:#c084fc,stroke:#581c87,color:#1a1a1a
 ```
 
 ### 示例：重命名函数
@@ -96,12 +96,12 @@ graph LR
     V --> X["执行<br/>带进度追踪"]
     X --> R["[REPORT]<br/>验收核对"]
 
-    style E fill:#fef3c7,stroke:#b45309
-    style Q fill:#fff7ed,stroke:#ea580c
-    style D fill:#dbeafe,stroke:#1e3a5f
-    style V fill:#ede9fe,stroke:#7c3aed
-    style X fill:#dcfce7,stroke:#059669
-    style R fill:#f3e8ff,stroke:#7c3aed
+    style E fill:#fbbf24,stroke:#92400e,color:#1a1a1a
+    style Q fill:#fb923c,stroke:#7c2d12,color:#1a1a1a
+    style D fill:#60a5fa,stroke:#1e3a8a,color:#1a1a1a
+    style V fill:#a78bfa,stroke:#4c1d95,color:#1a1a1a
+    style X fill:#34d399,stroke:#064e3b,color:#1a1a1a
+    style R fill:#c084fc,stroke:#581c87,color:#1a1a1a
 ```
 
 ### 示例：给 Express API 加 JWT 认证
@@ -210,17 +210,17 @@ graph TD
     C --> UR["首辅 (CC) 统一审阅"]
     UR --> R["[REPORT]"]
 
-    style E fill:#fef3c7,stroke:#b45309
-    style T fill:#e0e7ff,stroke:#4338ca
-    style D fill:#dbeafe,stroke:#1e3a5f
-    style V fill:#ede9fe,stroke:#7c3aed
-    style P fill:#e0e7ff,stroke:#4338ca
-    style M1 fill:#dcfce7,stroke:#059669
-    style M2 fill:#dcfce7,stroke:#059669
-    style M3 fill:#dcfce7,stroke:#059669
-    style C fill:#e0e7ff,stroke:#4338ca
-    style UR fill:#dbeafe,stroke:#1e3a5f
-    style R fill:#f3e8ff,stroke:#7c3aed
+    style E fill:#fbbf24,stroke:#92400e,color:#1a1a1a
+    style T fill:#818cf8,stroke:#312e81,color:#1a1a1a
+    style D fill:#60a5fa,stroke:#1e3a8a,color:#1a1a1a
+    style V fill:#a78bfa,stroke:#4c1d95,color:#1a1a1a
+    style P fill:#818cf8,stroke:#312e81,color:#1a1a1a
+    style M1 fill:#34d399,stroke:#064e3b,color:#1a1a1a
+    style M2 fill:#34d399,stroke:#064e3b,color:#1a1a1a
+    style M3 fill:#34d399,stroke:#064e3b,color:#1a1a1a
+    style C fill:#818cf8,stroke:#312e81,color:#1a1a1a
+    style UR fill:#60a5fa,stroke:#1e3a8a,color:#1a1a1a
+    style R fill:#c084fc,stroke:#581c87,color:#1a1a1a
 ```
 
 ### 示例：Docker + 文档 + 测试
@@ -318,12 +318,12 @@ graph TD
     Q2 -->|是| CD["廷议 (结构化计划)"]
     Q2 -->|否| OE["口谕 (快速执行)"]
 
-    style Start fill:#f8fafc,stroke:#64748b
-    style Q1 fill:#fef3c7,stroke:#b45309
-    style Q2 fill:#fef3c7,stroke:#b45309
-    style MC fill:#fee2e2,stroke:#dc2626
-    style CD fill:#fef3c7,stroke:#b45309
-    style OE fill:#dbeafe,stroke:#1e3a5f
+    style Start fill:#94a3b8,stroke:#1e293b,color:#1a1a1a
+    style Q1 fill:#fbbf24,stroke:#92400e,color:#1a1a1a
+    style Q2 fill:#fbbf24,stroke:#92400e,color:#1a1a1a
+    style MC fill:#f87171,stroke:#7f1d1d,color:#1a1a1a
+    style CD fill:#fbbf24,stroke:#92400e,color:#1a1a1a
+    style OE fill:#60a5fa,stroke:#1e3a8a,color:#1a1a1a
 ```
 
 ### 手动覆盖
@@ -415,21 +415,21 @@ graph TD
     OT --> Justice
     OT --> Works
 
-    style Emperor fill:#fef3c7,stroke:#b45309,stroke-width:3px
-    style Silijian fill:#fee2e2,stroke:#dc2626,stroke-width:2px
-    style GS fill:#dbeafe,stroke:#1e3a5f,stroke-width:2px
-    style SixOff fill:#ede9fe,stroke:#7c3aed
-    style Hanlin fill:#cffafe,stroke:#0891b2
-    style Censorate fill:#fff7ed,stroke:#ea580c
-    style Judicature fill:#fce7f3,stroke:#be185d
-    style Guard fill:#fef2f2,stroke:#991b1b
-    style OT fill:#e0e7ff,stroke:#4338ca
-    style Personnel fill:#dcfce7,stroke:#059669
-    style Revenue fill:#dcfce7,stroke:#059669
-    style Rites fill:#dcfce7,stroke:#059669
-    style War fill:#dcfce7,stroke:#059669
-    style Justice fill:#dcfce7,stroke:#059669
-    style Works fill:#dcfce7,stroke:#059669
+    style Emperor fill:#fbbf24,stroke:#92400e,color:#1a1a1a,stroke-width:3px
+    style Silijian fill:#f87171,stroke:#7f1d1d,color:#1a1a1a,stroke-width:2px
+    style GS fill:#60a5fa,stroke:#1e3a8a,color:#1a1a1a,stroke-width:2px
+    style SixOff fill:#a78bfa,stroke:#4c1d95,color:#1a1a1a
+    style Hanlin fill:#22d3ee,stroke:#164e63,color:#1a1a1a
+    style Censorate fill:#fb923c,stroke:#7c2d12,color:#1a1a1a
+    style Judicature fill:#f472b6,stroke:#831843,color:#1a1a1a
+    style Guard fill:#fca5a5,stroke:#7f1d1d,color:#1a1a1a
+    style OT fill:#818cf8,stroke:#312e81,color:#1a1a1a
+    style Personnel fill:#34d399,stroke:#064e3b,color:#1a1a1a
+    style Revenue fill:#34d399,stroke:#064e3b,color:#1a1a1a
+    style Rites fill:#34d399,stroke:#064e3b,color:#1a1a1a
+    style War fill:#34d399,stroke:#064e3b,color:#1a1a1a
+    style Justice fill:#34d399,stroke:#064e3b,color:#1a1a1a
+    style Works fill:#34d399,stroke:#064e3b,color:#1a1a1a
 ```
 
 实线 = 常驻激活。虚线 = 按需激活。

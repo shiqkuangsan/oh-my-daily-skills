@@ -21,9 +21,9 @@ graph LR
     A["Oral Edict (quick execute)<br/><i>~80% of tasks</i>"] -->|"3+ steps<br/>cross-layer"| B["Court Discussion (structured plan)<br/><i>plan + self-review</i>"]
     B -->|"2+ parallel<br/>domains"| C["Morning Court (multi-agent)<br/><i>subagent collaboration</i>"]
 
-    style A fill:#dbeafe,stroke:#1e3a5f,stroke-width:2px
-    style B fill:#fef3c7,stroke:#b45309,stroke-width:2px
-    style C fill:#fee2e2,stroke:#dc2626,stroke-width:2px
+    style A fill:#60a5fa,stroke:#1e3a8a,color:#1a1a1a,stroke-width:2px
+    style B fill:#fbbf24,stroke:#92400e,color:#1a1a1a,stroke-width:2px
+    style C fill:#f87171,stroke:#7f1d1d,color:#1a1a1a,stroke-width:2px
 ```
 
 That's it. You just talk to CC normally — it picks the right mode and tells you which one it chose.
@@ -40,10 +40,10 @@ graph LR
     D --> X["Execute"]
     X --> R["[REPORT]<br/>File list + stats"]
 
-    style E fill:#fef3c7,stroke:#b45309
-    style D fill:#dbeafe,stroke:#1e3a5f
-    style X fill:#dcfce7,stroke:#059669
-    style R fill:#f3e8ff,stroke:#7c3aed
+    style E fill:#fbbf24,stroke:#92400e,color:#1a1a1a
+    style D fill:#60a5fa,stroke:#1e3a8a,color:#1a1a1a
+    style X fill:#34d399,stroke:#064e3b,color:#1a1a1a
+    style R fill:#c084fc,stroke:#581c87,color:#1a1a1a
 ```
 
 ### Example: Rename a Function
@@ -96,12 +96,12 @@ graph LR
     V --> X["Execute<br/>with tracking"]
     X --> R["[REPORT]<br/>Verify criteria"]
 
-    style E fill:#fef3c7,stroke:#b45309
-    style Q fill:#fff7ed,stroke:#ea580c
-    style D fill:#dbeafe,stroke:#1e3a5f
-    style V fill:#ede9fe,stroke:#7c3aed
-    style X fill:#dcfce7,stroke:#059669
-    style R fill:#f3e8ff,stroke:#7c3aed
+    style E fill:#fbbf24,stroke:#92400e,color:#1a1a1a
+    style Q fill:#fb923c,stroke:#7c2d12,color:#1a1a1a
+    style D fill:#60a5fa,stroke:#1e3a8a,color:#1a1a1a
+    style V fill:#a78bfa,stroke:#4c1d95,color:#1a1a1a
+    style X fill:#34d399,stroke:#064e3b,color:#1a1a1a
+    style R fill:#c084fc,stroke:#581c87,color:#1a1a1a
 ```
 
 ### Example: Add JWT Auth to an Express API
@@ -210,17 +210,17 @@ graph TD
     C --> UR["Shoufu (CC) unified review"]
     UR --> R["[REPORT]"]
 
-    style E fill:#fef3c7,stroke:#b45309
-    style T fill:#e0e7ff,stroke:#4338ca
-    style D fill:#dbeafe,stroke:#1e3a5f
-    style V fill:#ede9fe,stroke:#7c3aed
-    style P fill:#e0e7ff,stroke:#4338ca
-    style M1 fill:#dcfce7,stroke:#059669
-    style M2 fill:#dcfce7,stroke:#059669
-    style M3 fill:#dcfce7,stroke:#059669
-    style C fill:#e0e7ff,stroke:#4338ca
-    style UR fill:#dbeafe,stroke:#1e3a5f
-    style R fill:#f3e8ff,stroke:#7c3aed
+    style E fill:#fbbf24,stroke:#92400e,color:#1a1a1a
+    style T fill:#818cf8,stroke:#312e81,color:#1a1a1a
+    style D fill:#60a5fa,stroke:#1e3a8a,color:#1a1a1a
+    style V fill:#a78bfa,stroke:#4c1d95,color:#1a1a1a
+    style P fill:#818cf8,stroke:#312e81,color:#1a1a1a
+    style M1 fill:#34d399,stroke:#064e3b,color:#1a1a1a
+    style M2 fill:#34d399,stroke:#064e3b,color:#1a1a1a
+    style M3 fill:#34d399,stroke:#064e3b,color:#1a1a1a
+    style C fill:#818cf8,stroke:#312e81,color:#1a1a1a
+    style UR fill:#60a5fa,stroke:#1e3a8a,color:#1a1a1a
+    style R fill:#c084fc,stroke:#581c87,color:#1a1a1a
 ```
 
 ### Example: Docker + Docs + Tests
@@ -318,12 +318,12 @@ graph TD
     Q2 -->|Yes| CD["Court Discussion (structured plan)"]
     Q2 -->|No| OE["Oral Edict (quick execute)"]
 
-    style Start fill:#f8fafc,stroke:#64748b
-    style Q1 fill:#fef3c7,stroke:#b45309
-    style Q2 fill:#fef3c7,stroke:#b45309
-    style MC fill:#fee2e2,stroke:#dc2626
-    style CD fill:#fef3c7,stroke:#b45309
-    style OE fill:#dbeafe,stroke:#1e3a5f
+    style Start fill:#94a3b8,stroke:#1e293b,color:#1a1a1a
+    style Q1 fill:#fbbf24,stroke:#92400e,color:#1a1a1a
+    style Q2 fill:#fbbf24,stroke:#92400e,color:#1a1a1a
+    style MC fill:#f87171,stroke:#7f1d1d,color:#1a1a1a
+    style CD fill:#fbbf24,stroke:#92400e,color:#1a1a1a
+    style OE fill:#60a5fa,stroke:#1e3a8a,color:#1a1a1a
 ```
 
 ### Override Commands
@@ -415,21 +415,21 @@ graph TD
     OT --> Justice
     OT --> Works
 
-    style Emperor fill:#fef3c7,stroke:#b45309,stroke-width:3px
-    style Silijian fill:#fee2e2,stroke:#dc2626,stroke-width:2px
-    style GS fill:#dbeafe,stroke:#1e3a5f,stroke-width:2px
-    style SixOff fill:#ede9fe,stroke:#7c3aed
-    style Hanlin fill:#cffafe,stroke:#0891b2
-    style Censorate fill:#fff7ed,stroke:#ea580c
-    style Judicature fill:#fce7f3,stroke:#be185d
-    style Guard fill:#fef2f2,stroke:#991b1b
-    style OT fill:#e0e7ff,stroke:#4338ca
-    style Personnel fill:#dcfce7,stroke:#059669
-    style Revenue fill:#dcfce7,stroke:#059669
-    style Rites fill:#dcfce7,stroke:#059669
-    style War fill:#dcfce7,stroke:#059669
-    style Justice fill:#dcfce7,stroke:#059669
-    style Works fill:#dcfce7,stroke:#059669
+    style Emperor fill:#fbbf24,stroke:#92400e,color:#1a1a1a,stroke-width:3px
+    style Silijian fill:#f87171,stroke:#7f1d1d,color:#1a1a1a,stroke-width:2px
+    style GS fill:#60a5fa,stroke:#1e3a8a,color:#1a1a1a,stroke-width:2px
+    style SixOff fill:#a78bfa,stroke:#4c1d95,color:#1a1a1a
+    style Hanlin fill:#22d3ee,stroke:#164e63,color:#1a1a1a
+    style Censorate fill:#fb923c,stroke:#7c2d12,color:#1a1a1a
+    style Judicature fill:#f472b6,stroke:#831843,color:#1a1a1a
+    style Guard fill:#fca5a5,stroke:#7f1d1d,color:#1a1a1a
+    style OT fill:#818cf8,stroke:#312e81,color:#1a1a1a
+    style Personnel fill:#34d399,stroke:#064e3b,color:#1a1a1a
+    style Revenue fill:#34d399,stroke:#064e3b,color:#1a1a1a
+    style Rites fill:#34d399,stroke:#064e3b,color:#1a1a1a
+    style War fill:#34d399,stroke:#064e3b,color:#1a1a1a
+    style Justice fill:#34d399,stroke:#064e3b,color:#1a1a1a
+    style Works fill:#34d399,stroke:#064e3b,color:#1a1a1a
 ```
 
 Solid lines = always active. Dashed lines = on-demand activation.
