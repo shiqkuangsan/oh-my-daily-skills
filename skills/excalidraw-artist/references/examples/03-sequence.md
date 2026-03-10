@@ -1,0 +1,253 @@
+# Sequence Diagram Example
+
+Login authentication sequence diagram.
+
+```json
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "claude-code",
+  "elements": [
+    {
+      "id": "title",
+      "type": "text",
+      "x": 200,
+      "y": 20,
+      "width": 200,
+      "height": 30,
+      "text": "Login Sequence",
+      "fontSize": 24,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "strokeColor": "#1e3a5f"
+    },
+    {
+      "id": "actor-user",
+      "type": "rectangle",
+      "x": 100,
+      "y": 70,
+      "width": 80,
+      "height": 40,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 1,
+      "roundness": { "type": 3 }
+    },
+    {
+      "id": "text-user",
+      "type": "text",
+      "x": 115,
+      "y": 80,
+      "width": 50,
+      "height": 20,
+      "text": "User",
+      "fontSize": 16,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "strokeColor": "#1e3a5f"
+    },
+    {
+      "id": "actor-auth",
+      "type": "rectangle",
+      "x": 280,
+      "y": 70,
+      "width": 80,
+      "height": 40,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dcfce7",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 1,
+      "roundness": { "type": 3 }
+    },
+    {
+      "id": "text-auth",
+      "type": "text",
+      "x": 295,
+      "y": 80,
+      "width": 50,
+      "height": 20,
+      "text": "Auth",
+      "fontSize": 16,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "strokeColor": "#1e3a5f"
+    },
+    {
+      "id": "actor-db",
+      "type": "rectangle",
+      "x": 460,
+      "y": 70,
+      "width": 80,
+      "height": 40,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#fef3c7",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 1,
+      "roundness": { "type": 3 }
+    },
+    {
+      "id": "text-db",
+      "type": "text",
+      "x": 485,
+      "y": 80,
+      "width": 30,
+      "height": 20,
+      "text": "DB",
+      "fontSize": 16,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "strokeColor": "#1e3a5f"
+    },
+    {
+      "id": "lifeline-user",
+      "type": "line",
+      "x": 140,
+      "y": 110,
+      "width": 0,
+      "height": 200,
+      "strokeColor": "#9ca3af",
+      "strokeWidth": 1,
+      "strokeStyle": "dashed",
+      "roughness": 0,
+      "points": [[0, 0], [0, 200]]
+    },
+    {
+      "id": "lifeline-auth",
+      "type": "line",
+      "x": 320,
+      "y": 110,
+      "width": 0,
+      "height": 200,
+      "strokeColor": "#9ca3af",
+      "strokeWidth": 1,
+      "strokeStyle": "dashed",
+      "roughness": 0,
+      "points": [[0, 0], [0, 200]]
+    },
+    {
+      "id": "lifeline-db",
+      "type": "line",
+      "x": 500,
+      "y": 110,
+      "width": 0,
+      "height": 200,
+      "strokeColor": "#9ca3af",
+      "strokeWidth": 1,
+      "strokeStyle": "dashed",
+      "roughness": 0,
+      "points": [[0, 0], [0, 200]]
+    },
+    {
+      "id": "msg1",
+      "type": "arrow",
+      "x": 140,
+      "y": 140,
+      "width": 180,
+      "height": 0,
+      "strokeColor": "#1e3a5f",
+      "strokeWidth": 2,
+      "roughness": 1,
+      "points": [[0, 0], [180, 0]],
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "msg1-label",
+      "type": "text",
+      "x": 180,
+      "y": 120,
+      "width": 100,
+      "height": 18,
+      "text": "1. login()",
+      "fontSize": 14,
+      "fontFamily": 1,
+      "strokeColor": "#1e3a5f"
+    },
+    {
+      "id": "msg2",
+      "type": "arrow",
+      "x": 320,
+      "y": 180,
+      "width": 180,
+      "height": 0,
+      "strokeColor": "#1e3a5f",
+      "strokeWidth": 2,
+      "roughness": 1,
+      "points": [[0, 0], [180, 0]],
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "msg2-label",
+      "type": "text",
+      "x": 360,
+      "y": 160,
+      "width": 100,
+      "height": 18,
+      "text": "2. verify()",
+      "fontSize": 14,
+      "fontFamily": 1,
+      "strokeColor": "#1e3a5f"
+    },
+    {
+      "id": "msg3",
+      "type": "arrow",
+      "x": 500,
+      "y": 220,
+      "width": 180,
+      "height": 0,
+      "strokeColor": "#10b981",
+      "strokeWidth": 2,
+      "strokeStyle": "dashed",
+      "roughness": 1,
+      "points": [[0, 0], [-180, 0]],
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "msg3-label",
+      "type": "text",
+      "x": 360,
+      "y": 200,
+      "width": 100,
+      "height": 18,
+      "text": "3. user data",
+      "fontSize": 14,
+      "fontFamily": 1,
+      "strokeColor": "#10b981"
+    },
+    {
+      "id": "msg4",
+      "type": "arrow",
+      "x": 320,
+      "y": 260,
+      "width": 180,
+      "height": 0,
+      "strokeColor": "#10b981",
+      "strokeWidth": 2,
+      "strokeStyle": "dashed",
+      "roughness": 1,
+      "points": [[0, 0], [-180, 0]],
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "msg4-label",
+      "type": "text",
+      "x": 180,
+      "y": 240,
+      "width": 100,
+      "height": 18,
+      "text": "4. token",
+      "fontSize": 14,
+      "fontFamily": 1,
+      "strokeColor": "#10b981"
+    }
+  ],
+  "appState": {
+    "viewBackgroundColor": "#ffffff",
+    "gridSize": null
+  },
+  "files": {}
+}
+```

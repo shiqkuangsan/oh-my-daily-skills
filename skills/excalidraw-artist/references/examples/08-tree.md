@@ -1,0 +1,482 @@
+# Tree / Hierarchy Example
+
+Frontend component tree with parent-child relationships.
+
+```json
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "claude-code",
+  "elements": [
+    {
+      "id": "title",
+      "type": "text",
+      "x": 250,
+      "y": 15,
+      "width": 300,
+      "height": 30,
+      "text": "Dashboard Component Tree",
+      "fontSize": 24,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "strokeColor": "#1e3a5f"
+    },
+    {
+      "id": "node-app",
+      "type": "rectangle",
+      "x": 330,
+      "y": 70,
+      "width": 140,
+      "height": 44,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 1,
+      "roundness": { "type": 3 },
+      "seed": 1,
+      "boundElements": [
+        { "id": "node-app-text", "type": "text" },
+        { "id": "arrow-app-header", "type": "arrow" },
+        { "id": "arrow-app-sidebar", "type": "arrow" },
+        { "id": "arrow-app-main", "type": "arrow" }
+      ]
+    },
+    {
+      "id": "node-app-text",
+      "type": "text",
+      "x": 355,
+      "y": 80,
+      "width": 90,
+      "height": 24,
+      "text": "<App />",
+      "fontSize": 16,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "strokeColor": "#1e3a5f",
+      "containerId": "node-app"
+    },
+    {
+      "id": "node-header",
+      "type": "rectangle",
+      "x": 100,
+      "y": 170,
+      "width": 140,
+      "height": 44,
+      "strokeColor": "#8b5cf6",
+      "backgroundColor": "#ede9fe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 1,
+      "roundness": { "type": 3 },
+      "seed": 2,
+      "boundElements": [
+        { "id": "node-header-text", "type": "text" },
+        { "id": "arrow-app-header", "type": "arrow" },
+        { "id": "arrow-header-nav", "type": "arrow" },
+        { "id": "arrow-header-avatar", "type": "arrow" }
+      ]
+    },
+    {
+      "id": "node-header-text",
+      "type": "text",
+      "x": 115,
+      "y": 180,
+      "width": 110,
+      "height": 24,
+      "text": "<Header />",
+      "fontSize": 16,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "strokeColor": "#8b5cf6",
+      "containerId": "node-header"
+    },
+    {
+      "id": "node-sidebar",
+      "type": "rectangle",
+      "x": 330,
+      "y": 170,
+      "width": 140,
+      "height": 44,
+      "strokeColor": "#10b981",
+      "backgroundColor": "#dcfce7",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 1,
+      "roundness": { "type": 3 },
+      "seed": 3,
+      "boundElements": [
+        { "id": "node-sidebar-text", "type": "text" },
+        { "id": "arrow-app-sidebar", "type": "arrow" },
+        { "id": "arrow-sidebar-menu", "type": "arrow" }
+      ]
+    },
+    {
+      "id": "node-sidebar-text",
+      "type": "text",
+      "x": 345,
+      "y": 180,
+      "width": 110,
+      "height": 24,
+      "text": "<Sidebar />",
+      "fontSize": 16,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "strokeColor": "#10b981",
+      "containerId": "node-sidebar"
+    },
+    {
+      "id": "node-main",
+      "type": "rectangle",
+      "x": 560,
+      "y": 170,
+      "width": 140,
+      "height": 44,
+      "strokeColor": "#f59e0b",
+      "backgroundColor": "#fef3c7",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 1,
+      "roundness": { "type": 3 },
+      "seed": 4,
+      "boundElements": [
+        { "id": "node-main-text", "type": "text" },
+        { "id": "arrow-app-main", "type": "arrow" },
+        { "id": "arrow-main-chart", "type": "arrow" },
+        { "id": "arrow-main-table", "type": "arrow" }
+      ]
+    },
+    {
+      "id": "node-main-text",
+      "type": "text",
+      "x": 575,
+      "y": 180,
+      "width": 110,
+      "height": 24,
+      "text": "<Main />",
+      "fontSize": 16,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "strokeColor": "#f59e0b",
+      "containerId": "node-main"
+    },
+    {
+      "id": "node-nav",
+      "type": "rectangle",
+      "x": 40,
+      "y": 270,
+      "width": 120,
+      "height": 40,
+      "strokeColor": "#8b5cf6",
+      "backgroundColor": "#f5f3ff",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "roughness": 1,
+      "roundness": { "type": 3 },
+      "seed": 5,
+      "boundElements": [
+        { "id": "node-nav-text", "type": "text" },
+        { "id": "arrow-header-nav", "type": "arrow" }
+      ]
+    },
+    {
+      "id": "node-nav-text",
+      "type": "text",
+      "x": 57,
+      "y": 278,
+      "width": 86,
+      "height": 24,
+      "text": "<Nav />",
+      "fontSize": 14,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "strokeColor": "#8b5cf6",
+      "containerId": "node-nav"
+    },
+    {
+      "id": "node-avatar",
+      "type": "rectangle",
+      "x": 180,
+      "y": 270,
+      "width": 120,
+      "height": 40,
+      "strokeColor": "#8b5cf6",
+      "backgroundColor": "#f5f3ff",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "roughness": 1,
+      "roundness": { "type": 3 },
+      "seed": 6,
+      "boundElements": [
+        { "id": "node-avatar-text", "type": "text" },
+        { "id": "arrow-header-avatar", "type": "arrow" }
+      ]
+    },
+    {
+      "id": "node-avatar-text",
+      "type": "text",
+      "x": 195,
+      "y": 278,
+      "width": 90,
+      "height": 24,
+      "text": "<Avatar />",
+      "fontSize": 14,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "strokeColor": "#8b5cf6",
+      "containerId": "node-avatar"
+    },
+    {
+      "id": "node-menu",
+      "type": "rectangle",
+      "x": 340,
+      "y": 270,
+      "width": 120,
+      "height": 40,
+      "strokeColor": "#10b981",
+      "backgroundColor": "#ecfdf5",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "roughness": 1,
+      "roundness": { "type": 3 },
+      "seed": 7,
+      "boundElements": [
+        { "id": "node-menu-text", "type": "text" },
+        { "id": "arrow-sidebar-menu", "type": "arrow" }
+      ]
+    },
+    {
+      "id": "node-menu-text",
+      "type": "text",
+      "x": 355,
+      "y": 278,
+      "width": 90,
+      "height": 24,
+      "text": "<Menu />",
+      "fontSize": 14,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "strokeColor": "#10b981",
+      "containerId": "node-menu"
+    },
+    {
+      "id": "node-chart",
+      "type": "rectangle",
+      "x": 500,
+      "y": 270,
+      "width": 120,
+      "height": 40,
+      "strokeColor": "#f59e0b",
+      "backgroundColor": "#fffbeb",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "roughness": 1,
+      "roundness": { "type": 3 },
+      "seed": 8,
+      "boundElements": [
+        { "id": "node-chart-text", "type": "text" },
+        { "id": "arrow-main-chart", "type": "arrow" }
+      ]
+    },
+    {
+      "id": "node-chart-text",
+      "type": "text",
+      "x": 515,
+      "y": 278,
+      "width": 90,
+      "height": 24,
+      "text": "<Chart />",
+      "fontSize": 14,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "strokeColor": "#f59e0b",
+      "containerId": "node-chart"
+    },
+    {
+      "id": "node-table",
+      "type": "rectangle",
+      "x": 640,
+      "y": 270,
+      "width": 120,
+      "height": 40,
+      "strokeColor": "#f59e0b",
+      "backgroundColor": "#fffbeb",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "roughness": 1,
+      "roundness": { "type": 3 },
+      "seed": 9,
+      "boundElements": [
+        { "id": "node-table-text", "type": "text" },
+        { "id": "arrow-main-table", "type": "arrow" }
+      ]
+    },
+    {
+      "id": "node-table-text",
+      "type": "text",
+      "x": 655,
+      "y": 278,
+      "width": 90,
+      "height": 24,
+      "text": "<Table />",
+      "fontSize": 14,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "strokeColor": "#f59e0b",
+      "containerId": "node-table"
+    },
+    {
+      "id": "arrow-app-header",
+      "type": "arrow",
+      "x": 370,
+      "y": 114,
+      "width": 200,
+      "height": 56,
+      "strokeColor": "#9ca3af",
+      "strokeWidth": 2,
+      "roughness": 1,
+      "points": [[0, 0], [-200, 56]],
+      "startBinding": { "elementId": "node-app", "focus": 0, "gap": 1 },
+      "endBinding": { "elementId": "node-header", "focus": 0, "gap": 1 },
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "arrow-app-sidebar",
+      "type": "arrow",
+      "x": 400,
+      "y": 114,
+      "width": 0,
+      "height": 56,
+      "strokeColor": "#9ca3af",
+      "strokeWidth": 2,
+      "roughness": 1,
+      "points": [[0, 0], [0, 56]],
+      "startBinding": { "elementId": "node-app", "focus": 0, "gap": 1 },
+      "endBinding": { "elementId": "node-sidebar", "focus": 0, "gap": 1 },
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "arrow-app-main",
+      "type": "arrow",
+      "x": 430,
+      "y": 114,
+      "width": 200,
+      "height": 56,
+      "strokeColor": "#9ca3af",
+      "strokeWidth": 2,
+      "roughness": 1,
+      "points": [[0, 0], [200, 56]],
+      "startBinding": { "elementId": "node-app", "focus": 0, "gap": 1 },
+      "endBinding": { "elementId": "node-main", "focus": 0, "gap": 1 },
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "arrow-header-nav",
+      "type": "arrow",
+      "x": 150,
+      "y": 214,
+      "width": 50,
+      "height": 56,
+      "strokeColor": "#9ca3af",
+      "strokeWidth": 1,
+      "roughness": 1,
+      "points": [[0, 0], [-50, 56]],
+      "startBinding": { "elementId": "node-header", "focus": 0, "gap": 1 },
+      "endBinding": { "elementId": "node-nav", "focus": 0, "gap": 1 },
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "arrow-header-avatar",
+      "type": "arrow",
+      "x": 190,
+      "y": 214,
+      "width": 50,
+      "height": 56,
+      "strokeColor": "#9ca3af",
+      "strokeWidth": 1,
+      "roughness": 1,
+      "points": [[0, 0], [50, 56]],
+      "startBinding": { "elementId": "node-header", "focus": 0, "gap": 1 },
+      "endBinding": { "elementId": "node-avatar", "focus": 0, "gap": 1 },
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "arrow-sidebar-menu",
+      "type": "arrow",
+      "x": 400,
+      "y": 214,
+      "width": 0,
+      "height": 56,
+      "strokeColor": "#9ca3af",
+      "strokeWidth": 1,
+      "roughness": 1,
+      "points": [[0, 0], [0, 56]],
+      "startBinding": { "elementId": "node-sidebar", "focus": 0, "gap": 1 },
+      "endBinding": { "elementId": "node-menu", "focus": 0, "gap": 1 },
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "arrow-main-chart",
+      "type": "arrow",
+      "x": 610,
+      "y": 214,
+      "width": 50,
+      "height": 56,
+      "strokeColor": "#9ca3af",
+      "strokeWidth": 1,
+      "roughness": 1,
+      "points": [[0, 0], [-50, 56]],
+      "startBinding": { "elementId": "node-main", "focus": 0, "gap": 1 },
+      "endBinding": { "elementId": "node-chart", "focus": 0, "gap": 1 },
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "arrow-main-table",
+      "type": "arrow",
+      "x": 650,
+      "y": 214,
+      "width": 50,
+      "height": 56,
+      "strokeColor": "#9ca3af",
+      "strokeWidth": 1,
+      "roughness": 1,
+      "points": [[0, 0], [50, 56]],
+      "startBinding": { "elementId": "node-main", "focus": 0, "gap": 1 },
+      "endBinding": { "elementId": "node-table", "focus": 0, "gap": 1 },
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    }
+  ],
+  "appState": {
+    "viewBackgroundColor": "#ffffff",
+    "gridSize": null
+  },
+  "files": {}
+}
+```
+
+**Key techniques demonstrated:**
+
+- Top-down tree layout: root at top, children below, fanning out
+- Depth levels: Level 0 (root) thick border, Level 1 normal border, Level 2 thin border
+- Monospace font for component names (`<Component />`)
+- Color grouping by subtree (purple=Header branch, green=Sidebar, amber=Main)
+- Lighter backgrounds for leaf nodes vs darker for parent nodes
+- Consistent vertical spacing (100px) between levels, horizontal spread for siblings
+

@@ -1,0 +1,482 @@
+# Matrix / Comparison Table Example
+
+Feature comparison matrix with checkmarks and status indicators.
+
+**Layout model:**
+
+- Grid-based: header row + header column + data cells
+- totalWidth = 800, 4 data columns + 1 label column
+- colWidth = 140, labelWidth = 160
+
+```json
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "claude-code",
+  "elements": [
+    {
+      "id": "title",
+      "type": "text",
+      "x": 200,
+      "y": 15,
+      "width": 400,
+      "height": 30,
+      "text": "Framework Comparison Matrix",
+      "fontSize": 24,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "strokeColor": "#1e3a5f"
+    },
+    {
+      "id": "col-header-bg",
+      "type": "rectangle",
+      "x": 160,
+      "y": 60,
+      "width": 560,
+      "height": 40,
+      "strokeColor": "#475569",
+      "backgroundColor": "#1e3a5f",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "roughness": 1,
+      "roundness": { "type": 3 },
+      "seed": 1
+    },
+    {
+      "id": "col-h1",
+      "type": "text",
+      "x": 180,
+      "y": 68,
+      "width": 120,
+      "height": 24,
+      "text": "React",
+      "fontSize": 16,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "strokeColor": "#ffffff"
+    },
+    {
+      "id": "col-h2",
+      "type": "text",
+      "x": 320,
+      "y": 68,
+      "width": 120,
+      "height": 24,
+      "text": "Vue",
+      "fontSize": 16,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "strokeColor": "#ffffff"
+    },
+    {
+      "id": "col-h3",
+      "type": "text",
+      "x": 460,
+      "y": 68,
+      "width": 120,
+      "height": 24,
+      "text": "Svelte",
+      "fontSize": 16,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "strokeColor": "#ffffff"
+    },
+    {
+      "id": "col-h4",
+      "type": "text",
+      "x": 600,
+      "y": 68,
+      "width": 120,
+      "height": 24,
+      "text": "Solid",
+      "fontSize": 16,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "strokeColor": "#ffffff"
+    },
+    {
+      "id": "row1-label",
+      "type": "rectangle",
+      "x": 30,
+      "y": 110,
+      "width": 130,
+      "height": 40,
+      "strokeColor": "#e2e8f0",
+      "backgroundColor": "#f8fafc",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "roughness": 1,
+      "roundness": { "type": 3 },
+      "seed": 10,
+      "boundElements": [{ "id": "row1-label-text", "type": "text" }]
+    },
+    {
+      "id": "row1-label-text",
+      "type": "text",
+      "x": 45,
+      "y": 118,
+      "width": 100,
+      "height": 24,
+      "text": "TypeScript",
+      "fontSize": 14,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "strokeColor": "#1e3a5f",
+      "containerId": "row1-label"
+    },
+    {
+      "id": "r1c1",
+      "type": "text",
+      "x": 215,
+      "y": 118,
+      "width": 30,
+      "height": 24,
+      "text": "✅",
+      "fontSize": 18,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "strokeColor": "#10b981"
+    },
+    {
+      "id": "r1c2",
+      "type": "text",
+      "x": 355,
+      "y": 118,
+      "width": 30,
+      "height": 24,
+      "text": "✅",
+      "fontSize": 18,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "strokeColor": "#10b981"
+    },
+    {
+      "id": "r1c3",
+      "type": "text",
+      "x": 495,
+      "y": 118,
+      "width": 30,
+      "height": 24,
+      "text": "✅",
+      "fontSize": 18,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "strokeColor": "#10b981"
+    },
+    {
+      "id": "r1c4",
+      "type": "text",
+      "x": 635,
+      "y": 118,
+      "width": 30,
+      "height": 24,
+      "text": "✅",
+      "fontSize": 18,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "strokeColor": "#10b981"
+    },
+    {
+      "id": "row2-label",
+      "type": "rectangle",
+      "x": 30,
+      "y": 160,
+      "width": 130,
+      "height": 40,
+      "strokeColor": "#e2e8f0",
+      "backgroundColor": "#f8fafc",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "roughness": 1,
+      "roundness": { "type": 3 },
+      "seed": 11,
+      "boundElements": [{ "id": "row2-label-text", "type": "text" }]
+    },
+    {
+      "id": "row2-label-text",
+      "type": "text",
+      "x": 45,
+      "y": 168,
+      "width": 100,
+      "height": 24,
+      "text": "SSR Built-in",
+      "fontSize": 14,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "strokeColor": "#1e3a5f",
+      "containerId": "row2-label"
+    },
+    {
+      "id": "r2c1",
+      "type": "text",
+      "x": 208,
+      "y": 168,
+      "width": 44,
+      "height": 24,
+      "text": "Next",
+      "fontSize": 14,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "strokeColor": "#f59e0b"
+    },
+    {
+      "id": "r2c2",
+      "type": "text",
+      "x": 348,
+      "y": 168,
+      "width": 44,
+      "height": 24,
+      "text": "Nuxt",
+      "fontSize": 14,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "strokeColor": "#f59e0b"
+    },
+    {
+      "id": "r2c3",
+      "type": "text",
+      "x": 488,
+      "y": 168,
+      "width": 44,
+      "height": 24,
+      "text": "Kit",
+      "fontSize": 14,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "strokeColor": "#f59e0b"
+    },
+    {
+      "id": "r2c4",
+      "type": "text",
+      "x": 622,
+      "y": 168,
+      "width": 56,
+      "height": 24,
+      "text": "Start",
+      "fontSize": 14,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "strokeColor": "#f59e0b"
+    },
+    {
+      "id": "row3-label",
+      "type": "rectangle",
+      "x": 30,
+      "y": 210,
+      "width": 130,
+      "height": 40,
+      "strokeColor": "#e2e8f0",
+      "backgroundColor": "#f8fafc",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "roughness": 1,
+      "roundness": { "type": 3 },
+      "seed": 12,
+      "boundElements": [{ "id": "row3-label-text", "type": "text" }]
+    },
+    {
+      "id": "row3-label-text",
+      "type": "text",
+      "x": 45,
+      "y": 218,
+      "width": 100,
+      "height": 24,
+      "text": "Bundle Size",
+      "fontSize": 14,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "strokeColor": "#1e3a5f",
+      "containerId": "row3-label"
+    },
+    {
+      "id": "r3c1",
+      "type": "text",
+      "x": 205,
+      "y": 218,
+      "width": 50,
+      "height": 24,
+      "text": "44kb",
+      "fontSize": 14,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "strokeColor": "#dc2626"
+    },
+    {
+      "id": "r3c2",
+      "type": "text",
+      "x": 345,
+      "y": 218,
+      "width": 50,
+      "height": 24,
+      "text": "33kb",
+      "fontSize": 14,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "strokeColor": "#f59e0b"
+    },
+    {
+      "id": "r3c3",
+      "type": "text",
+      "x": 488,
+      "y": 218,
+      "width": 44,
+      "height": 24,
+      "text": "2kb",
+      "fontSize": 14,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "strokeColor": "#10b981"
+    },
+    {
+      "id": "r3c4",
+      "type": "text",
+      "x": 488,
+      "y": 218,
+      "width": 44,
+      "height": 24,
+      "text": "7kb",
+      "fontSize": 14,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "strokeColor": "#10b981"
+    },
+    {
+      "id": "row4-label",
+      "type": "rectangle",
+      "x": 30,
+      "y": 260,
+      "width": 130,
+      "height": 40,
+      "strokeColor": "#e2e8f0",
+      "backgroundColor": "#f8fafc",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "roughness": 1,
+      "roundness": { "type": 3 },
+      "seed": 13,
+      "boundElements": [{ "id": "row4-label-text", "type": "text" }]
+    },
+    {
+      "id": "row4-label-text",
+      "type": "text",
+      "x": 45,
+      "y": 268,
+      "width": 100,
+      "height": 24,
+      "text": "Ecosystem",
+      "fontSize": 14,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "strokeColor": "#1e3a5f",
+      "containerId": "row4-label"
+    },
+    {
+      "id": "r4c1",
+      "type": "text",
+      "x": 207,
+      "y": 268,
+      "width": 46,
+      "height": 24,
+      "text": "⭐⭐⭐",
+      "fontSize": 14,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "strokeColor": "#f59e0b"
+    },
+    {
+      "id": "r4c2",
+      "type": "text",
+      "x": 350,
+      "y": 268,
+      "width": 40,
+      "height": 24,
+      "text": "⭐⭐",
+      "fontSize": 14,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "strokeColor": "#f59e0b"
+    },
+    {
+      "id": "r4c3",
+      "type": "text",
+      "x": 497,
+      "y": 268,
+      "width": 26,
+      "height": 24,
+      "text": "⭐",
+      "fontSize": 14,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "strokeColor": "#f59e0b"
+    },
+    {
+      "id": "r4c4",
+      "type": "text",
+      "x": 497,
+      "y": 268,
+      "width": 26,
+      "height": 24,
+      "text": "⭐",
+      "fontSize": 14,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "strokeColor": "#f59e0b"
+    },
+    {
+      "id": "grid-hline1",
+      "type": "line",
+      "x": 30,
+      "y": 155,
+      "width": 690,
+      "height": 0,
+      "strokeColor": "#e2e8f0",
+      "strokeWidth": 1,
+      "roughness": 0,
+      "points": [[0, 0], [690, 0]]
+    },
+    {
+      "id": "grid-hline2",
+      "type": "line",
+      "x": 30,
+      "y": 205,
+      "width": 690,
+      "height": 0,
+      "strokeColor": "#e2e8f0",
+      "strokeWidth": 1,
+      "roughness": 0,
+      "points": [[0, 0], [690, 0]]
+    },
+    {
+      "id": "grid-hline3",
+      "type": "line",
+      "x": 30,
+      "y": 255,
+      "width": 690,
+      "height": 0,
+      "strokeColor": "#e2e8f0",
+      "strokeWidth": 1,
+      "roughness": 0,
+      "points": [[0, 0], [690, 0]]
+    }
+  ],
+  "appState": {
+    "viewBackgroundColor": "#ffffff",
+    "gridSize": null
+  },
+  "files": {}
+}
+```
+
+**Key techniques demonstrated:**
+
+- Dark header row for column labels (white text on dark background)
+- Row labels as light rectangles on the left
+- Grid lines as thin horizontal lines for visual separation
+- Mixed cell content: emoji checkmarks (✅), monospace text, star ratings (⭐)
+- Color-coded values: green=good, amber=moderate, red=large
+- Semantic ID pattern: `row{n}-label`, `r{row}c{col}`
+

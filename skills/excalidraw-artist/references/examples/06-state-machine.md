@@ -1,0 +1,450 @@
+# State Machine Example
+
+Order lifecycle state machine with states, transitions, guards, and terminal states.
+
+```json
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "claude-code",
+  "elements": [
+    {
+      "id": "title",
+      "type": "text",
+      "x": 250,
+      "y": 15,
+      "width": 300,
+      "height": 30,
+      "text": "Order Lifecycle State Machine",
+      "fontSize": 24,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "strokeColor": "#1e3a5f"
+    },
+    {
+      "id": "state-created",
+      "type": "ellipse",
+      "x": 50,
+      "y": 100,
+      "width": 120,
+      "height": 60,
+      "strokeColor": "#3b82f6",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 1,
+      "roundness": { "type": 2 },
+      "seed": 1,
+      "boundElements": [
+        { "id": "state-created-text", "type": "text" },
+        { "id": "arrow-created-paid", "type": "arrow" },
+        { "id": "arrow-created-cancelled", "type": "arrow" }
+      ]
+    },
+    {
+      "id": "state-created-text",
+      "type": "text",
+      "x": 72,
+      "y": 118,
+      "width": 76,
+      "height": 24,
+      "text": "Created",
+      "fontSize": 16,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "strokeColor": "#3b82f6",
+      "containerId": "state-created"
+    },
+    {
+      "id": "state-paid",
+      "type": "ellipse",
+      "x": 280,
+      "y": 100,
+      "width": 120,
+      "height": 60,
+      "strokeColor": "#10b981",
+      "backgroundColor": "#dcfce7",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 1,
+      "roundness": { "type": 2 },
+      "seed": 2,
+      "boundElements": [
+        { "id": "state-paid-text", "type": "text" },
+        { "id": "arrow-created-paid", "type": "arrow" },
+        { "id": "arrow-paid-shipped", "type": "arrow" },
+        { "id": "arrow-paid-refunded", "type": "arrow" }
+      ]
+    },
+    {
+      "id": "state-paid-text",
+      "type": "text",
+      "x": 312,
+      "y": 118,
+      "width": 56,
+      "height": 24,
+      "text": "Paid",
+      "fontSize": 16,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "strokeColor": "#10b981",
+      "containerId": "state-paid"
+    },
+    {
+      "id": "state-shipped",
+      "type": "ellipse",
+      "x": 510,
+      "y": 100,
+      "width": 120,
+      "height": 60,
+      "strokeColor": "#8b5cf6",
+      "backgroundColor": "#ede9fe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "roughness": 1,
+      "roundness": { "type": 2 },
+      "seed": 3,
+      "boundElements": [
+        { "id": "state-shipped-text", "type": "text" },
+        { "id": "arrow-paid-shipped", "type": "arrow" },
+        { "id": "arrow-shipped-delivered", "type": "arrow" }
+      ]
+    },
+    {
+      "id": "state-shipped-text",
+      "type": "text",
+      "x": 532,
+      "y": 118,
+      "width": 76,
+      "height": 24,
+      "text": "Shipped",
+      "fontSize": 16,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "strokeColor": "#8b5cf6",
+      "containerId": "state-shipped"
+    },
+    {
+      "id": "state-delivered",
+      "type": "rectangle",
+      "x": 730,
+      "y": 100,
+      "width": 130,
+      "height": 60,
+      "strokeColor": "#059669",
+      "backgroundColor": "#d1fae5",
+      "fillStyle": "solid",
+      "strokeWidth": 3,
+      "roughness": 1,
+      "roundness": { "type": 3 },
+      "seed": 4,
+      "boundElements": [
+        { "id": "state-delivered-text", "type": "text" },
+        { "id": "arrow-shipped-delivered", "type": "arrow" }
+      ]
+    },
+    {
+      "id": "state-delivered-text",
+      "type": "text",
+      "x": 747,
+      "y": 115,
+      "width": 96,
+      "height": 30,
+      "text": "✅ Delivered",
+      "fontSize": 16,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "strokeColor": "#059669",
+      "containerId": "state-delivered"
+    },
+    {
+      "id": "state-cancelled",
+      "type": "rectangle",
+      "x": 100,
+      "y": 250,
+      "width": 130,
+      "height": 60,
+      "strokeColor": "#dc2626",
+      "backgroundColor": "#fef2f2",
+      "fillStyle": "solid",
+      "strokeWidth": 3,
+      "roughness": 1,
+      "roundness": { "type": 3 },
+      "seed": 5,
+      "boundElements": [
+        { "id": "state-cancelled-text", "type": "text" },
+        { "id": "arrow-created-cancelled", "type": "arrow" }
+      ]
+    },
+    {
+      "id": "state-cancelled-text",
+      "type": "text",
+      "x": 117,
+      "y": 265,
+      "width": 96,
+      "height": 30,
+      "text": "❌ Cancelled",
+      "fontSize": 16,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "strokeColor": "#dc2626",
+      "containerId": "state-cancelled"
+    },
+    {
+      "id": "state-refunded",
+      "type": "rectangle",
+      "x": 330,
+      "y": 250,
+      "width": 130,
+      "height": 60,
+      "strokeColor": "#ea580c",
+      "backgroundColor": "#fff7ed",
+      "fillStyle": "solid",
+      "strokeWidth": 3,
+      "roughness": 1,
+      "roundness": { "type": 3 },
+      "seed": 6,
+      "boundElements": [
+        { "id": "state-refunded-text", "type": "text" },
+        { "id": "arrow-paid-refunded", "type": "arrow" }
+      ]
+    },
+    {
+      "id": "state-refunded-text",
+      "type": "text",
+      "x": 347,
+      "y": 265,
+      "width": 96,
+      "height": 30,
+      "text": "💰 Refunded",
+      "fontSize": 16,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "strokeColor": "#ea580c",
+      "containerId": "state-refunded"
+    },
+    {
+      "id": "arrow-created-paid",
+      "type": "arrow",
+      "x": 170,
+      "y": 130,
+      "width": 110,
+      "height": 0,
+      "strokeColor": "#6b7b8c",
+      "strokeWidth": 2,
+      "roughness": 1,
+      "points": [[0, 0], [110, 0]],
+      "startBinding": { "elementId": "state-created", "focus": 0, "gap": 1 },
+      "endBinding": { "elementId": "state-paid", "focus": 0, "gap": 1 },
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "label-created-paid",
+      "type": "text",
+      "x": 185,
+      "y": 108,
+      "width": 80,
+      "height": 18,
+      "text": "pay()",
+      "fontSize": 14,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "strokeColor": "#6b7b8c"
+    },
+    {
+      "id": "arrow-paid-shipped",
+      "type": "arrow",
+      "x": 400,
+      "y": 130,
+      "width": 110,
+      "height": 0,
+      "strokeColor": "#6b7b8c",
+      "strokeWidth": 2,
+      "roughness": 1,
+      "points": [[0, 0], [110, 0]],
+      "startBinding": { "elementId": "state-paid", "focus": 0, "gap": 1 },
+      "endBinding": { "elementId": "state-shipped", "focus": 0, "gap": 1 },
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "label-paid-shipped",
+      "type": "text",
+      "x": 415,
+      "y": 108,
+      "width": 80,
+      "height": 18,
+      "text": "ship()",
+      "fontSize": 14,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "strokeColor": "#6b7b8c"
+    },
+    {
+      "id": "arrow-shipped-delivered",
+      "type": "arrow",
+      "x": 630,
+      "y": 130,
+      "width": 100,
+      "height": 0,
+      "strokeColor": "#6b7b8c",
+      "strokeWidth": 2,
+      "roughness": 1,
+      "points": [[0, 0], [100, 0]],
+      "startBinding": { "elementId": "state-shipped", "focus": 0, "gap": 1 },
+      "endBinding": { "elementId": "state-delivered", "focus": 0, "gap": 1 },
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "label-shipped-delivered",
+      "type": "text",
+      "x": 640,
+      "y": 108,
+      "width": 80,
+      "height": 18,
+      "text": "confirm()",
+      "fontSize": 14,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "strokeColor": "#6b7b8c"
+    },
+    {
+      "id": "arrow-created-cancelled",
+      "type": "arrow",
+      "x": 110,
+      "y": 160,
+      "width": 55,
+      "height": 90,
+      "strokeColor": "#dc2626",
+      "strokeWidth": 2,
+      "strokeStyle": "dashed",
+      "roughness": 1,
+      "points": [[0, 0], [55, 90]],
+      "startBinding": { "elementId": "state-created", "focus": 0, "gap": 1 },
+      "endBinding": { "elementId": "state-cancelled", "focus": 0, "gap": 1 },
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "label-created-cancelled",
+      "type": "text",
+      "x": 48,
+      "y": 200,
+      "width": 80,
+      "height": 18,
+      "text": "cancel()",
+      "fontSize": 14,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "strokeColor": "#dc2626"
+    },
+    {
+      "id": "arrow-paid-refunded",
+      "type": "arrow",
+      "x": 340,
+      "y": 160,
+      "width": 55,
+      "height": 90,
+      "strokeColor": "#ea580c",
+      "strokeWidth": 2,
+      "strokeStyle": "dashed",
+      "roughness": 1,
+      "points": [[0, 0], [55, 90]],
+      "startBinding": { "elementId": "state-paid", "focus": 0, "gap": 1 },
+      "endBinding": { "elementId": "state-refunded", "focus": 0, "gap": 1 },
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "label-paid-refunded",
+      "type": "text",
+      "x": 278,
+      "y": 200,
+      "width": 80,
+      "height": 18,
+      "text": "refund()",
+      "fontSize": 14,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "strokeColor": "#ea580c"
+    },
+    {
+      "id": "legend-active",
+      "type": "ellipse",
+      "x": 50,
+      "y": 350,
+      "width": 20,
+      "height": 20,
+      "strokeColor": "#6b7b8c",
+      "backgroundColor": "#f1f5f9",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "roughness": 1,
+      "roundness": { "type": 2 },
+      "seed": 100
+    },
+    {
+      "id": "legend-active-text",
+      "type": "text",
+      "x": 78,
+      "y": 352,
+      "width": 100,
+      "height": 16,
+      "text": "Active state",
+      "fontSize": 12,
+      "fontFamily": 2,
+      "strokeColor": "#64748b"
+    },
+    {
+      "id": "legend-terminal",
+      "type": "rectangle",
+      "x": 200,
+      "y": 350,
+      "width": 20,
+      "height": 20,
+      "strokeColor": "#6b7b8c",
+      "backgroundColor": "#f1f5f9",
+      "fillStyle": "solid",
+      "strokeWidth": 3,
+      "roughness": 1,
+      "roundness": { "type": 3 },
+      "seed": 101
+    },
+    {
+      "id": "legend-terminal-text",
+      "type": "text",
+      "x": 228,
+      "y": 352,
+      "width": 120,
+      "height": 16,
+      "text": "Terminal state",
+      "fontSize": 12,
+      "fontFamily": 2,
+      "strokeColor": "#64748b"
+    }
+  ],
+  "appState": {
+    "viewBackgroundColor": "#ffffff",
+    "gridSize": null
+  },
+  "files": {}
+}
+```
+
+**Key techniques demonstrated:**
+
+- Active states as ellipses, terminal states as thick-bordered rectangles
+- Transition labels use monospace font (`fontFamily: 3`) for method names
+- Happy path flows left→right, error/exception paths flow downward
+- Dashed arrows for cancellation/refund (exception paths)
+- Color coding: blue=initial, green=success, purple=in-progress, red=cancelled, orange=refunded
+- Legend at bottom distinguishing active vs terminal state shapes
+
