@@ -2,7 +2,7 @@
 name: tooyoung:cc-features
 description: "Show Claude Code feature-level updates in Chinese. Fetch release notes, filter out bug fixes, present new features and improvements. Trigger: cc features, CC 新功能, CC 更新, what's new in CC"
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # CC Features — Claude Code 功能更新速览
@@ -25,13 +25,13 @@ gh release list --repo anthropics/claude-code --limit 50 --json tagName,publishe
 
 Parse the ARGUMENTS to determine which versions to fetch:
 
-| Argument                            | Behavior                                                                                                                                                       |
-| ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| (empty)                             | Versions after currently running version. Get current via `claude --version`, list all releases via `gh release list`, then select versions newer than current |
-| `2.1.73`                            | Single version                                                                                                                                                 |
-| `2.1.72 2.1.73` or `2.1.72,2.1.73`  | Multiple specific versions                                                                                                                                     |
-| `2.1.70-2.1.74` or `2.1.70..2.1.74` | Version range (inclusive)                                                                                                                                      |
-| `latest` or `last 3`                | Latest N versions                                                                                                                                              |
+| Argument                            | Behavior                                                                                                                                                                                                                   |
+| ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| (empty)                             | Versions after currently running version. Get current via `claude --version`, list all releases via `gh release list`, then select versions newer than current. If already on latest, show current version's release notes |
+| `2.1.73`                            | Single version                                                                                                                                                                                                             |
+| `2.1.72 2.1.73` or `2.1.72,2.1.73`  | Multiple specific versions                                                                                                                                                                                                 |
+| `2.1.70-2.1.74` or `2.1.70..2.1.74` | Version range (inclusive)                                                                                                                                                                                                  |
+| `latest` or `last 3`                | Latest N versions                                                                                                                                                                                                          |
 
 ## Filtering Rules
 
@@ -68,7 +68,7 @@ For each version, output in Chinese:
 ## Execution Steps
 
 1. Parse ARGUMENTS to determine version range
-2. If no args: run `claude --version` to get current, then `gh release list --limit 50` to get release list, select all versions newer than current
+2. If no args: run `claude --version` to get current, then `gh release list --limit 50` to get release list, select all versions newer than current. If none newer, fetch current version's notes instead
 3. For version ranges: use the release list to resolve actual versions (don't assume consecutive numbering)
 4. Fetch release notes for each version via `gh release view`
 5. Filter and categorize each line
@@ -78,4 +78,4 @@ For each version, output in Chinese:
 
 - `gh` not authenticated → prompt user to run `gh auth login`
 - Version not found → skip with note `（未找到 v{version} 的 release）`
-- No versions newer than current → show `（当前已是最新版本 v{version}）`
+- No versions newer than current → show current version's release notes with header `（当前已是最新版本，以下为 v{version} 的更新内容）`
