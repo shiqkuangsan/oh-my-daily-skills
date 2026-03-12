@@ -39,6 +39,16 @@ claude --plugin-dir /path/to/oh-my-daily-skills
 
 Copy individual skill directories to `~/.claude/skills/` for personal use.
 
+## Updating
+
+```bash
+# Check for available updates
+npx skills check
+
+# Update all installed skills to latest
+npx skills update
+```
+
 ## Skills
 
 ### General Skills (`tooyoung:`)

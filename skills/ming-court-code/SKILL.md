@@ -1,8 +1,8 @@
 ---
 name: "tooyoung:ming-court-code"
-description: "明廷典——以明代朝廷体制规范 Claude Code 开发流程。三级自适应：口谕（快速执行）、廷议（结构化方案）、早朝（多 agent 并行）。"
+description: "Ming Court Code - structured dev workflow inspired by Ming Dynasty court system. Three adaptive modes: oral decree (quick exec), court debate (structured plan), morning assembly (multi-agent parallel). Trigger: 明廷典, ming court, 开发流程, dev workflow protocol, 朝廷模式"
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
 ---
 
 # 明廷典 Ming Court Code

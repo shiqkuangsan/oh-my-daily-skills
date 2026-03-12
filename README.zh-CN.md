@@ -39,6 +39,16 @@ claude --plugin-dir /path/to/oh-my-daily-skills
 
 将单个技能目录复制到 `~/.claude/skills/` 即可使用。
 
+## 更新
+
+```bash
+# 检查可用更新
+npx skills check
+
+# 更新所有已安装技能到最新版本
+npx skills update
+```
+
 ## 技能列表
 
 ### 通用技能 (`tooyoung:`)

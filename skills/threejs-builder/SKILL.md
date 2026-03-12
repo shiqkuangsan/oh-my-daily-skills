@@ -1,8 +1,8 @@
 ---
 name: tooyoung:threejs-builder
-description: "Creates simple Three.js web apps with scene setup, lighting, geometries, materials, animations, and responsive rendering. Use for 'Create a threejs scene/app/showcase' or when user wants 3D web content. Supports ES modules, modern Three.js r170+ APIs."
+description: "Creates simple Three.js web apps with scene setup, lighting, geometries, materials, animations, and responsive rendering. Use for 'Create a threejs scene/app/showcase' or when user wants 3D web content. Supports ES modules, modern Three.js r170+ APIs. Trigger: 3D scene, WebGL, threejs, 三维展示, 3D showcase, interactive 3D"
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Three.js Builder
