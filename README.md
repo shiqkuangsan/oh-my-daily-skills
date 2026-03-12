@@ -46,6 +46,7 @@ Copy individual skill directories to `~/.claude/skills/` for personal use.
 | Skill               | Command                         | Description                                                |
 | ------------------- | ------------------------------- | ---------------------------------------------------------- |
 | blobity-cursor      | `/tooyoung:blobity-cursor`      | Add Blobity canvas cursor effect to any landing page       |
+| cc-features         | `/tooyoung:cc-features`         | Show Claude Code feature-level updates in Chinese          |
 | chainlit-builder    | `/tooyoung:chainlit-builder`    | Scaffold Chainlit AI chat demos for product presentations  |
 | codebase-stats      | `/tooyoung:codebase-stats`      | Count lines of code by file type and auto-detected module  |
 | docs-i18n-pr        | `/tooyoung:docs-i18n-pr`        | Fork repo, translate docs, and submit a PR automatically   |
@@ -100,6 +101,7 @@ oh-my-daily-skills/
 │   └── plugin.json
 ├── skills/
 │   ├── blobity-cursor/
+│   ├── cc-features/
 │   ├── chainlit-builder/
 │   ├── codebase-stats/
 │   ├── docs-i18n-pr/

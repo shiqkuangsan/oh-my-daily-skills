@@ -46,6 +46,7 @@ claude --plugin-dir /path/to/oh-my-daily-skills
 | 技能                | 命令                            | 描述                                       |
 | ------------------- | ------------------------------- | ------------------------------------------ |
 | blobity-cursor      | `/tooyoung:blobity-cursor`      | 为任意落地页添加 Blobity 光标特效          |
+| cc-features         | `/tooyoung:cc-features`         | 查看 Claude Code 功能级更新速览（中文）    |
 | chainlit-builder    | `/tooyoung:chainlit-builder`    | 搭建 Chainlit AI 对话 Demo 用于产品演示    |
 | codebase-stats      | `/tooyoung:codebase-stats`      | 按文件类型和自动检测模块统计代码行数       |
 | docs-i18n-pr        | `/tooyoung:docs-i18n-pr`        | Fork 仓库、翻译文档并自动提交翻译 PR       |
@@ -100,6 +101,7 @@ oh-my-daily-skills/
 │   └── plugin.json
 ├── skills/
 │   ├── blobity-cursor/
+│   ├── cc-features/
 │   ├── chainlit-builder/
 │   ├── codebase-stats/
 │   ├── docs-i18n-pr/

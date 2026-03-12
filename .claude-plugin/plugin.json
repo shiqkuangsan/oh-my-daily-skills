@@ -1,11 +1,11 @@
 {
   "name": "oh-my-daily-skills",
-  "version": "2.9.0",
+  "version": "2.10.0",
   "description": "Daily-driver skills for Claude Code — URL reading, diagram drawing, LLM benchmarking, 3D scenes, chat demos, and more.",
   "author": {
     "name": "shiqkuangsan"
   },
   "repository": "https://github.com/shiqkuangsan/oh-my-daily-skills",
   "license": "MIT",
-  "keywords": ["skills", "productivity", "ink-reader", "excalidraw", "threejs", "openrouter", "chainlit", "gemini", "frontend-slides", "ming-court-code"]
+  "keywords": ["skills", "productivity", "ink-reader", "excalidraw", "threejs", "openrouter", "chainlit", "gemini", "frontend-slides", "ming-court-code", "cc-features"]
 }
