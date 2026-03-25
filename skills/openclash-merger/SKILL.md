@@ -1,23 +1,24 @@
 ---
 name: tooyoung:openclash-merger
-description: "将 vless+reality 等新协议配置转换为带 ACL4SSR Full NoAuto 规则的配置文件，支持分组+分流，可直接上传 OpenClash 使用。触发词：合并 OpenClash、转换订阅、Clash 配置"
+description: "将 vless+reality 等新协议配置转换为带 GEOSITE 规则的配置文件，支持 11 地区分组 + AI/媒体/游戏分流，可直接上传 OpenClash 使用。触发词：合并 OpenClash、转换订阅、Clash 配置"
 metadata:
-  version: "1.0.0"
+  version: "2.0.0"
 ---
 
 # OpenClash 订阅配置合并
 
-将提供商的代理节点与 ACL4SSR Full NoAuto 规则合并，生成可用于 OpenClash 的完整配置。
+将提供商的代理节点与 GEOSITE 规则合并，生成可用于 OpenClash 的完整配置。
 
 ## 前置依赖
 
 - **Node.js** - 脚本使用 Node.js 处理 YAML
+- **OpenClash** 需使用 mihomo (Clash.Meta) 内核以支持 GEOSITE 规则
 
 ## 为什么需要这个工具
 
 - 部分提供商仅提供完整配置，不提供原始订阅链接
 - vless+reality 等新协议无法被 subconverter 解析
-- 需要使用 ACL4SSR 等高质量规则集替换提供商规则
+- 需要使用高质量规则集替换提供商规则
 
 ## 使用方法
 
@@ -45,53 +46,77 @@ openclash-merger/
 ├── scripts/
 │   └── merge.sh          # 合并脚本
 └── assets/
-    ├── template.yaml     # ACL4SSR proxy-groups 模板
-    └── rules.yaml        # ACL4SSR Full NoAuto 规则 (~10400 条)
+    ├── template.yaml     # proxy-groups 模板 (GEOSITE 版)
+    └── rules.yaml        # GEOSITE 精简规则 (~210 条)
 ```
 
 ## 工作原理
 
 1. **获取配置** - 从订阅链接下载或读取本地文件
 2. **提取节点** - 从 `proxies:` 部分提取所有代理节点
-3. **分类节点** - 按地区关键字分类（香港/日本/美国/新加坡/台湾/韩国/其他）
-4. **填充模板** - 将节点填入 ACL4SSR 模板的占位符
-5. **合并规则** - 附加完整的 ACL4SSR 分流规则
+3. **分类节点** - 按地区关键字分类（11 个地区 + 其他）
+4. **填充模板** - 将节点填入模板的占位符
+5. **合并规则** - 附加 GEOSITE 分流规则
 6. **输出文件** - 生成可直接导入 OpenClash 的配置
 
 ## 策略组
 
-| 策略组      | 说明                  |
-| ----------- | --------------------- |
-| 🚀 节点选择 | 主选择，默认香港      |
-| 🚀 手动切换 | 包含所有节点          |
-| 📲 电报消息 | Telegram              |
-| 💬 Ai平台   | ChatGPT/Claude/Gemini |
-| 📹 油管视频 | YouTube               |
-| 🎥 奈飞视频 | Netflix               |
-| 📺 哔哩哔哩 | B站                   |
-| Ⓜ️ 微软Bing | Bing + Copilot        |
-| 🎯 全球直连 | 直连                  |
-| 🛑 广告拦截 | 广告                  |
-| 🐟 漏网之鱼 | 未匹配流量            |
+| 策略组       | 说明                       |
+| ------------ | -------------------------- |
+| 🚀 节点选择  | 主选择，默认香港           |
+| 🚀 手动切换  | 包含所有节点               |
+| 💬 AI平台    | ChatGPT/Claude/Gemini/DeepSeek/Cursor 等 80+ AI 服务 |
+| 📲 电报消息  | Telegram                   |
+| 📹 油管视频  | YouTube                    |
+| 🎥 奈飞视频  | Netflix                    |
+| 🎬 迪士尼    | Disney+                    |
+| 📺 巴哈姆特  | 巴哈姆特/动画疯            |
+| 📺 哔哩哔哩  | B站                        |
+| 🌍 国外媒体  | Spotify/Twitch/TikTok 等   |
+| 🌏 国内媒体  | 国内媒体海外 CDN           |
+| 📢 谷歌服务  | Google 全家桶              |
+| 🐱 GitHub    | GitHub 独立分流            |
+| Ⓜ️ 微软服务  | Microsoft + OneDrive       |
+| 🍎 苹果服务  | Apple 服务                 |
+| 🎮 游戏平台  | Steam/Epic/PS/Xbox/Switch/暴雪/拳头/育碧/EA |
+| 🎯 全球直连  | 直连                       |
+| 🛑 广告拦截  | 广告                       |
+| 🐟 漏网之鱼  | 未匹配流量                 |
 
 ## 地区节点组（url-test 自动测速）
 
-🇭🇰 香港 | 🇯🇵 日本 | 🇺🇲 美国 | 🇸🇬 狮城 | 🇨🇳 台湾 | 🇰🇷 韩国
+🇭🇰 香港 | 🇯🇵 日本 | 🇺🇲 美国 | 🇸🇬 狮城 | 🇨🇳 台湾 | 🇰🇷 韩国 | 🇬🇧 英国 | 🇩🇪 德国 | 🇦🇺 澳洲 | 🇨🇦 加拿大 | 🇫🇷 法国
 
 ## 节点分类规则
 
 按节点名中的关键字匹配：
 
-| 地区   | 关键字                      |
-| ------ | --------------------------- |
-| 香港   | 香港, HK, Hong Kong         |
-| 日本   | 日本, JP, Japan             |
-| 美国   | 美国, US, USA, America      |
-| 新加坡 | 新加坡, SG, Singapore, 狮城 |
-| 台湾   | 台湾, TW, Taiwan            |
-| 韩国   | 韩国, KR, Korea             |
+| 地区     | 关键字                                |
+| -------- | ------------------------------------- |
+| 香港     | 香港, HK, Hong Kong                   |
+| 日本     | 日本, JP, Japan                       |
+| 美国     | 美国, US, USA, America                |
+| 新加坡   | 新加坡, SG, Singapore, 狮城           |
+| 台湾     | 台湾, TW, Taiwan                      |
+| 韩国     | 韩国, KR, Korea                       |
+| 英国     | 英国, UK, GB, United Kingdom, Britain |
+| 德国     | 德国, DE, Germany                     |
+| 澳洲     | 澳大利亚, 澳洲, AU, Australia        |
+| 加拿大   | 加拿大, CA, Canada                    |
+| 法国     | 法国, FR, France                      |
 
 未匹配的节点归入"其他"，会包含在"手动切换"组中。
+
+## 规则策略
+
+使用 GEOSITE 规则集替代逐条域名规则：
+
+- `GEOSITE,category-ads-all` → 广告拦截（自动更新）
+- `GEOSITE,telegram` / `GEOSITE,youtube` / `GEOSITE,netflix` → 媒体分流
+- `GEOSITE,google` / `GEOSITE,github` / `GEOSITE,microsoft` → 服务分流
+- `GEOSITE,geolocation-!cn` → 非中国域名兜底走代理
+- `GEOSITE,cn` + `GEOIP,cn` → 中国域名/IP 直连
+- 80+ 条 AI 平台域名规则（GEOSITE 暂无 AI 分类，需逐条维护）
 
 ## 故障排查
 
@@ -101,6 +126,7 @@ openclash-merger/
 
 - `proxy [xxx] not found` → 策略组名不匹配
 - 节点 `not found` → 节点组引用了不存在的节点
+- `GEOSITE not found` → 确保 OpenClash 使用 mihomo 内核
 
 ### 节点分类异常
 
@@ -114,8 +140,21 @@ openclash-merger/
 
 - `{{PROXIES}}` - proxies 部分
 - `{{ALL_NODES}}` - 所有节点
-- `{{HK_NODES}}` / `{{JP_NODES}}` / ... - 各地区节点
+- `{{HK_NODES}}` / `{{JP_NODES}}` / `{{GB_NODES}}` / ... - 各地区节点
 
 ### 更新规则
 
-替换 `assets/rules.yaml` 可使用其他规则集。
+编辑 `assets/rules.yaml` 可自定义分流规则。
+
+## 变更记录
+
+### v2.0.0
+
+- **规则引擎切换**: 从 10400 条逐条域名规则切换到 GEOSITE 精简规则 (~210 条)
+- **新增分组**: 🎬 迪士尼、🐱 GitHub、📢 谷歌服务
+- **合并分组**: Ⓜ️ 微软Bing / 微软云盘 / 微软服务 → 统一 Ⓜ️ 微软服务
+- **移除分组**: 🍃 应用净化、🎶 网易音乐（由 GEOSITE 规则覆盖）
+- **新增地区**: 英国、德国、澳洲、加拿大、法国（共 11 个地区）
+- **AI 规则大幅扩充**: 80+ AI 服务域名（DeepSeek/Cursor/Windsurf/Bolt/v0 等）
+- **移除误伤规则**: auth0.com、stripe.com、sentry.io 等通用服务不再走 AI 代理
+- **新增 GFW 兜底**: `GEOSITE,geolocation-!cn` 覆盖所有非中国域名

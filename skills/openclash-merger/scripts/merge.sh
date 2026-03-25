@@ -72,7 +72,9 @@ console.log(`  节点数: ${nodeNames.length}`);
 
 // 按地区分类
 const categories = {
-    HK: [], JP: [], US: [], SG: [], TW: [], KR: [], OTHER: []
+    HK: [], JP: [], US: [], SG: [], TW: [], KR: [],
+    GB: [], DE: [], AU: [], CA: [], FR: [],
+    OTHER: []
 };
 
 const regionMap = {
@@ -81,7 +83,12 @@ const regionMap = {
     '美国': 'US', 'US': 'US', 'USA': 'US', 'America': 'US',
     '新加坡': 'SG', 'SG': 'SG', 'Singapore': 'SG', '狮城': 'SG',
     '台湾': 'TW', 'TW': 'TW', 'Taiwan': 'TW',
-    '韩国': 'KR', 'KR': 'KR', 'Korea': 'KR'
+    '韩国': 'KR', 'KR': 'KR', 'Korea': 'KR',
+    '英国': 'GB', 'UK': 'GB', 'GB': 'GB', 'United Kingdom': 'GB', 'Britain': 'GB',
+    '德国': 'DE', 'DE': 'DE', 'Germany': 'DE',
+    '澳大利亚': 'AU', '澳洲': 'AU', 'AU': 'AU', 'Australia': 'AU',
+    '加拿大': 'CA', 'CA': 'CA', 'Canada': 'CA',
+    '法国': 'FR', 'FR': 'FR', 'France': 'FR'
 };
 
 for (const name of nodeNames) {
@@ -97,9 +104,12 @@ for (const name of nodeNames) {
 }
 
 // 打印分类结果
+const regionNames = {
+    HK:'香港', JP:'日本', US:'美国', SG:'新加坡', TW:'台湾', KR:'韩国',
+    GB:'英国', DE:'德国', AU:'澳洲', CA:'加拿大', FR:'法国'
+};
 for (const [region, nodes] of Object.entries(categories)) {
     if (nodes.length > 0 && region !== 'OTHER') {
-        const regionNames = {HK:'香港', JP:'日本', US:'美国', SG:'新加坡', TW:'台湾', KR:'韩国'};
         console.log(`  ${regionNames[region]}: ${nodes.length}`);
     }
 }
@@ -118,10 +128,13 @@ const fmt = (arr) => arr.length > 0
     ? arr.map(n => `  - ${n}`).join('\n')
     : '  - DIRECT';
 
-// 所有节点
-const allNodes = [...categories.HK, ...categories.TW, ...categories.JP,
-                  ...categories.SG, ...categories.US, ...categories.KR,
-                  ...categories.OTHER];
+// 所有节点（按地区顺序）
+const allNodes = [
+    ...categories.HK, ...categories.TW, ...categories.JP,
+    ...categories.SG, ...categories.US, ...categories.KR,
+    ...categories.GB, ...categories.DE, ...categories.AU,
+    ...categories.CA, ...categories.FR, ...categories.OTHER
+];
 
 // 替换占位符
 template = template
@@ -133,6 +146,11 @@ template = template
     .replace('{{SG_NODES}}', fmt(categories.SG.length ? categories.SG : allNodes.slice(0, 3)))
     .replace('{{TW_NODES}}', fmt(categories.TW.length ? categories.TW : allNodes.slice(0, 3)))
     .replace('{{KR_NODES}}', fmt(categories.KR.length ? categories.KR : allNodes.slice(0, 3)))
+    .replace('{{GB_NODES}}', fmt(categories.GB.length ? categories.GB : allNodes.slice(0, 3)))
+    .replace('{{DE_NODES}}', fmt(categories.DE.length ? categories.DE : allNodes.slice(0, 3)))
+    .replace('{{AU_NODES}}', fmt(categories.AU.length ? categories.AU : allNodes.slice(0, 3)))
+    .replace('{{CA_NODES}}', fmt(categories.CA.length ? categories.CA : allNodes.slice(0, 3)))
+    .replace('{{FR_NODES}}', fmt(categories.FR.length ? categories.FR : allNodes.slice(0, 3)))
     .replace('{{RULES}}', rules);
 
 // 写入输出

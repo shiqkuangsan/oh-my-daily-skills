@@ -34,55 +34,69 @@ proxy-groups:
   - 🇯🇵 日本节点
   - 🇺🇲 美国节点
   - 🇰🇷 韩国节点
+  - 🇬🇧 英国节点
+  - 🇩🇪 德国节点
+  - 🇦🇺 澳洲节点
+  - 🇨🇦 加拿大节点
+  - 🇫🇷 法国节点
   - 🚀 手动切换
   - DIRECT
 - name: 🚀 手动切换
   type: select
   proxies:
 {{ALL_NODES}}
+- name: 💬 AI平台
+  type: select
+  proxies:
+  - 🇺🇲 美国节点
+  - 🇯🇵 日本节点
+  - 🇸🇬 狮城节点
+  - 🇰🇷 韩国节点
+  - 🇩🇪 德国节点
+  - 🇨🇦 加拿大节点
+  - 🇬🇧 英国节点
+  - 🚀 节点选择
+  - 🚀 手动切换
 - name: 📲 电报消息
   type: select
   proxies:
   - 🚀 节点选择
-  - 🇭🇰 香港节点
   - 🇸🇬 狮城节点
-  - 🇺🇲 美国节点
-  - DIRECT
-- name: 💬 Ai平台
-  type: select
-  proxies:
-  - 🚀 节点选择
+  - 🇭🇰 香港节点
   - 🇺🇲 美国节点
   - 🇯🇵 日本节点
-  - 🇸🇬 狮城节点
-  - 🇭🇰 香港节点
   - 🚀 手动切换
-  - DIRECT
 - name: 📹 油管视频
   type: select
   proxies:
   - 🚀 节点选择
   - 🇭🇰 香港节点
-  - 🇨🇳 台湾节点
   - 🇸🇬 狮城节点
   - 🇯🇵 日本节点
   - 🇺🇲 美国节点
+  - 🇨🇳 台湾节点
   - 🇰🇷 韩国节点
   - 🚀 手动切换
-  - DIRECT
 - name: 🎥 奈飞视频
   type: select
   proxies:
-  - 🎥 奈飞节点
-  - 🚀 节点选择
+  - 🇸🇬 狮城节点
   - 🇭🇰 香港节点
   - 🇨🇳 台湾节点
+  - 🇯🇵 日本节点
+  - 🇺🇲 美国节点
+  - 🚀 节点选择
+  - 🚀 手动切换
+- name: 🎬 迪士尼
+  type: select
+  proxies:
+  - 🇭🇰 香港节点
   - 🇸🇬 狮城节点
   - 🇯🇵 日本节点
   - 🇺🇲 美国节点
-  - 🇰🇷 韩国节点
+  - 🇨🇳 台湾节点
+  - 🚀 节点选择
   - 🚀 手动切换
-  - DIRECT
 - name: 📺 巴哈姆特
   type: select
   proxies:
@@ -94,9 +108,8 @@ proxy-groups:
   type: select
   proxies:
   - 🎯 全球直连
-  - 🇭🇰 香港节点
   - 🇨🇳 台湾节点
-  - DIRECT
+  - 🇭🇰 香港节点
 - name: 🌍 国外媒体
   type: select
   proxies:
@@ -106,72 +119,60 @@ proxy-groups:
   - 🇸🇬 狮城节点
   - 🇯🇵 日本节点
   - 🇺🇲 美国节点
-  - 🇰🇷 韩国节点
   - 🚀 手动切换
-  - DIRECT
 - name: 🌏 国内媒体
   type: select
   proxies:
   - DIRECT
   - 🇭🇰 香港节点
   - 🇨🇳 台湾节点
-- name: 📢 谷歌FCM
+- name: 📢 谷歌服务
   type: select
   proxies:
-  - DIRECT
   - 🚀 节点选择
-  - 🇺🇲 美国节点
   - 🇭🇰 香港节点
-  - 🇨🇳 台湾节点
-  - 🇸🇬 狮城节点
+  - 🇺🇲 美国节点
   - 🇯🇵 日本节点
-  - 🇰🇷 韩国节点
+  - 🇸🇬 狮城节点
   - 🚀 手动切换
-- name: Ⓜ️ 微软Bing
+- name: 🐱 GitHub
   type: select
   proxies:
   - 🚀 节点选择
   - 🇺🇲 美国节点
   - 🇭🇰 香港节点
+  - 🇯🇵 日本节点
+  - 🇸🇬 狮城节点
   - 🎯 全球直连
-  - DIRECT
-- name: Ⓜ️ 微软云盘
-  type: select
-  proxies:
-  - 🎯 全球直连
-  - 🚀 节点选择
-  - 🇭🇰 香港节点
-  - 🇺🇲 美国节点
-  - DIRECT
+  - 🚀 手动切换
 - name: Ⓜ️ 微软服务
   type: select
   proxies:
-  - 🎯 全球直连
+  - DIRECT
   - 🚀 节点选择
   - 🇭🇰 香港节点
   - 🇺🇲 美国节点
-  - DIRECT
+  - 🇯🇵 日本节点
+  - 🚀 手动切换
 - name: 🍎 苹果服务
   type: select
   proxies:
-  - 🎯 全球直连
+  - DIRECT
   - 🚀 节点选择
   - 🇭🇰 香港节点
   - 🇺🇲 美国节点
-  - DIRECT
+  - 🇯🇵 日本节点
+  - 🚀 手动切换
 - name: 🎮 游戏平台
   type: select
   proxies:
-  - 🎯 全球直连
+  - DIRECT
   - 🚀 节点选择
   - 🇭🇰 香港节点
-  - DIRECT
-- name: 🎶 网易音乐
-  type: select
-  proxies:
-  - 🎯 全球直连
-  - 🚀 节点选择
-  - DIRECT
+  - 🇯🇵 日本节点
+  - 🇺🇲 美国节点
+  - 🇰🇷 韩国节点
+  - 🚀 手动切换
 - name: 🎯 全球直连
   type: select
   proxies:
@@ -182,17 +183,15 @@ proxy-groups:
   proxies:
   - REJECT
   - DIRECT
-- name: 🍃 应用净化
-  type: select
-  proxies:
-  - REJECT
-  - DIRECT
 - name: 🐟 漏网之鱼
   type: select
   proxies:
   - 🚀 节点选择
-  - 🎯 全球直连
   - DIRECT
+  - 🇭🇰 香港节点
+  - 🇺🇲 美国节点
+  - 🇯🇵 日本节点
+  - 🚀 手动切换
 - name: 🇭🇰 香港节点
   type: url-test
   url: http://www.gstatic.com/generate_204
@@ -235,15 +234,40 @@ proxy-groups:
   tolerance: 50
   proxies:
 {{KR_NODES}}
-- name: 🎥 奈飞节点
-  type: select
+- name: 🇬🇧 英国节点
+  type: url-test
+  url: http://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 50
   proxies:
-  - 🇭🇰 香港节点
-  - 🇨🇳 台湾节点
-  - 🇸🇬 狮城节点
-  - 🇯🇵 日本节点
-  - 🇺🇲 美国节点
-  - 🇰🇷 韩国节点
-  - 🚀 手动切换
+{{GB_NODES}}
+- name: 🇩🇪 德国节点
+  type: url-test
+  url: http://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 50
+  proxies:
+{{DE_NODES}}
+- name: 🇦🇺 澳洲节点
+  type: url-test
+  url: http://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 50
+  proxies:
+{{AU_NODES}}
+- name: 🇨🇦 加拿大节点
+  type: url-test
+  url: http://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 50
+  proxies:
+{{CA_NODES}}
+- name: 🇫🇷 法国节点
+  type: url-test
+  url: http://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 50
+  proxies:
+{{FR_NODES}}
 
 {{RULES}}
