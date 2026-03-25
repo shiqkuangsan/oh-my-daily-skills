@@ -7,5 +7,6 @@
   },
   "repository": "https://github.com/shiqkuangsan/oh-my-daily-skills",
   "license": "MIT",
+  "commands": ["./commands/release.md"],
   "keywords": ["skills", "productivity", "ink-reader", "excalidraw", "threejs", "openrouter", "chainlit", "gemini", "frontend-slides", "ming-court-code", "cc-features"]
 }
