@@ -45,13 +45,13 @@ Why this works per-window: `$PPID` is process-specific. If the user has 3 sessio
 
 Parse the ARGUMENTS to determine which versions to fetch:
 
-| Argument                            | Behavior                                                                                                                                                                                                                   |
-| ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Argument                            | Behavior                                                                                                                                                                                                                               |
+| ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | (empty)                             | Versions after currently running session version. Detect current via `lsof` method above, list all releases via `gh release list`, then select versions newer than current. If already on latest, show current version's release notes |
-| `2.1.73`                            | Single version                                                                                                                                                                                                             |
-| `2.1.72 2.1.73` or `2.1.72,2.1.73`  | Multiple specific versions                                                                                                                                                                                                 |
-| `2.1.70-2.1.74` or `2.1.70..2.1.74` | Version range (inclusive)                                                                                                                                                                                                  |
-| `latest` or `last 3`                | Latest N versions                                                                                                                                                                                                          |
+| `2.1.73`                            | Single version                                                                                                                                                                                                                         |
+| `2.1.72 2.1.73` or `2.1.72,2.1.73`  | Multiple specific versions                                                                                                                                                                                                             |
+| `2.1.70-2.1.74` or `2.1.70..2.1.74` | Version range (inclusive)                                                                                                                                                                                                              |
+| `latest` or `last 3`                | Latest N versions                                                                                                                                                                                                                      |
 
 ## Filtering Rules
 

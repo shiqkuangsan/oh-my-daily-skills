@@ -11,19 +11,19 @@ Create professional hand-drawn style diagrams with Excalidraw, outputting `.exca
 
 ## Supported Diagram Types
 
-| Type              | Use Cases                                                                |
-| ----------------- | ------------------------------------------------------------------------ |
-| Architecture      | System design, microservices, layered architecture                       |
-| Flowchart         | Business processes, approval workflows, deployment flows                 |
-| Swimlane          | Multi-role collaboration, cross-department processes, quarterly roadmaps |
-| Timeline          | Gantt-style roadmaps, milestone schedules, release plans                 |
-| Sequence          | API calls, message flows                                                 |
-| Wireframe         | UI prototypes, page layouts                                              |
-| ERD / Data Model  | Database schema, entity relationships, API object models                 |
-| State Machine     | Order/payment lifecycle, auth states, retry/backoff flows                |
-| Matrix             | Feature comparison, permission matrix, RACI, migration readiness         |
-| Tree / Hierarchy  | Component tree, directory structure, org chart, mind map                 |
-| CI/CD Pipeline    | Build→Test→Deploy flows, release gates, environment promotion            |
+| Type             | Use Cases                                                                |
+| ---------------- | ------------------------------------------------------------------------ |
+| Architecture     | System design, microservices, layered architecture                       |
+| Flowchart        | Business processes, approval workflows, deployment flows                 |
+| Swimlane         | Multi-role collaboration, cross-department processes, quarterly roadmaps |
+| Timeline         | Gantt-style roadmaps, milestone schedules, release plans                 |
+| Sequence         | API calls, message flows                                                 |
+| Wireframe        | UI prototypes, page layouts                                              |
+| ERD / Data Model | Database schema, entity relationships, API object models                 |
+| State Machine    | Order/payment lifecycle, auth states, retry/backoff flows                |
+| Matrix           | Feature comparison, permission matrix, RACI, migration readiness         |
+| Tree / Hierarchy | Component tree, directory structure, org chart, mind map                 |
+| CI/CD Pipeline   | Build→Test→Deploy flows, release gates, environment promotion            |
 
 ## Quick Start
 
@@ -99,17 +99,17 @@ Output files can be opened and edited at [excalidraw.com](https://excalidraw.com
 
 **Example files** (read only the one matching the diagram type):
 
-| File                                  | Diagram Type              |
-| ------------------------------------- | ------------------------- |
-| `references/examples/01-flowchart.md` | Flowchart                 |
-| `references/examples/02-architecture.md` | Architecture           |
-| `references/examples/03-sequence.md`  | Sequence                  |
-| `references/examples/04-swimlane.md`  | Swimlane / Timeline       |
-| `references/examples/05-erd.md`       | ERD / Data Model          |
-| `references/examples/06-state-machine.md` | State Machine         |
-| `references/examples/07-matrix.md`    | Matrix / Comparison Table |
-| `references/examples/08-tree.md`      | Tree / Hierarchy          |
-| `references/examples/09-cicd-pipeline.md` | CI/CD Pipeline        |
+| File                                      | Diagram Type              |
+| ----------------------------------------- | ------------------------- |
+| `references/examples/01-flowchart.md`     | Flowchart                 |
+| `references/examples/02-architecture.md`  | Architecture              |
+| `references/examples/03-sequence.md`      | Sequence                  |
+| `references/examples/04-swimlane.md`      | Swimlane / Timeline       |
+| `references/examples/05-erd.md`           | ERD / Data Model          |
+| `references/examples/06-state-machine.md` | State Machine             |
+| `references/examples/07-matrix.md`        | Matrix / Comparison Table |
+| `references/examples/08-tree.md`          | Tree / Hierarchy          |
+| `references/examples/09-cicd-pipeline.md` | CI/CD Pipeline            |
 
 ## Notes
 

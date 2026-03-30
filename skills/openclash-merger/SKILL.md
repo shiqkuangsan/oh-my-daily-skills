@@ -61,27 +61,27 @@ openclash-merger/
 
 ## 策略组
 
-| 策略组       | 说明                       |
-| ------------ | -------------------------- |
-| 🚀 节点选择  | 主选择，默认香港           |
-| 🚀 手动切换  | 包含所有节点               |
-| 💬 AI平台    | ChatGPT/Claude/Gemini/DeepSeek/Cursor 等 80+ AI 服务 |
-| 📲 电报消息  | Telegram                   |
-| 📹 油管视频  | YouTube                    |
-| 🎥 奈飞视频  | Netflix                    |
-| 🎬 迪士尼    | Disney+                    |
-| 📺 巴哈姆特  | 巴哈姆特/动画疯            |
-| 📺 哔哩哔哩  | B站                        |
-| 🌍 国外媒体  | Spotify/Twitch/TikTok 等   |
-| 🌏 国内媒体  | 国内媒体海外 CDN           |
-| 📢 谷歌服务  | Google 全家桶              |
-| 🐱 GitHub    | GitHub 独立分流            |
-| Ⓜ️ 微软服务  | Microsoft + OneDrive       |
-| 🍎 苹果服务  | Apple 服务                 |
-| 🎮 游戏平台  | Steam/Epic/PS/Xbox/Switch/暴雪/拳头/育碧/EA |
-| 🎯 全球直连  | 直连                       |
-| 🛑 广告拦截  | 广告                       |
-| 🐟 漏网之鱼  | 未匹配流量                 |
+| 策略组      | 说明                                                 |
+| ----------- | ---------------------------------------------------- |
+| 🚀 节点选择 | 主选择，默认香港                                     |
+| 🚀 手动切换 | 包含所有节点                                         |
+| 💬 AI平台   | ChatGPT/Claude/Gemini/DeepSeek/Cursor 等 80+ AI 服务 |
+| 📲 电报消息 | Telegram                                             |
+| 📹 油管视频 | YouTube                                              |
+| 🎥 奈飞视频 | Netflix                                              |
+| 🎬 迪士尼   | Disney+                                              |
+| 📺 巴哈姆特 | 巴哈姆特/动画疯                                      |
+| 📺 哔哩哔哩 | B站                                                  |
+| 🌍 国外媒体 | Spotify/Twitch/TikTok 等                             |
+| 🌏 国内媒体 | 国内媒体海外 CDN                                     |
+| 📢 谷歌服务 | Google 全家桶                                        |
+| 🐱 GitHub   | GitHub 独立分流                                      |
+| Ⓜ️ 微软服务 | Microsoft + OneDrive                                 |
+| 🍎 苹果服务 | Apple 服务                                           |
+| 🎮 游戏平台 | Steam/Epic/PS/Xbox/Switch/暴雪/拳头/育碧/EA          |
+| 🎯 全球直连 | 直连                                                 |
+| 🛑 广告拦截 | 广告                                                 |
+| 🐟 漏网之鱼 | 未匹配流量                                           |
 
 ## 地区节点组（url-test 自动测速）
 
@@ -91,19 +91,19 @@ openclash-merger/
 
 按节点名中的关键字匹配：
 
-| 地区     | 关键字                                |
-| -------- | ------------------------------------- |
-| 香港     | 香港, HK, Hong Kong                   |
-| 日本     | 日本, JP, Japan                       |
-| 美国     | 美国, US, USA, America                |
-| 新加坡   | 新加坡, SG, Singapore, 狮城           |
-| 台湾     | 台湾, TW, Taiwan                      |
-| 韩国     | 韩国, KR, Korea                       |
-| 英国     | 英国, UK, GB, United Kingdom, Britain |
-| 德国     | 德国, DE, Germany                     |
-| 澳洲     | 澳大利亚, 澳洲, AU, Australia        |
-| 加拿大   | 加拿大, CA, Canada                    |
-| 法国     | 法国, FR, France                      |
+| 地区   | 关键字                                |
+| ------ | ------------------------------------- |
+| 香港   | 香港, HK, Hong Kong                   |
+| 日本   | 日本, JP, Japan                       |
+| 美国   | 美国, US, USA, America                |
+| 新加坡 | 新加坡, SG, Singapore, 狮城           |
+| 台湾   | 台湾, TW, Taiwan                      |
+| 韩国   | 韩国, KR, Korea                       |
+| 英国   | 英国, UK, GB, United Kingdom, Britain |
+| 德国   | 德国, DE, Germany                     |
+| 澳洲   | 澳大利亚, 澳洲, AU, Australia         |
+| 加拿大 | 加拿大, CA, Canada                    |
+| 法国   | 法国, FR, France                      |
 
 未匹配的节点归入"其他"，会包含在"手动切换"组中。
 

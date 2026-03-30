@@ -280,4 +280,3 @@ Entity-Relationship diagram showing 3 tables (User, Order, Product) with relatio
 - Each entity has its own accent color
 - Cardinality labels as free text above relationship arrows
 - Semantic ID pattern: `ent-{name}`, `arrow-{from}-{to}`, `label-{context}`
-

@@ -447,4 +447,3 @@ Order lifecycle state machine with states, transitions, guards, and terminal sta
 - Dashed arrows for cancellation/refund (exception paths)
 - Color coding: blue=initial, green=success, purple=in-progress, red=cancelled, orange=refunded
 - Legend at bottom distinguishing active vs terminal state shapes
-

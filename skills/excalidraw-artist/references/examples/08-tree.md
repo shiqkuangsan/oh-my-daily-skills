@@ -479,4 +479,3 @@ Frontend component tree with parent-child relationships.
 - Color grouping by subtree (purple=Header branch, green=Sidebar, amber=Main)
 - Lighter backgrounds for leaf nodes vs darker for parent nodes
 - Consistent vertical spacing (100px) between levels, horizontal spread for siblings
-

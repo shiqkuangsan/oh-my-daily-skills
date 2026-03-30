@@ -380,4 +380,3 @@ Build→Test→Deploy pipeline with stages, gates, and environments.
 - Production stage has thick border (strokeWidth: 3) to emphasize importance
 - Color progression: blue (build) → green (test) → amber (gate) → purple (staging) → red (production)
 - Step lists use `·` bullet character for clean formatting
-

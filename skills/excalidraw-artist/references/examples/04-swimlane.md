@@ -564,4 +564,3 @@ A quarterly roadmap with 2 swimlanes (Frontend / Backend), 3 phases, priority co
 - Dashed divider line between swimlanes
 - Dependency arrow between tasks (monorepo → doc site)
 - Legend row at bottom with color samples
-

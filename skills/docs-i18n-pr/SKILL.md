@@ -65,13 +65,13 @@ git checkout -b docs/add-<lang>-translation
 
 Scan the docs directory for framework signatures:
 
-| Framework | Detection signature | Config file |
-|-----------|-------------------|-------------|
-| **Mintlify** | `docs.json` or `mint.json` | `docs.json` / `mint.json` |
-| **VitePress** | `.vitepress/` directory | `.vitepress/config.ts` |
-| **Docusaurus** | `docusaurus.config.js/ts` | `docusaurus.config.js` + `i18n/` |
-| **Nextra** | `next.config.*` + `_meta.json` | `next.config.mjs` + `_meta.json` per dir |
-| **GitBook** | `.gitbook.yaml` or `SUMMARY.md` | `.gitbook.yaml` |
+| Framework      | Detection signature             | Config file                              |
+| -------------- | ------------------------------- | ---------------------------------------- |
+| **Mintlify**   | `docs.json` or `mint.json`      | `docs.json` / `mint.json`                |
+| **VitePress**  | `.vitepress/` directory         | `.vitepress/config.ts`                   |
+| **Docusaurus** | `docusaurus.config.js/ts`       | `docusaurus.config.js` + `i18n/`         |
+| **Nextra**     | `next.config.*` + `_meta.json`  | `next.config.mjs` + `_meta.json` per dir |
+| **GitBook**    | `.gitbook.yaml` or `SUMMARY.md` | `.gitbook.yaml`                          |
 
 ### Step 3: Analyze i18n Structure
 
@@ -101,11 +101,11 @@ find docs/ -name "*.mdx" -o -name "*.md" | grep -v "node_modules\|<existing-lang
 
 **Grouping strategy** — one subagent per directory:
 
-| Group | Typical size | Example |
-|-------|-------------|---------|
-| Root pages | 3-5 files | index, quickstart, installation |
-| Per feature dir | 5-15 files | features/, databases/ |
-| Small dirs combined | 3-12 files | customization/ + api/ + development/ |
+| Group               | Typical size | Example                              |
+| ------------------- | ------------ | ------------------------------------ |
+| Root pages          | 3-5 files    | index, quickstart, installation      |
+| Per feature dir     | 5-15 files   | features/, databases/                |
+| Small dirs combined | 3-12 files   | customization/ + api/ + development/ |
 
 Aim for **3-5 subagents** with roughly balanced workload.
 
@@ -203,12 +203,12 @@ grep -rn 'href="/[a-z]' docs/<lang>/ --include="*.mdx" | grep -v "href=\"/<lang>
 
 ### Step 9: Local Preview (Optional)
 
-| Framework | Command |
-|-----------|---------|
-| Mintlify | `cd docs && mintlify dev` |
-| VitePress | `npm run docs:dev` |
+| Framework  | Command                        |
+| ---------- | ------------------------------ |
+| Mintlify   | `cd docs && mintlify dev`      |
+| VitePress  | `npm run docs:dev`             |
 | Docusaurus | `npm start -- --locale <lang>` |
-| Nextra | `npm run dev` |
+| Nextra     | `npm run dev`                  |
 
 Preview at `http://localhost:3000`, switch language in the UI.
 
@@ -255,11 +255,11 @@ EOF
 
 ## Common Pitfalls
 
-| Pitfall | Prevention |
-|---------|-----------|
-| Cross-links missing `/<lang>/` prefix | Step 7 batch fix + verify zero remaining |
-| Git LFS not installed | Check `.gitattributes` before clone |
-| Config JSON/YAML syntax error | Always validate after editing |
-| Subagent translates product name | Explicit rule in prompt: "Keep `<Name>` as-is" |
-| Duplicate page in nav config | Compare source config carefully (upstream may have dupes) |
-| Forgetting CLA | Check PR bot comments, remind user |
+| Pitfall                               | Prevention                                                |
+| ------------------------------------- | --------------------------------------------------------- |
+| Cross-links missing `/<lang>/` prefix | Step 7 batch fix + verify zero remaining                  |
+| Git LFS not installed                 | Check `.gitattributes` before clone                       |
+| Config JSON/YAML syntax error         | Always validate after editing                             |
+| Subagent translates product name      | Explicit rule in prompt: "Keep `<Name>` as-is"            |
+| Duplicate page in nav config          | Compare source config carefully (upstream may have dupes) |
+| Forgetting CLA                        | Check PR bot comments, remind user                        |

@@ -479,4 +479,3 @@ Feature comparison matrix with checkmarks and status indicators.
 - Mixed cell content: emoji checkmarks (✅), monospace text, star ratings (⭐)
 - Color-coded values: green=good, amber=moderate, red=large
 - Semantic ID pattern: `row{n}-label`, `r{row}c{col}`
-
