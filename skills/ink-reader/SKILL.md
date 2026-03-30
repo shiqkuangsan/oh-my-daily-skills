@@ -2,7 +2,7 @@
 name: tooyoung:ink-reader
 description: "Intelligently read any URL content with auto platform detection and fallback strategies. Supports WeChat, Zhihu, Bilibili, Toutiao, Weibo, Xiaohongshu, Douyin, X/Twitter, and generic websites. Trigger words: read url, read link, read this, fetch url, grab content, ink-reader"
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Ink Reader
@@ -19,9 +19,10 @@ Activate this skill when the user:
 
 ## Fetch Strategy Overview
 
-Three-layer fallback, zero configuration required:
+Four-layer fallback with platform-specific optimizations:
 
 ```
+Layer 0: Camoufox       → WeChat-specific, bypasses anti-scraping (requires pip install)
 Layer 1: Jina Reader    → Free, no API key, covers most public content
 Layer 2: WebFetch        → Claude Code built-in, direct URL reading
 Layer 3: Playwright MCP  → Browser automation, handles login-required sites
@@ -31,22 +32,23 @@ Layer 3: Playwright MCP  → Browser automation, handles login-required sites
 
 Match the URL domain to determine platform and strategy routing:
 
-| Platform    | Domain Contains           | Needs Login | Strategy Order     |
-| ----------- | ------------------------- | ----------- | ------------------ |
-| WeChat      | `mp.weixin.qq.com`        | Yes         | Jina → Playwright  |
-| Zhihu       | `zhihu.com`               | No          | Jina → WebFetch    |
-| Bilibili    | `bilibili.com`, `b23.tv`  | No          | Jina → WebFetch    |
-| Toutiao     | `toutiao.com`             | No          | Jina → WebFetch    |
-| Weibo       | `weibo.com`, `m.weibo.cn` | Yes         | Jina → Playwright  |
-| Xiaohongshu | `xiaohongshu.com`         | Yes         | Jina → Playwright  |
-| Douyin      | `douyin.com`              | No          | Jina → WebFetch    |
-| X/Twitter   | `x.com`, `twitter.com`    | Partial     | See X/Twitter Flow |
-| Generic     | anything else             | No          | Jina → WebFetch    |
+| Platform    | Domain Contains           | Needs Login | Strategy Order               |
+| ----------- | ------------------------- | ----------- | ---------------------------- |
+| WeChat      | `mp.weixin.qq.com`        | Yes         | Camoufox → Jina → Playwright |
+| Zhihu       | `zhihu.com`               | No          | Jina → WebFetch              |
+| Bilibili    | `bilibili.com`, `b23.tv`  | No          | Jina → WebFetch              |
+| Toutiao     | `toutiao.com`             | No          | Jina → WebFetch              |
+| Weibo       | `weibo.com`, `m.weibo.cn` | Yes         | Jina → Playwright            |
+| Xiaohongshu | `xiaohongshu.com`         | Yes         | Jina → Playwright            |
+| Douyin      | `douyin.com`              | No          | Jina → WebFetch              |
+| X/Twitter   | `x.com`, `twitter.com`    | Partial     | See X/Twitter Flow           |
+| Generic     | anything else             | No          | Jina → WebFetch              |
 
 ### Routing Rules
 
 - **No login required**: Jina → WebFetch → Playwright MCP (if available)
-- **Login required** (WeChat, Weibo, Xiaohongshu): Jina → Playwright MCP (skip WebFetch, it won't help)
+- **WeChat**: Camoufox → Jina → Playwright MCP (dedicated flow below)
+- **Login required** (Weibo, Xiaohongshu): Jina → Playwright MCP (skip WebFetch, it won't help)
 - **X/Twitter**: Dedicated flow below
 
 ## Execution Steps
@@ -75,7 +77,78 @@ Parse the URL domain and match against the platform table above.
    - Take a snapshot and extract content.
    - If Playwright MCP is not available, skip this step.
 
-#### For login-required platforms (WeChat, Weibo, Xiaohongshu)
+#### For WeChat (`mp.weixin.qq.com`)
+
+WeChat articles have aggressive anti-scraping. Jina Reader and WebFetch almost always fail. Use Camoufox as the primary strategy.
+
+**Prerequisites check** (run once per session):
+
+```bash
+~/.ink-reader-env/bin/python3 -c "import camoufox; print('camoufox OK')" 2>/dev/null && echo "READY" || echo "NOT_INSTALLED"
+```
+
+1. **Try Camoufox** (if installed):
+   - Check if `~/.agent-reach/tools/wechat-article-for-ai/main.py` exists. If yes, use it:
+
+     ```bash
+     cd ~/.agent-reach/tools/wechat-article-for-ai && ~/.ink-reader-env/bin/python3 main.py "{url}"
+     ```
+
+   - If that path doesn't exist, use inline invocation:
+
+     ```bash
+     ~/.ink-reader-env/bin/python3 -c "
+     import asyncio
+     from camoufox.sync_api import Camoufox
+     from markdownify import markdownify
+     with Camoufox(headless=True) as browser:
+         page = browser.new_page()
+         page.goto('{url}', wait_until='networkidle', timeout=30000)
+         html = page.content()
+         print(markdownify(html, strip=['script','style','nav','footer','header']))
+     "
+     ```
+
+   - Validate output (Step 3). If valid, use it.
+
+2. **Try Jina Reader** (fallback — occasionally works for WeChat):
+   - Use WebFetch with URL: `https://r.jina.ai/{original_url}`
+   - If result is meaningful, use it.
+
+3. **Try Playwright MCP** (if available, last resort):
+   - Navigate to the original URL.
+   - Wait for content to load.
+   - Take a snapshot and extract content.
+
+4. **All failed** → Show failure output with suggestion:
+   > "WeChat articles require Camoufox to bypass anti-scraping. Install with: `pip install camoufox[geoip] markdownify beautifulsoup4 httpx`"
+
+**WeChat search** (bonus — when user asks to search WeChat articles, not read a URL):
+
+Check if miku_ai is installed:
+
+```bash
+~/.ink-reader-env/bin/python3 -c "import miku_ai; print('miku_ai OK')" 2>/dev/null && echo "READY" || echo "NOT_INSTALLED"
+```
+
+If installed, search articles:
+
+```bash
+~/.ink-reader-env/bin/python3 -c "
+import asyncio
+from miku_ai import get_wexin_article
+async def search():
+    results = await get_wexin_article('{query}', {count})
+    for a in results:
+        print(f'- [{a[\"title\"]}]({a[\"url\"]})')
+asyncio.run(search())
+"
+```
+
+Present results as a list. If user picks one, read it using the WeChat flow above.
+If miku_ai is not installed, inform user: `pip install miku_ai`
+
+#### For login-required platforms (Weibo, Xiaohongshu)
 
 1. **Try Jina Reader** (same as above, sometimes works even for login-required sites).
 
@@ -130,7 +203,7 @@ Use the output format specified below.
 **Author**: {Author name, omit if unavailable}
 **Published**: {Time, omit if unavailable}
 **URL**: {Original URL}
-**Strategy**: {Jina Reader / WebFetch / Playwright MCP}
+**Strategy**: {Camoufox / Jina Reader / WebFetch / Playwright MCP}
 
 ---
 
@@ -164,7 +237,8 @@ Rules:
 Contextual suggestions by scenario:
 
 - Login-required platform + no Playwright → "Install Playwright MCP to enable browser-based reading for this platform."
-- WeChat verification → "WeChat has strict anti-scraping. Try opening the link in a browser and copying the content manually."
+- WeChat + no Camoufox → "Install Camoufox for reliable WeChat reading: `pip install camoufox[geoip] markdownify beautifulsoup4 httpx`"
+- WeChat + Camoufox failed → "Camoufox could not extract content. The article may have been deleted or restricted. Try opening the link in a browser."
 - All strategies returned empty → "The page may require JavaScript rendering. Try using Playwright MCP."
 - X/Twitter thread failed → "Try opening <https://threadreaderapp.com/thread/{id}.html> in your browser."
 
@@ -192,10 +266,41 @@ saved_at: "{YYYY-MM-DD HH:MM:SS}"
 
 Do NOT auto-save. Only save when explicitly asked.
 
+## Optional Dependencies
+
+The base skill (Jina Reader + WebFetch) works out of the box with zero setup. For enhanced platform support, install the following optional dependencies into a dedicated virtual environment:
+
+### WeChat article reading (Camoufox)
+
+```bash
+# Create dedicated venv (one-time)
+uv venv ~/.ink-reader-env
+
+# Install dependencies
+uv pip install --python ~/.ink-reader-env "camoufox[geoip]" markdownify beautifulsoup4 httpx
+```
+
+This enables reliable reading of `mp.weixin.qq.com` articles by bypassing WeChat's anti-scraping with a stealth browser. No API key or login required.
+
+### WeChat article search (miku_ai)
+
+```bash
+uv pip install --python ~/.ink-reader-env miku_ai
+```
+
+Enables searching WeChat public account articles by keyword via Sogou. No API key required.
+
+### Verify installation
+
+```bash
+~/.ink-reader-env/bin/python3 -c "import camoufox; print('camoufox OK')"
+~/.ink-reader-env/bin/python3 -c "import miku_ai; print('miku_ai OK')"
+```
+
 ## Important Notes
 
-- **No Python scripts**: Everything is done through Claude Code's built-in tools.
-- **No API keys needed**: Jina Reader is free and keyless.
+- **No API keys needed**: Jina Reader, Camoufox, and miku_ai are all free and keyless.
+- **Camoufox is optional but recommended**: Without it, WeChat articles will fall back to Jina Reader (often fails) or Playwright MCP.
 - **Playwright MCP is optional**: The skill works without it, just with reduced capability for login-required platforms.
 - **Images stay remote**: Never download images. Keep original URLs in the Markdown output.
 - **Respect content**: Output the content faithfully. Do not summarize or modify unless the user explicitly asks.
