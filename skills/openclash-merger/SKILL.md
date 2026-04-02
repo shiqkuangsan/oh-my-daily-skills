@@ -2,7 +2,7 @@
 name: tooyoung:openclash-merger
 description: "将 vless+reality 等新协议配置转换为带 GEOSITE 规则的配置文件，支持 11 地区分组 + AI/媒体/游戏分流，可直接上传 OpenClash 使用。触发词：合并 OpenClash、转换订阅、Clash 配置"
 metadata:
-  version: "2.0.0"
+  version: "2.1.0"
 ---
 
 # OpenClash 订阅配置合并
@@ -83,7 +83,7 @@ openclash-merger/
 | 🛑 广告拦截 | 广告                                                 |
 | 🐟 漏网之鱼 | 未匹配流量                                           |
 
-## 地区节点组（url-test 自动测速）
+## 地区节点组（手动选择）
 
 🇭🇰 香港 | 🇯🇵 日本 | 🇺🇲 美国 | 🇸🇬 狮城 | 🇨🇳 台湾 | 🇰🇷 韩国 | 🇬🇧 英国 | 🇩🇪 德国 | 🇦🇺 澳洲 | 🇨🇦 加拿大 | 🇫🇷 法国
 
@@ -147,6 +147,10 @@ openclash-merger/
 编辑 `assets/rules.yaml` 可自定义分流规则。
 
 ## 变更记录
+
+### v2.1.0
+
+- **地区节点组改为手动选择**: 11 个地区节点组从 `url-test` 改为 `select`，移除自动测速，由用户手动选择节点
 
 ### v2.0.0
 

@@ -193,80 +193,47 @@ proxy-groups:
   - 🇯🇵 日本节点
   - 🚀 手动切换
 - name: 🇭🇰 香港节点
-  type: url-test
-  url: http://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 50
+  type: select
   proxies:
 {{HK_NODES}}
 - name: 🇯🇵 日本节点
-  type: url-test
-  url: http://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 50
+  type: select
   proxies:
 {{JP_NODES}}
 - name: 🇺🇲 美国节点
-  type: url-test
-  url: http://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 50
+  type: select
   proxies:
 {{US_NODES}}
 - name: 🇸🇬 狮城节点
-  type: url-test
-  url: http://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 50
+  type: select
   proxies:
 {{SG_NODES}}
 - name: 🇨🇳 台湾节点
-  type: url-test
-  url: http://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 50
+  type: select
   proxies:
 {{TW_NODES}}
 - name: 🇰🇷 韩国节点
-  type: url-test
-  url: http://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 50
+  type: select
   proxies:
 {{KR_NODES}}
 - name: 🇬🇧 英国节点
-  type: url-test
-  url: http://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 50
+  type: select
   proxies:
 {{GB_NODES}}
 - name: 🇩🇪 德国节点
-  type: url-test
-  url: http://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 50
+  type: select
   proxies:
 {{DE_NODES}}
 - name: 🇦🇺 澳洲节点
-  type: url-test
-  url: http://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 50
+  type: select
   proxies:
 {{AU_NODES}}
 - name: 🇨🇦 加拿大节点
-  type: url-test
-  url: http://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 50
+  type: select
   proxies:
 {{CA_NODES}}
 - name: 🇫🇷 法国节点
-  type: url-test
-  url: http://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 50
+  type: select
   proxies:
 {{FR_NODES}}
 
