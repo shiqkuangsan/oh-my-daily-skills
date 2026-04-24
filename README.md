@@ -64,6 +64,7 @@ npx skills update
 | excalidraw-artist   | `/tooyoung:excalidraw-artist`   | Create Excalidraw hand-drawn style diagrams                |
 | frontend-slides     | `/tooyoung:frontend-slides`     | Create viewport-fitted HTML slide presentations            |
 | gh-star-list        | `/tooyoung:gh-star-list`        | Categorize GitHub starred repos into Lists using AI        |
+| heshu-medical       | `/tooyoung:heshu-medical`       | Folk skin-care reference notes (Uncle Crane / 鹤叔)        |
 | ink-reader          | `/tooyoung:ink-reader`          | Read any URL with auto platform detection and fallback     |
 | ming-court-code     | `/tooyoung:ming-court-code`     | Ming Dynasty court protocol with three auto-selected tiers |
 | nano-banana-builder | `/tooyoung:nano-banana-builder` | Build image generation apps with Google Gemini APIs        |
@@ -119,6 +120,7 @@ oh-my-daily-skills/
 │   ├── excalidraw-artist/
 │   ├── frontend-slides/
 │   ├── gh-star-list/
+│   ├── heshu-medical/
 │   ├── ink-reader/
 │   ├── ming-court-code/
 │   ├── nano-banana-builder/

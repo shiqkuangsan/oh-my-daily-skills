@@ -64,6 +64,7 @@ npx skills update
 | excalidraw-artist   | `/tooyoung:excalidraw-artist`   | 创建 Excalidraw 手绘风格图表               |
 | frontend-slides     | `/tooyoung:frontend-slides`     | 创建适配视口的 HTML 幻灯片演示文稿         |
 | gh-star-list        | `/tooyoung:gh-star-list`        | 用 AI 自动将 GitHub Stars 分类整理到 Lists |
+| heshu-medical       | `/tooyoung:heshu-medical`       | 鹤叔（仙鹤大叔）民间皮肤科普笔记参考库     |
 | ink-reader          | `/tooyoung:ink-reader`          | 智能读取 URL 内容，自动识别平台和抓取策略  |
 | ming-court-code     | `/tooyoung:ming-court-code`     | 明廷典：三档自适应的明制开发工作流协议     |
 | nano-banana-builder | `/tooyoung:nano-banana-builder` | 基于 Google Gemini API 构建图像生成应用    |
@@ -119,6 +120,7 @@ oh-my-daily-skills/
 │   ├── excalidraw-artist/
 │   ├── frontend-slides/
 │   ├── gh-star-list/
+│   ├── heshu-medical/
 │   ├── ink-reader/
 │   ├── ming-court-code/
 │   ├── nano-banana-builder/
