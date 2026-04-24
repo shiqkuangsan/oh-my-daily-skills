@@ -2,7 +2,7 @@
 name: tooyoung:cc-features
 description: "Show Claude Code feature-level updates in Chinese. Fetch release notes, filter out bug fixes, present new features and improvements. Trigger: cc features, CC 新功能, CC 更新, what's new in CC"
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # CC Features — Claude Code 功能更新速览
@@ -85,6 +85,48 @@ For each version, output in Chinese:
 - Translate descriptions to natural Chinese
 - If a version has zero feature-level items after filtering, show: `（本版本无功能级变更，均为 bug 修复）`
 
+## Highlight Summary (必出)
+
+**列完所有版本后**，在最末尾追加一段亮点总结。无论列出几个版本、几条变更，**此段必出**，不可省略。
+
+```
+## 🌟 本次更新亮点
+
+> 从以上 {N} 个版本 / {M} 条变更中，挑出最值得关注的 {K} 项：
+
+- **{亮点标题}**（v{version}）：{为什么值得关注 / 对用户的影响}
+- ...
+```
+
+**挑选原则**（按优先级排序）：
+
+1. **用户可见 > 内部优化**：终端/IDE/输出/交互层变化优先
+2. **新能力 > 增强 > 变更 > 废弃**：`Added` > `Improved` > `Changed` > `Deprecated`
+3. **广谱 > 小众**：所有用户都会碰到的 > 特定场景/特定 IDE 才用到的
+4. **破坏性变更必入**：哪怕不够"亮"，凡是影响现有用法的 `Changed` / `Deprecated` 必须单列一项标为 ⚠️
+
+**配额规则**（按"版本数"弹性配额，不按总条数一刀切）：
+
+- 每个版本**最多 3 条**真亮点（AI 时代单次发版可能塞很多特性，留足余量；多数版本 1-2 条即可）
+- **硬顶 10 条**（超过 10 人也看不动，避免信息过载）
+- 质量 > 数量：凑不够 K 条时宁缺毋滥，不要为凑数稀释亮点
+
+配额示例：
+
+| 列出版本数 | 建议亮点条数 K | 场景       |
+| ---------- | -------------- | ---------- |
+| 1          | 1-3            | 单版查看   |
+| 2-3        | 3-6            | 常规跨版   |
+| 4-6        | 6-10           | 中期跨版   |
+| 7+         | 10（硬顶）     | 长时间未看 |
+
+**聚类规则**：列出版本 ≥ 5 时，亮点按主题聚类呈现（如"IDE 集成"、"Hooks"、"MCP"），避免平铺淹没重点。
+
+**边界条件：**
+
+- 列出的变更**不足 3 条** → 有几条写几条，标题保持"本次更新亮点"
+- 列出的变更**全是 bug 修复**（0 条 feature-level）→ 整段替换为 `> 本次范围内无功能级更新，全部为 bug 修复。`
+
 ## Execution Steps
 
 1. Parse ARGUMENTS to determine version range
@@ -93,6 +135,7 @@ For each version, output in Chinese:
 4. Fetch release notes for each version via `gh release view`
 5. Filter and categorize each line
 6. Translate and present in the output format above
+7. **After all versions listed, append the Highlight Summary section** per rules above — this step is mandatory, never skip
 
 ## Error Handling
 
