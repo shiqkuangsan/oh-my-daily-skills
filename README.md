@@ -57,6 +57,7 @@ npx skills update
 | ------------------- | ------------------------------- | ---------------------------------------------------------- |
 | blobity-cursor      | `/tooyoung:blobity-cursor`      | Add Blobity canvas cursor effect to any landing page       |
 | cc-features         | `/tooyoung:cc-features`         | Show Claude Code feature-level updates in Chinese          |
+| cc-session-cleaner  | `/tooyoung:cc-session-cleaner`  | List Claude Code sessions and delete selected ones         |
 | chainlit-builder    | `/tooyoung:chainlit-builder`    | Scaffold Chainlit AI chat demos for product presentations  |
 | codebase-stats      | `/tooyoung:codebase-stats`      | Count lines of code by file type and auto-detected module  |
 | docs-i18n-pr        | `/tooyoung:docs-i18n-pr`        | Fork repo, translate docs, and submit a PR automatically   |
@@ -113,6 +114,7 @@ oh-my-daily-skills/
 ├── skills/
 │   ├── blobity-cursor/
 │   ├── cc-features/
+│   ├── cc-session-cleaner/
 │   ├── chainlit-builder/
 │   ├── codebase-stats/
 │   ├── docs-i18n-pr/
