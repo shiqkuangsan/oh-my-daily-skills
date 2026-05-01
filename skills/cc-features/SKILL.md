@@ -1,8 +1,8 @@
 ---
 name: tooyoung:cc-features
-description: "Show Claude Code feature-level updates in Chinese. Fetch release notes, filter out bug fixes, present new features and improvements. Trigger: cc features, CC 新功能, CC 更新, what's new in CC"
+description: "Show Claude Code release highlights in Chinese. Fetch GitHub release notes, filter out bug fixes, summarize Added/Improved/Changed/Deprecated items, and append a mandatory highlights section. Trigger words: Claude Code updates, cc features, Claude Code 新功能, Claude Code 更新, what's new in Claude Code"
 metadata:
-  version: "1.2.0"
+  version: "1.2.1"
 ---
 
 # CC Features — Claude Code 功能更新速览

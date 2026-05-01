@@ -1,8 +1,8 @@
 ---
 name: tooyoung:ink-reader
-description: "Intelligently read any URL content with auto platform detection and fallback strategies. Supports WeChat, Zhihu, Bilibili, Toutiao, Weibo, Xiaohongshu, Douyin, X/Twitter, and generic websites. Trigger words: read url, read link, read this, fetch url, grab content, ink-reader"
+description: "Read public or accessible URLs into clean Markdown using platform-aware fallback strategies. Covers common Chinese platforms, X/Twitter, and generic websites; login or anti-bot pages are best-effort. Trigger words: read url, read link, fetch article, extract content, clean markdown, WeChat article, 搜公众号文章, ink-reader"
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
 ---
 
 # Ink Reader

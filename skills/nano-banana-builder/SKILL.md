@@ -1,8 +1,8 @@
 ---
 name: tooyoung:nano-banana-builder
-description: "Build full-stack web applications powered by Google Gemini's Nano Banana and Nano Banana Pro image generation APIs. Use when creating Next.js image generation apps, text-to-image tools, or iterative image editors. Trigger: image generation app, text to image, Gemini image, 图片生成, AI 生图, nano banana"
+description: "Build Next.js App Router image-generation apps using Gemini Nano Banana / Nano Banana Pro with AI SDK. Covers exact model names, Server Actions/API routes, conversational multi-turn image editing, storage, rate limiting, safety, and cost controls. Trigger: nano banana, Gemini image, AI 生图, 图片生成, text-to-image, image generation app, iterative image editor, multi-turn image editing"
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
 ---
 
 # Nano Banana Builder
@@ -33,7 +33,7 @@ Build production-ready web applications powered by Google's Nano Banana image ge
 
 ## SDK Version Requirements
 
-**Tested and compatible versions (as of January 2025):**
+**Examples were tested against the versions below; verify the latest AI SDK and Google provider docs before upgrading:**
 
 | Package          | Minimum Version | Recommended |
 | ---------------- | --------------- | ----------- |

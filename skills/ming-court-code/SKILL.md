@@ -1,8 +1,8 @@
 ---
 name: "tooyoung:ming-court-code"
-description: "Ming Court Code - structured dev workflow inspired by Ming Dynasty court system. Three adaptive modes: oral decree (quick exec), court debate (structured plan), morning assembly (multi-agent parallel). Trigger: 明廷典, ming court, 开发流程, dev workflow protocol, 朝廷模式"
+description: "Ming Court Code - structured Claude Code dev workflow inspired by Ming Dynasty court system. Three modes: 口谕/oral decree for quick tasks, 廷议/court debate for planned work, 早朝/morning assembly for multi-domain parallel work. Trigger: 明廷典, ming court, 朝廷模式, 口谕, 廷议, 早朝, tier up, tier down, dev workflow protocol"
 metadata:
-  version: "1.1.1"
+  version: "1.1.2"
 ---
 
 # 明廷典 Ming Court Code

@@ -1,8 +1,8 @@
 ---
 name: tooyoung:easy-openrouter
-description: "Quickly test and compare LLM models via OpenRouter. Find the fastest/cheapest model, compare response quality. Trigger words: openrouter, test model, compare models, find fastest model, find cheapest model"
+description: "Test individual LLM models through OpenRouter and compare observed latency, cost, token usage, and outputs. Includes model ID format, :nitro/:online modifiers, rankings/provider lookup, and simple manual comparison workflows. Trigger words: OpenRouter, test model, model ID, compare models, provider latency, throughput, cheapest provider, fastest provider, :nitro, :online"
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Easy OpenRouter

@@ -53,26 +53,25 @@ npx skills update
 
 ### General Skills (`tooyoung:`)
 
-| Skill               | Command                         | Description                                                |
-| ------------------- | ------------------------------- | ---------------------------------------------------------- |
-| blobity-cursor      | `/tooyoung:blobity-cursor`      | Add Blobity canvas cursor effect to any landing page       |
-| cc-features         | `/tooyoung:cc-features`         | Show Claude Code feature-level updates in Chinese          |
-| cc-session-cleaner  | `/tooyoung:cc-session-cleaner`  | List Claude Code sessions and delete selected ones         |
-| chainlit-builder    | `/tooyoung:chainlit-builder`    | Scaffold Chainlit AI chat demos for product presentations  |
-| codebase-stats      | `/tooyoung:codebase-stats`      | Count lines of code by file type and auto-detected module  |
-| docs-i18n-pr        | `/tooyoung:docs-i18n-pr`        | Fork repo, translate docs, and submit a PR automatically   |
-| easy-openrouter     | `/tooyoung:easy-openrouter`     | Test and compare LLM models via OpenRouter                 |
-| excalidraw-artist   | `/tooyoung:excalidraw-artist`   | Create Excalidraw hand-drawn style diagrams                |
-| frontend-slides     | `/tooyoung:frontend-slides`     | Create viewport-fitted HTML slide presentations            |
-| gh-star-list        | `/tooyoung:gh-star-list`        | Categorize GitHub starred repos into Lists using AI        |
-| heshu-medical       | `/tooyoung:heshu-medical`       | Folk skin-care reference notes (Uncle Crane / 鹤叔)        |
-| ink-reader          | `/tooyoung:ink-reader`          | Read any URL with auto platform detection and fallback     |
-| ming-court-code     | `/tooyoung:ming-court-code`     | Ming Dynasty court protocol with three auto-selected tiers |
-| nano-banana-builder | `/tooyoung:nano-banana-builder` | Build image generation apps with Google Gemini APIs        |
-| neoblo-landing-page | `/tooyoung:neoblo-landing-page` | Build Neobrutalism + Blobity landing pages from scratch    |
-| openclash-merger    | `/tooyoung:openclash-merger`    | Merge OpenClash subscription configs with rule groups      |
-| persona-define      | `/tooyoung:persona-define`      | Define personalized identity style for Claude Code         |
-| threejs-builder     | `/tooyoung:threejs-builder`     | Create Three.js 3D web applications                        |
+| Skill               | Command                         | Description                                                 |
+| ------------------- | ------------------------------- | ----------------------------------------------------------- |
+| blobity-cursor      | `/tooyoung:blobity-cursor`      | Add desktop Blobity cursor effects to landing pages         |
+| cc-features         | `/tooyoung:cc-features`         | Show Claude Code release highlights in Chinese              |
+| cc-session-cleaner  | `/tooyoung:cc-session-cleaner`  | Clean selected Claude Code sessions for current project     |
+| chainlit-builder    | `/tooyoung:chainlit-builder`    | Build Chainlit chat demos with OpenAI-compatible patterns   |
+| codebase-stats      | `/tooyoung:codebase-stats`      | Count source lines by file type and detected module         |
+| docs-i18n-pr        | `/tooyoung:docs-i18n-pr`        | Translate docs and prepare an i18n PR with confirmation     |
+| easy-openrouter     | `/tooyoung:easy-openrouter`     | Test individual LLM models through OpenRouter               |
+| excalidraw-artist   | `/tooyoung:excalidraw-artist`   | Create Excalidraw diagrams including timeline and ERD       |
+| frontend-slides     | `/tooyoung:frontend-slides`     | Create viewport-fitted single-file HTML slide decks         |
+| gh-star-list        | `/tooyoung:gh-star-list`        | Organize GitHub starred repos into Lists after confirmation |
+| heshu-medical       | `/tooyoung:heshu-medical`       | Folk skin and surface-care notes with safety boundaries     |
+| ink-reader          | `/tooyoung:ink-reader`          | Read accessible URLs into Markdown with fallback strategies |
+| ming-court-code     | `/tooyoung:ming-court-code`     | Ming Dynasty workflow protocol with 口谕/廷议/早朝 modes    |
+| nano-banana-builder | `/tooyoung:nano-banana-builder` | Build Next.js Nano Banana image-generation apps             |
+| neoblo-landing-page | `/tooyoung:neoblo-landing-page` | Build Neobrutalism + Blobity landing pages from scratch     |
+| persona-define      | `/tooyoung:persona-define`      | Define personalized identity style for Claude Code          |
+| threejs-builder     | `/tooyoung:threejs-builder`     | Create simple Three.js and WebGL 3D web apps                |
 
 ### Personal Skills (Templates)
 
@@ -127,7 +126,6 @@ oh-my-daily-skills/
 │   ├── ming-court-code/
 │   ├── nano-banana-builder/
 │   ├── neoblo-landing-page/
-│   ├── openclash-merger/
 │   ├── persona-define/
 │   └── threejs-builder/
 ├── personal/                # Personal templates (not distributed)

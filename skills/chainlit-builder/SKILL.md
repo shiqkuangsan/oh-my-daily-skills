@@ -1,8 +1,8 @@
 ---
 name: tooyoung:chainlit-builder
-description: "Quickly build Chainlit AI chat demos for product demos, proof-of-concept, and stakeholder presentations. Trigger words: chainlit, build demo, chat demo, conversation demo"
+description: "Quickly build Chainlit AI chat demos and POCs using OpenAI-compatible chat completion patterns, including streaming, multi-turn memory, file upload, tool-call step visualization, and demo styling. Trigger words: chainlit, build demo, chat demo, conversation demo, Chainlit 演示, AI 聊天 demo, 对话式 POC"
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Chainlit Demo Builder

@@ -1,8 +1,8 @@
 ---
 name: tooyoung:excalidraw-artist
-description: "Create Excalidraw hand-drawn style diagrams (architecture, flowchart, swimlane, sequence, wireframe, ERD, state machine, matrix, tree, CI/CD pipeline). Trigger words: draw diagram, architecture diagram, flowchart, swimlane, excalidraw, diagram, ERD, data model, state machine, state diagram, matrix, comparison table, tree, hierarchy, CI/CD pipeline"
+description: "Create Excalidraw hand-drawn style diagrams, including architecture, flowchart, swimlane/timeline, sequence, basic wireframe, ERD/data model, state machine, matrix/comparison table, tree/hierarchy, and CI/CD pipeline. Trigger words: draw diagram, architecture diagram, flowchart, swimlane, timeline, roadmap, Gantt, sequence diagram, excalidraw, ERD, data model, state machine, comparison table, matrix, tree, hierarchy, CI/CD pipeline"
 metadata:
-  version: "1.2.0"
+  version: "1.2.1"
 ---
 
 # Excalidraw Artist

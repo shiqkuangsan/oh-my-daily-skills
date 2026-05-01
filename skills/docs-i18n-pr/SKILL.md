@@ -1,8 +1,8 @@
 ---
 name: tooyoung:docs-i18n-pr
-description: "Use when forking an open-source repo to submit a documentation translation PR. Auto-detects doc framework (Mintlify, VitePress, Docusaurus, Nextra, GitBook), analyzes existing i18n structure, parallel-translates via subagents, fixes cross-links, and creates PR. Trigger words: translate docs, i18n PR, 翻译文档, 文档中文化, docs translation, fork and translate, 提翻译 PR"
+description: "Use when translating an open-source documentation site and preparing a documentation i18n PR. Detects doc frameworks such as Mintlify, VitePress, Docusaurus, Nextra, and GitBook; analyzes existing i18n structure; translates docs; fixes cross-links; validates; and prepares commit/push/PR steps with user confirmation. Trigger words: translate docs, i18n PR, 翻译文档, 文档中文化, docs translation, fork and translate, 提翻译 PR"
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Docs i18n PR

@@ -53,26 +53,25 @@ npx skills update
 
 ### 通用技能 (`tooyoung:`)
 
-| 技能                | 命令                            | 描述                                       |
-| ------------------- | ------------------------------- | ------------------------------------------ |
-| blobity-cursor      | `/tooyoung:blobity-cursor`      | 为任意落地页添加 Blobity 光标特效          |
-| cc-features         | `/tooyoung:cc-features`         | 查看 Claude Code 功能级更新速览（中文）    |
-| cc-session-cleaner  | `/tooyoung:cc-session-cleaner`  | 列出 Claude Code 会话并删除选中项          |
-| chainlit-builder    | `/tooyoung:chainlit-builder`    | 搭建 Chainlit AI 对话 Demo 用于产品演示    |
-| codebase-stats      | `/tooyoung:codebase-stats`      | 按文件类型和自动检测模块统计代码行数       |
-| docs-i18n-pr        | `/tooyoung:docs-i18n-pr`        | Fork 仓库、翻译文档并自动提交翻译 PR       |
-| easy-openrouter     | `/tooyoung:easy-openrouter`     | 通过 OpenRouter 测试和比较 LLM 模型        |
-| excalidraw-artist   | `/tooyoung:excalidraw-artist`   | 创建 Excalidraw 手绘风格图表               |
-| frontend-slides     | `/tooyoung:frontend-slides`     | 创建适配视口的 HTML 幻灯片演示文稿         |
-| gh-star-list        | `/tooyoung:gh-star-list`        | 用 AI 自动将 GitHub Stars 分类整理到 Lists |
-| heshu-medical       | `/tooyoung:heshu-medical`       | 鹤叔（仙鹤大叔）民间皮肤科普笔记参考库     |
-| ink-reader          | `/tooyoung:ink-reader`          | 智能读取 URL 内容，自动识别平台和抓取策略  |
-| ming-court-code     | `/tooyoung:ming-court-code`     | 明廷典：三档自适应的明制开发工作流协议     |
-| nano-banana-builder | `/tooyoung:nano-banana-builder` | 基于 Google Gemini API 构建图像生成应用    |
-| neoblo-landing-page | `/tooyoung:neoblo-landing-page` | 构建 Neobrutalism + Blobity 风格落地页     |
-| openclash-merger    | `/tooyoung:openclash-merger`    | 合并 OpenClash 订阅配置并生成分流规则      |
-| persona-define      | `/tooyoung:persona-define`      | 为 Claude Code 定义个性化身份风格（人设）  |
-| threejs-builder     | `/tooyoung:threejs-builder`     | 创建 Three.js 3D Web 应用                  |
+| 技能                | 命令                            | 描述                                      |
+| ------------------- | ------------------------------- | ----------------------------------------- |
+| blobity-cursor      | `/tooyoung:blobity-cursor`      | 为桌面落地页添加 Blobity 光标特效         |
+| cc-features         | `/tooyoung:cc-features`         | 查看 Claude Code 发布亮点速览（中文）     |
+| cc-session-cleaner  | `/tooyoung:cc-session-cleaner`  | 清理当前项目中选中的 Claude Code 会话     |
+| chainlit-builder    | `/tooyoung:chainlit-builder`    | 用 OpenAI 兼容模式搭建 Chainlit 对话 Demo |
+| codebase-stats      | `/tooyoung:codebase-stats`      | 按文件类型和自动检测模块统计源码行数      |
+| docs-i18n-pr        | `/tooyoung:docs-i18n-pr`        | 翻译开源文档并经确认准备 i18n PR          |
+| easy-openrouter     | `/tooyoung:easy-openrouter`     | 通过 OpenRouter 测试单个 LLM 模型         |
+| excalidraw-artist   | `/tooyoung:excalidraw-artist`   | 创建含时间线/ERD 等 Excalidraw 手绘图表   |
+| frontend-slides     | `/tooyoung:frontend-slides`     | 创建适配视口的单文件 HTML 幻灯片          |
+| gh-star-list        | `/tooyoung:gh-star-list`        | 经确认将 GitHub Stars 分类整理到 Lists    |
+| heshu-medical       | `/tooyoung:heshu-medical`       | 鹤叔民间皮肤与表面护理笔记（含安全边界）  |
+| ink-reader          | `/tooyoung:ink-reader`          | 将可访问 URL 读取为 Markdown，含兜底策略  |
+| ming-court-code     | `/tooyoung:ming-court-code`     | 明廷典：口谕/廷议/早朝三档开发工作流协议  |
+| nano-banana-builder | `/tooyoung:nano-banana-builder` | 构建 Next.js Nano Banana 图像生成应用     |
+| neoblo-landing-page | `/tooyoung:neoblo-landing-page` | 构建 Neobrutalism + Blobity 风格落地页    |
+| persona-define      | `/tooyoung:persona-define`      | 为 Claude Code 定义个性化身份风格（人设） |
+| threejs-builder     | `/tooyoung:threejs-builder`     | 创建简单 Three.js / WebGL 3D Web 应用     |
 
 ### 个人技能（模板）
 
@@ -127,7 +126,6 @@ oh-my-daily-skills/
 │   ├── ming-court-code/
 │   ├── nano-banana-builder/
 │   ├── neoblo-landing-page/
-│   ├── openclash-merger/
 │   ├── persona-define/
 │   └── threejs-builder/
 ├── personal/                # 个人模板（不分发）
