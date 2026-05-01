@@ -2,7 +2,7 @@
 name: tooyoung:cc-session-cleaner
 description: "清理当前项目的 Claude Code 会话：列出 ~/.claude/projects 下最近会话，按序号或 sessionId 选择，经二次确认后删除对应 .jsonl 与同名附件目录。Trigger words: 清理 cc 会话, 删除历史会话, cc resume 会话, clean cc sessions, cc session cleaner"
 metadata:
-  version: "1.2.1"
+  version: "1.3.0"
 ---
 
 # CC Session Cleaner — CC 会话清理
@@ -49,15 +49,26 @@ metadata:
 
 预览表必须包含：
 
-| 字段                 | 说明                                         |
-| -------------------- | -------------------------------------------- |
-| `#`                  | 本次预览序号，用于用户选择                   |
-| `sessionId`          | `.jsonl` 文件名去掉后缀                      |
-| `title`              | 最近一条 `custom-title`，没有则为空          |
-| `mtime`              | `.jsonl` 修改时间                            |
-| `size`               | `.jsonl` 大小，按 B/KB/MB/GB 自动切换        |
-| `first user prompt`  | 首条非 caveat 的 user prompt，截断 80 字     |
-| `recent user prompt` | 最近一条非 caveat 的 user prompt，截断 80 字 |
+| 字段                 | 说明                                                                 |
+| -------------------- | -------------------------------------------------------------------- |
+| `#`                  | 本次预览序号，用于用户选择                                           |
+| `current`            | 当前会话标记；匹配显式 current session id 时显示 `CURRENT`，否则为空 |
+| `sessionId`          | `.jsonl` 文件名去掉后缀                                              |
+| `title`              | 最近一条 `custom-title`，没有则为空                                  |
+| `mtime`              | `.jsonl` 修改时间                                                    |
+| `size`               | `.jsonl` 大小，按 B/KB/MB/GB 自动切换                                |
+| `first user prompt`  | 首条非 caveat 的 user prompt，截断 80 字                             |
+| `recent user prompt` | 最近一条非 caveat 的 user prompt，截断 80 字                         |
+
+## 表格展示要求
+
+预览和删除复述都必须优先使用 Markdown 表格，避免用散乱项目符号代替关键清单：
+
+- **最终回复必须是渲染后的 Markdown 表格**：脚本输出可以作为数据源，但不要把原始终端输出或代码块当作最终预览交给用户。
+- 预览会话时，先用一句话说明项目目录与命中数量，再输出完整预览表；列顺序固定为 `#`、`current`、`sessionId`、`title`、`mtime`、`size`、`first user prompt`、`recent user prompt`。
+- 复述将删除的会话时，必须使用表格列出 `sessionId`、`jsonl path`、`attachment dir`、`status`。
+- 如果选中当前会话，仍在复述表中展示，但 `status` 必须标为 `不可删除：当前会话`，且不得传入删除脚本。
+- 表格单元格内容应压缩到可读长度；prompt 已由预览脚本截断，路径可完整展示以便用户确认。
 
 ## 用法示例
 
@@ -120,99 +131,33 @@ derive_projdir() {
 
 候选全空时，列出 `~/.claude/projects/` 目录请用户确认，**不要擅自模糊匹配**。
 
-## 推荐预览脚本
+## 推荐脚本结构
+
+按 Agent Skills 标准结构，长脚本应拆到 skill 目录下的 `scripts/`：
+
+```text
+skills/cc-session-cleaner/
+├── SKILL.md
+└── scripts/
+    ├── preview_sessions.py
+    └── delete_sessions.py
+```
+
+- `scripts/preview_sessions.py`：列出会话，输出 Markdown 表格数据。
+- `scripts/delete_sessions.py`：仅在强确认后删除指定 sessionId 的 `.jsonl` 与同名目录。
+- `SKILL.md` 只保留流程、参数约定、安全红线和展示要求。
+
+## 推荐预览命令
 
 ```bash
 PROJDIR="${1:-$(derive_projdir)}" || { echo "无法定位项目目录，请显式指定" >&2; exit 1; }
 LIMIT="${2:-30}"
 MARK="${3:-}"
-
-python3 - "$PROJDIR" "$LIMIT" "$MARK" <<'PY'
-import datetime, glob, json, os, sys
-
-projdir, limit_s, mark = sys.argv[1], sys.argv[2], sys.argv[3]
-limit = None if limit_s.lower() in ('all', '全部') else int(limit_s)
-os.chdir(projdir)
-rows = []
-
-
-def fmt_size(size):
-    units = ['B', 'KB', 'MB', 'GB']
-    value = float(size)
-    for unit in units:
-        if value < 1024 or unit == units[-1]:
-            if unit == 'B':
-                return f'{int(value)}B'
-            return f'{value:.1f}{unit}'.replace('.0', '')
-        value /= 1024
-
-
-def extract_user_text(content):
-    if isinstance(content, list):
-        content = ' '.join(x.get('text', '') if isinstance(x, dict) else str(x) for x in content)
-    if not isinstance(content, str):
-        content = str(content)
-    text = content.strip()
-    blocked = (
-        '<system-reminder',
-        '<local-command-caveat',
-        '<command-name>',
-        '<task-notification>',
-        '<bash-input>',
-        '<bash-stdout>',
-        '<bash-stderr>',
-        'Base directory for this skill:',
-    )
-    if not text or any(marker in text for marker in blocked):
-        return ''
-    return text.replace('\n', ' ')[:80]
-
-
-for path in glob.glob('*.jsonl'):
-    sid = path[:-6]
-    title = ''
-    first_user = ''
-    recent_user = ''
-    try:
-        with open(path, encoding='utf-8') as fh:
-            for line in fh:
-                try:
-                    obj = json.loads(line)
-                except Exception:
-                    continue
-                if obj.get('type') == 'custom-title':
-                    title = obj.get('customTitle') or title
-                if obj.get('type') == 'user':
-                    prompt = extract_user_text(obj.get('message', {}).get('content', ''))
-                    if prompt:
-                        if not first_user:
-                            first_user = prompt
-                        recent_user = prompt
-        if mark and title != mark:
-            continue
-        stat = os.stat(path)
-        rows.append((stat.st_mtime, sid, title, stat.st_size, first_user, recent_user))
-    except Exception:
-        continue
-
-rows.sort(reverse=True)
-total = len(rows)
-if limit is not None:
-    rows = rows[:limit]
-print(f'项目目录: {projdir}')
-if mark:
-    print(f'命中 {len(rows)} 条会话（title == {mark!r}）')
-elif limit is None:
-    print(f'命中 {len(rows)} 条会话（全部）')
-else:
-    print(f'命中 {len(rows)} 条会话（最近 {limit} 条，共 {total} 条）')
-print('| # | sessionId | title | mtime | size | first user prompt | recent user prompt |')
-print('|---:|---|---|---|---:|---|---|')
-for idx, (mtime, sid, title, size, first_user, recent_user) in enumerate(rows, 1):
-    mt = datetime.datetime.fromtimestamp(mtime).strftime('%Y-%m-%d %H:%M')
-    print(f'| {idx} | {sid} | {title} | {mt} | {fmt_size(size)} | {first_user} | {recent_user} |')
-PY
+CURRENT_SESSION_ID="${4:-${CLAUDE_SESSION_ID:-}}"
+python3 skills/cc-session-cleaner/scripts/preview_sessions.py "$PROJDIR" --limit "$LIMIT" --mark "$MARK" --current-session-id "$CURRENT_SESSION_ID"
 ```
+
+当前会话说明：每个 Claude Code 会话都有 sessionId；如果 shell 中没有 `$CLAUDE_SESSION_ID`，只表示脚本没有拿到当前会话 id，不表示当前会话没有 id。若用户从 `/status` 或其它可靠来源提供当前 sessionId，应作为 `--current-session-id` 传入并用于 `CURRENT` 标记。
 
 ## 选择解析规则
 
@@ -221,37 +166,23 @@ PY
 - 只允许删除本次预览表里出现过的 sessionId；未出现在预览表里的 id 必须重新预览或要求用户确认来源。
 - 如果用户混用序号和 sessionId，AI 需要归一化成 sessionId 并复述。
 - 预览表可以列出当前会话；如果用户选择当前会话，必须明确提示"当前会话不能删除"，并把它从实际删除清单中剔除。
-- 如果能从 `$CLAUDE_SESSION_ID` 获取当前会话 id，用它识别当前会话；如果无法获取，不要声称已自动识别当前会话。
+- 预览表必须包含 `current` 列；如果拿到显式 current session id（例如用户从 `/status` 提供，或环境变量 `$CLAUDE_SESSION_ID` 可用），匹配行显示 `CURRENT`。
+- 如果无法取得当前 session id，不要声称已自动识别当前会话；只能说明当前会话 id 未传入或未暴露给脚本。
 
 ## 当前会话保护
 
 - 当前会话也可以出现在预览表里，方便用户理解 `cc resume` 中看到的完整候选集。
-- 删除前如能从 `$CLAUDE_SESSION_ID` 识别当前会话，且用户选中了它，必须在复述清单中单独列为"不可删除"。
+- 每个 Claude Code 会话都有 sessionId；`$CLAUDE_SESSION_ID` 为空只表示脚本没拿到当前会话 id，不表示当前会话没有 id。
+- 预览时如能从显式参数或 `$CLAUDE_SESSION_ID` 识别当前会话，必须在 `current` 列标记为 `CURRENT`。
+- 删除前如能识别当前会话，且用户选中了它，必须在复述清单中单独列为"不可删除"。
 - 不可删除项不得传入删除脚本；如果用户只选择了当前会话，不执行删除，并说明需要选择其他会话。
-- 如果无法获取 `$CLAUDE_SESSION_ID`，不要声称已识别当前会话，也不要基于标题、mtime 或 prompt 猜测当前会话。
+- 如果无法取得当前 sessionId，不要声称已识别当前会话，也不要基于标题、mtime 或 prompt 猜测当前会话。
 
-## 删除模板（仅在强确认后执行）
+## 删除命令（仅在强确认后执行）
 
 ```bash
 PROJDIR="$HOME/.claude/projects/<slug>"
-cd "$PROJDIR" || exit 1
-python3 - sid1 sid2 sid3 <<'PY'
-import os, shutil, sys
-
-for sid in sys.argv[1:]:
-    if '/' in sid or sid in ('', '.', '..'):
-        raise SystemExit(f'unsafe sessionId: {sid!r}')
-    jsonl = f'{sid}.jsonl'
-    directory = sid
-    if os.path.isfile(jsonl):
-        os.remove(jsonl)
-    if os.path.isdir(directory):
-        shutil.rmtree(directory)
-    remains = [p for p in (jsonl, directory) if os.path.exists(p)]
-    if remains:
-        raise SystemExit(f'残留未清理: {sid}: {remains}')
-print(f'已清理 {len(sys.argv) - 1} 条会话')
-PY
+python3 skills/cc-session-cleaner/scripts/delete_sessions.py "$PROJDIR" sid1 sid2 sid3
 ```
 
 ## 安全护栏（红线）
