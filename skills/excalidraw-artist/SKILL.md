@@ -2,7 +2,7 @@
 name: tooyoung:excalidraw-artist
 description: "Create Excalidraw hand-drawn style diagrams, including architecture, flowchart, swimlane/timeline, sequence, basic wireframe, ERD/data model, state machine, matrix/comparison table, tree/hierarchy, and CI/CD pipeline. Trigger words: draw diagram, architecture diagram, flowchart, swimlane, timeline, roadmap, Gantt, sequence diagram, excalidraw, ERD, data model, state machine, comparison table, matrix, tree, hierarchy, CI/CD pipeline"
 metadata:
-  version: "1.2.1"
+  version: "1.3.0"
 ---
 
 # Excalidraw Artist
@@ -88,14 +88,29 @@ Output files can be opened and edited at [excalidraw.com](https://excalidraw.com
 2. **Plan Layout** → Define dimensions, divide regions; for grid layouts calculate column/row system first (see `references/element-ref.md` → Grid Layout Calculation)
 3. **Design Color Scheme** → Use preset palette or design semantic colors for priority/category encoding (see `references/element-ref.md` → Semantic Color Coding)
 4. **Build Elements** → Read the matching example file from `references/examples/`; use semantic IDs for 10+ elements
-5. **Verify Bindings** → Check every container↔text pair has bidirectional references
-6. **Output File** → Generate `.excalidraw` file
+5. **Create Real Connectors** → Every relationship arrow must have `startBinding` and `endBinding`, and both endpoint elements must include that arrow in `boundElements`
+6. **Verify Bindings** → Check every container↔text pair and arrow↔endpoint pair has bidirectional references
+7. **Run Validation** → Run `node skills/excalidraw-artist/scripts/validate-excalidraw.mjs <file.excalidraw>` before claiming the diagram is complete
+8. **Output File** → Generate `.excalidraw` file
+
+## Binding Requirements
+
+- Do not create visual-only arrows. If an arrow touches a node, it must be a real Excalidraw connector.
+- For every connector arrow:
+  - `arrow.startBinding.elementId` points to the source element.
+  - `arrow.endBinding.elementId` points to the target element.
+  - Source and target elements both include `{ "id": "<arrow-id>", "type": "arrow" }` in `boundElements`.
+- For every container text:
+  - The text element includes `containerId`.
+  - The container includes `{ "id": "<text-id>", "type": "text" }` in `boundElements`.
+- Use `line` for decorative separators. Use `arrow` only when the connection should stay attached during dragging.
 
 ## Reference Documentation
 
-| File                        | Content                                                                                                              |
-| --------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `references/element-ref.md` | Element properties, text binding formulas, grid layout calculation, semantic colors, ID conventions, troubleshooting |
+| File                              | Content                                                                                                              |
+| --------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `references/element-ref.md`       | Element properties, text binding formulas, grid layout calculation, semantic colors, ID conventions, troubleshooting |
+| `scripts/validate-excalidraw.mjs` | Validation for arrow endpoint bindings and container text bindings                                                   |
 
 **Example files** (read only the one matching the diagram type):
 

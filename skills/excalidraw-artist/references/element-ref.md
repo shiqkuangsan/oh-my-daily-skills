@@ -142,6 +142,36 @@ Properties shared by all elements:
 | `"dot"`      | Circle         |
 | `"triangle"` | Triangle       |
 
+### Arrow Binding Contract
+
+Relationship arrows must be real Excalidraw connectors, not lines that only visually touch nodes.
+
+```json
+// Source element
+{
+  "id": "source-box",
+  "type": "rectangle",
+  "boundElements": [{ "id": "arrow-source-target", "type": "arrow" }]
+}
+
+// Target element
+{
+  "id": "target-box",
+  "type": "rectangle",
+  "boundElements": [{ "id": "arrow-source-target", "type": "arrow" }]
+}
+
+// Connector arrow
+{
+  "id": "arrow-source-target",
+  "type": "arrow",
+  "startBinding": { "elementId": "source-box", "focus": 0, "gap": 1 },
+  "endBinding": { "elementId": "target-box", "focus": 0, "gap": 1 }
+}
+```
+
+> **Critical**: Missing either side = fake connection. The arrow may look correct, but dragging a node will not move the arrow endpoint.
+
 ### Grouping
 
 ```json
