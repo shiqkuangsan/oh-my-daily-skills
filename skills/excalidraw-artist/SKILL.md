@@ -2,7 +2,7 @@
 name: tooyoung:excalidraw-artist
 description: "Create Excalidraw hand-drawn style diagrams, including architecture, flowchart, swimlane/timeline, sequence, basic wireframe, ERD/data model, state machine, matrix/comparison table, tree/hierarchy, and CI/CD pipeline. Trigger words: draw diagram, architecture diagram, flowchart, swimlane, timeline, roadmap, Gantt, sequence diagram, excalidraw, ERD, data model, state machine, comparison table, matrix, tree, hierarchy, CI/CD pipeline"
 metadata:
-  version: "1.3.0"
+  version: "1.4.0"
 ---
 
 # Excalidraw Artist
@@ -89,9 +89,10 @@ Output files can be opened and edited at [excalidraw.com](https://excalidraw.com
 3. **Design Color Scheme** → Use preset palette or design semantic colors for priority/category encoding (see `references/element-ref.md` → Semantic Color Coding)
 4. **Build Elements** → Read the matching example file from `references/examples/`; use semantic IDs for 10+ elements
 5. **Create Real Connectors** → Every relationship arrow must have `startBinding` and `endBinding`, and both endpoint elements must include that arrow in `boundElements`
-6. **Verify Bindings** → Check every container↔text pair and arrow↔endpoint pair has bidirectional references
-7. **Run Validation** → Run `node skills/excalidraw-artist/scripts/validate-excalidraw.mjs <file.excalidraw>` before claiming the diagram is complete
-8. **Output File** → Generate `.excalidraw` file
+6. **Check Text Readability** → Break labels by semantic phrase, keep text inside containers with padding, and resize boxes instead of splitting Chinese words or abbreviations awkwardly
+7. **Verify Bindings** → Check every container↔text pair and arrow↔endpoint pair has bidirectional references
+8. **Run Validation** → Run `node skills/excalidraw-artist/scripts/validate-excalidraw.mjs <file.excalidraw>` before claiming the diagram is complete
+9. **Output File** → Generate `.excalidraw` file
 
 ## Binding Requirements
 
@@ -104,6 +105,14 @@ Output files can be opened and edited at [excalidraw.com](https://excalidraw.com
   - The text element includes `containerId`.
   - The container includes `{ "id": "<text-id>", "type": "text" }` in `boundElements`.
 - Use `line` for decorative separators. Use `arrow` only when the connection should stay attached during dragging.
+
+## Text Readability Requirements
+
+- Prefer short node titles plus 1-3 supporting lines. If a card needs more text, enlarge the card or split it into two cards.
+- Insert `\n` only at semantic boundaries: phrase, slash group, or list item. Do not split Chinese words like `步骤`, `产物`, `证据`, or English identifiers like `frontend-skills`.
+- For mixed Chinese/English labels, estimate the longest line before choosing `text.width`; do not rely on Excalidraw auto-wrap to fix overflow.
+- Keep at least 10-12px horizontal padding and 8-12px vertical padding between text bounds and container bounds.
+- After manually editing text, re-check text `x/y/width/height` and connector bindings; Excalidraw may change text bounds without changing the container.
 
 ## Reference Documentation
 
@@ -132,5 +141,5 @@ Output files can be opened and edited at [excalidraw.com](https://excalidraw.com
 - Large diagrams (>80 elements) may be slow to open; consider splitting
 - Use semantic ID prefixes for 10+ elements (see element-ref.md → ID Naming Convention)
 - Calculate grid coordinates before placing elements in grid/swimlane layouts
-- Fine-tune in Excalidraw after generation
+- Fine-tune in Excalidraw after generation, then re-run validation if text or connected nodes were changed
 - Mix Chinese/English labels for readability

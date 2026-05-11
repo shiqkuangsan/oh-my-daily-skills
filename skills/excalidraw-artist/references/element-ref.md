@@ -232,6 +232,17 @@ text.y      = container.y + (container.height - text.height) / 2
 - Chinese chars are ~1em wide: width ≈ `charCount × fontSize`
 - Mixed: count Chinese as 1em, ASCII as 0.6em
 
+**Readable line breaks:**
+
+- Break by semantic unit, not by available pixels.
+- Good: `Jira / 截图 / 复现步骤`
+- Bad: `Jira / 截图 / 复现步\n骤`
+- Good: `Jira 事实 + 页面产物`
+- Bad: `Jira 事实 + 页面产\n物`
+- Good: `只定位 / 分责 / 给证据`
+- Bad: `只定位 / 分责 / 给证\n据`
+- If a semantic line does not fit, enlarge the container, reduce wording, or split the card. Do not make a one-character Chinese line just to preserve a narrow card.
+
 **Worked example** (2-line text in 150×80 rectangle at fontSize 16):
 
 ```
