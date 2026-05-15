@@ -133,7 +133,8 @@ Build→Test→Deploy pipeline with stages, gates, and environments.
       "boundElements": [
         { "id": "gate-approval-text", "type": "text" },
         { "id": "arrow-test-gate", "type": "arrow" },
-        { "id": "arrow-gate-staging", "type": "arrow" }
+        { "id": "arrow-gate-staging", "type": "arrow" },
+        { "id": "arrow-gate-fail", "type": "arrow" }
       ]
     },
     {
@@ -335,6 +336,7 @@ Build→Test→Deploy pipeline with stages, gates, and environments.
       "roughness": 1,
       "points": [[0, 0], [0, 50]],
       "startBinding": { "elementId": "gate-approval", "focus": 0, "gap": 1 },
+      "endBinding": { "elementId": "action-fix", "focus": 0, "gap": 1 },
       "startArrowhead": null,
       "endArrowhead": "arrow"
     },
@@ -351,6 +353,26 @@ Build→Test→Deploy pipeline with stages, gates, and environments.
       "strokeColor": "#dc2626"
     },
     {
+      "id": "action-fix",
+      "type": "rectangle",
+      "x": 485,
+      "y": 220,
+      "width": 120,
+      "height": 40,
+      "strokeColor": "#dc2626",
+      "backgroundColor": "#fef2f2",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "dashed",
+      "roughness": 1,
+      "roundness": { "type": 3 },
+      "seed": 6,
+      "boundElements": [
+        { "id": "label-fail-action", "type": "text" },
+        { "id": "arrow-gate-fail", "type": "arrow" }
+      ]
+    },
+    {
       "id": "label-fail-action",
       "type": "text",
       "x": 495,
@@ -360,7 +382,8 @@ Build→Test→Deploy pipeline with stages, gates, and environments.
       "text": "Fix & re-push",
       "fontSize": 13,
       "fontFamily": 2,
-      "strokeColor": "#dc2626"
+      "strokeColor": "#dc2626",
+      "containerId": "action-fix"
     }
   ],
   "appState": {

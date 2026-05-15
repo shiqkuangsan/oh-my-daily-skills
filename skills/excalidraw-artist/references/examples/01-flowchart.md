@@ -64,8 +64,7 @@ A basic yes/no decision flowchart.
       "boundElements": [
         { "id": "text-decision", "type": "text" },
         { "id": "arrow1", "type": "arrow" },
-        { "id": "arrow2", "type": "arrow" },
-        { "id": "arrow3", "type": "arrow" }
+        { "id": "arrow2", "type": "arrow" }
       ]
     },
     {
@@ -97,7 +96,10 @@ A basic yes/no decision flowchart.
       "roughness": 1,
       "roundness": { "type": 3 },
       "seed": 3,
-      "boundElements": [{ "id": "text-yes", "type": "text" }]
+      "boundElements": [
+        { "id": "text-yes", "type": "text" },
+        { "id": "arrow2", "type": "arrow" }
+      ]
     },
     {
       "id": "text-yes",

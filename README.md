@@ -62,7 +62,7 @@ npx skills update
 | codebase-stats      | `/tooyoung:codebase-stats`      | Count source lines by file type and detected module         |
 | docs-i18n-pr        | `/tooyoung:docs-i18n-pr`        | Translate docs and prepare an i18n PR with confirmation     |
 | easy-openrouter     | `/tooyoung:easy-openrouter`     | Test individual LLM models through OpenRouter               |
-| excalidraw-artist   | `/tooyoung:excalidraw-artist`   | Create Excalidraw diagrams including timeline and ERD       |
+| excalidraw-artist   | `/tooyoung:excalidraw-artist`   | Create or style-preserve Excalidraw diagrams                |
 | frontend-slides     | `/tooyoung:frontend-slides`     | Create viewport-fitted single-file HTML slide decks         |
 | gh-star-list        | `/tooyoung:gh-star-list`        | Organize GitHub starred repos into Lists after confirmation |
 | heshu-medical       | `/tooyoung:heshu-medical`       | Folk skin and surface-care notes with safety boundaries     |

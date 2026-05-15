@@ -113,7 +113,11 @@ Login authentication sequence diagram.
       "strokeWidth": 1,
       "strokeStyle": "dashed",
       "roughness": 0,
-      "points": [[0, 0], [0, 200]]
+      "points": [[0, 0], [0, 200]],
+      "boundElements": [
+        { "id": "msg1", "type": "arrow" },
+        { "id": "msg4", "type": "arrow" }
+      ]
     },
     {
       "id": "lifeline-auth",
@@ -126,7 +130,13 @@ Login authentication sequence diagram.
       "strokeWidth": 1,
       "strokeStyle": "dashed",
       "roughness": 0,
-      "points": [[0, 0], [0, 200]]
+      "points": [[0, 0], [0, 200]],
+      "boundElements": [
+        { "id": "msg1", "type": "arrow" },
+        { "id": "msg2", "type": "arrow" },
+        { "id": "msg3", "type": "arrow" },
+        { "id": "msg4", "type": "arrow" }
+      ]
     },
     {
       "id": "lifeline-db",
@@ -139,7 +149,11 @@ Login authentication sequence diagram.
       "strokeWidth": 1,
       "strokeStyle": "dashed",
       "roughness": 0,
-      "points": [[0, 0], [0, 200]]
+      "points": [[0, 0], [0, 200]],
+      "boundElements": [
+        { "id": "msg2", "type": "arrow" },
+        { "id": "msg3", "type": "arrow" }
+      ]
     },
     {
       "id": "msg1",
@@ -152,6 +166,9 @@ Login authentication sequence diagram.
       "strokeWidth": 2,
       "roughness": 1,
       "points": [[0, 0], [180, 0]],
+      "startBinding": { "elementId": "lifeline-user", "focus": 0, "gap": 1 },
+      "endBinding": { "elementId": "lifeline-auth", "focus": 0, "gap": 1 },
+      "startArrowhead": null,
       "endArrowhead": "arrow"
     },
     {
@@ -177,6 +194,9 @@ Login authentication sequence diagram.
       "strokeWidth": 2,
       "roughness": 1,
       "points": [[0, 0], [180, 0]],
+      "startBinding": { "elementId": "lifeline-auth", "focus": 0, "gap": 1 },
+      "endBinding": { "elementId": "lifeline-db", "focus": 0, "gap": 1 },
+      "startArrowhead": null,
       "endArrowhead": "arrow"
     },
     {
@@ -203,6 +223,9 @@ Login authentication sequence diagram.
       "strokeStyle": "dashed",
       "roughness": 1,
       "points": [[0, 0], [-180, 0]],
+      "startBinding": { "elementId": "lifeline-db", "focus": 0, "gap": 1 },
+      "endBinding": { "elementId": "lifeline-auth", "focus": 0, "gap": 1 },
+      "startArrowhead": null,
       "endArrowhead": "arrow"
     },
     {
@@ -229,6 +252,9 @@ Login authentication sequence diagram.
       "strokeStyle": "dashed",
       "roughness": 1,
       "points": [[0, 0], [-180, 0]],
+      "startBinding": { "elementId": "lifeline-auth", "focus": 0, "gap": 1 },
+      "endBinding": { "elementId": "lifeline-user", "focus": 0, "gap": 1 },
+      "startArrowhead": null,
       "endArrowhead": "arrow"
     },
     {

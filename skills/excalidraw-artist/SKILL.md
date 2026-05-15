@@ -1,13 +1,13 @@
 ---
 name: tooyoung:excalidraw-artist
-description: "Create Excalidraw hand-drawn style diagrams, including architecture, flowchart, swimlane/timeline, sequence, basic wireframe, ERD/data model, state machine, matrix/comparison table, tree/hierarchy, and CI/CD pipeline. Trigger words: draw diagram, architecture diagram, flowchart, swimlane, timeline, roadmap, Gantt, sequence diagram, excalidraw, ERD, data model, state machine, comparison table, matrix, tree, hierarchy, CI/CD pipeline"
+description: "Create or edit Excalidraw hand-drawn diagrams, including style-preserving edits to existing Obsidian Excalidraw Markdown drawings, architecture, flowchart, swimlane/timeline, sequence, wireframe, ERD/data model, state machine, matrix, tree, hierarchy, and CI/CD pipeline."
 metadata:
-  version: "1.4.0"
+  version: "1.6.0"
 ---
 
 # Excalidraw Artist
 
-Create professional hand-drawn style diagrams with Excalidraw, outputting `.excalidraw` files.
+Create professional hand-drawn style diagrams with Excalidraw, outputting standalone `.excalidraw` JSON or Obsidian `.excalidraw.md` drawings.
 
 ## Supported Diagram Types
 
@@ -42,6 +42,15 @@ Create professional hand-drawn style diagrams with Excalidraw, outputting `.exca
 Output files can be opened and edited at [excalidraw.com](https://excalidraw.com).
 
 ## Design Principles
+
+### Preserve Existing Style First
+
+When editing an existing diagram, preserve its visual language unless the user explicitly asks for a redesign.
+
+- Reuse the original color palette, fill styles, roughness, fonts, spacing rhythm, and arrow curvature.
+- Prefer relabeling and lightly resizing existing elements over replacing the canvas with a new grid layout.
+- Preserve existing arrow `points` and bindings whenever possible; smooth hand-drawn connector paths are part of the design.
+- For organic architecture panoramas, read `references/organic-architecture-style.md` before editing.
 
 ### Layout
 
@@ -84,15 +93,16 @@ Output files can be opened and edited at [excalidraw.com](https://excalidraw.com
 
 ## Workflow
 
-1. **Understand Requirements** → Determine diagram type, identify key elements
-2. **Plan Layout** → Define dimensions, divide regions; for grid layouts calculate column/row system first (see `references/element-ref.md` → Grid Layout Calculation)
-3. **Design Color Scheme** → Use preset palette or design semantic colors for priority/category encoding (see `references/element-ref.md` → Semantic Color Coding)
-4. **Build Elements** → Read the matching example file from `references/examples/`; use semantic IDs for 10+ elements
-5. **Create Real Connectors** → Every relationship arrow must have `startBinding` and `endBinding`, and both endpoint elements must include that arrow in `boundElements`
-6. **Check Text Readability** → Break labels by semantic phrase, keep text inside containers with padding, and resize boxes instead of splitting Chinese words or abbreviations awkwardly
-7. **Verify Bindings** → Check every container↔text pair and arrow↔endpoint pair has bidirectional references
-8. **Run Validation** → Run `node skills/excalidraw-artist/scripts/validate-excalidraw.mjs <file.excalidraw>` before claiming the diagram is complete
-9. **Output File** → Generate `.excalidraw` file
+1. **Understand Requirements** → Determine whether this is a new diagram or a style-preserving edit
+2. **Sample Existing Style** → For existing diagrams, inventory colors, fill styles, roughness, font sizes, spacing, arrow paths, and output format before changing content
+3. **Plan Layout** → Define dimensions and regions; for grid layouts calculate column/row system first (see `references/element-ref.md` → Grid Layout Calculation)
+4. **Design Color Scheme** → Reuse the source diagram palette for edits; use preset palettes only for new diagrams
+5. **Build Elements** → Read the matching example file from `references/examples/`; use semantic IDs for 10+ elements
+6. **Create Real Connectors** → Every relationship arrow must have `startBinding` and `endBinding`, and both endpoint elements must include that arrow in `boundElements`
+7. **Check Text Readability** → Break labels by semantic phrase, keep text inside containers with padding, and resize boxes instead of splitting Chinese words or abbreviations awkwardly
+8. **Verify Bindings** → Check every container↔text pair and arrow↔endpoint pair has bidirectional references
+9. **Run Validation** → Run `node skills/excalidraw-artist/scripts/validate-excalidraw.mjs <file.excalidraw>` on extracted JSON before claiming the diagram is complete
+10. **Output File** → Generate the requested `.excalidraw` or `.excalidraw.md` format
 
 ## Binding Requirements
 
@@ -116,10 +126,11 @@ Output files can be opened and edited at [excalidraw.com](https://excalidraw.com
 
 ## Reference Documentation
 
-| File                              | Content                                                                                                              |
-| --------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `references/element-ref.md`       | Element properties, text binding formulas, grid layout calculation, semantic colors, ID conventions, troubleshooting |
-| `scripts/validate-excalidraw.mjs` | Validation for arrow endpoint bindings and container text bindings                                                   |
+| File                                       | Content                                                                                                              |
+| ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------- |
+| `references/element-ref.md`                | Element properties, text binding formulas, grid layout calculation, semantic colors, ID conventions, troubleshooting |
+| `references/organic-architecture-style.md` | Style-preserving edit guide for organic panorama architecture diagrams and Obsidian compressed Markdown drawings     |
+| `scripts/validate-excalidraw.mjs`          | Validation for arrow endpoint bindings and container text bindings                                                   |
 
 **Example files** (read only the one matching the diagram type):
 
@@ -128,12 +139,14 @@ Output files can be opened and edited at [excalidraw.com](https://excalidraw.com
 | `references/examples/01-flowchart.md`     | Flowchart                 |
 | `references/examples/02-architecture.md`  | Architecture              |
 | `references/examples/03-sequence.md`      | Sequence                  |
-| `references/examples/04-swimlane.md`      | Swimlane / Timeline       |
+| `references/examples/04-swimlane.md`      | Swimlane                  |
 | `references/examples/05-erd.md`           | ERD / Data Model          |
 | `references/examples/06-state-machine.md` | State Machine             |
 | `references/examples/07-matrix.md`        | Matrix / Comparison Table |
 | `references/examples/08-tree.md`          | Tree / Hierarchy          |
 | `references/examples/09-cicd-pipeline.md` | CI/CD Pipeline            |
+| `references/examples/10-wireframe.md`     | Wireframe                 |
+| `references/examples/11-timeline.md`      | Timeline / Gantt          |
 
 ## Notes
 
@@ -141,5 +154,6 @@ Output files can be opened and edited at [excalidraw.com](https://excalidraw.com
 - Large diagrams (>80 elements) may be slow to open; consider splitting
 - Use semantic ID prefixes for 10+ elements (see element-ref.md → ID Naming Convention)
 - Calculate grid coordinates before placing elements in grid/swimlane layouts
+- For Obsidian `.excalidraw.md`, preserve the Markdown wrapper and re-encode `## Drawing` as `compressed-json` when the source file is compressed
 - Fine-tune in Excalidraw after generation, then re-run validation if text or connected nodes were changed
 - Mix Chinese/English labels for readability

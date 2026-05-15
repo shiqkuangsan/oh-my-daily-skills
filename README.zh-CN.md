@@ -62,7 +62,7 @@ npx skills update
 | codebase-stats      | `/tooyoung:codebase-stats`      | 按文件类型和自动检测模块统计源码行数      |
 | docs-i18n-pr        | `/tooyoung:docs-i18n-pr`        | 翻译开源文档并经确认准备 i18n PR          |
 | easy-openrouter     | `/tooyoung:easy-openrouter`     | 通过 OpenRouter 测试单个 LLM 模型         |
-| excalidraw-artist   | `/tooyoung:excalidraw-artist`   | 创建含时间线/ERD 等 Excalidraw 手绘图表   |
+| excalidraw-artist   | `/tooyoung:excalidraw-artist`   | 创建或保留原风格编辑 Excalidraw 手绘图表  |
 | frontend-slides     | `/tooyoung:frontend-slides`     | 创建适配视口的单文件 HTML 幻灯片          |
 | gh-star-list        | `/tooyoung:gh-star-list`        | 经确认将 GitHub Stars 分类整理到 Lists    |
 | heshu-medical       | `/tooyoung:heshu-medical`       | 鹤叔民间皮肤与表面护理笔记（含安全边界）  |

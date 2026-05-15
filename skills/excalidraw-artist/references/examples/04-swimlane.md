@@ -1,6 +1,6 @@
-# Swimlane / Timeline Example
+# Swimlane Example
 
-A quarterly roadmap with 2 swimlanes (Frontend / Backend), 3 phases, priority color coding, and grid-based layout. Demonstrates large-diagram techniques: semantic IDs, grid calculation, semantic colors.
+A quarterly roadmap with 2 swimlanes (Frontend / Backend), 3 phase columns, priority color coding, and grid-based layout. Demonstrates large-diagram techniques: semantic IDs, grid calculation, semantic colors.
 
 **Layout model:**
 
@@ -212,7 +212,10 @@ A quarterly roadmap with 2 swimlanes (Frontend / Backend), 3 phases, priority co
       "roughness": 1,
       "roundness": { "type": 3 },
       "seed": 100,
-      "boundElements": [{ "id": "p1-fe-task1-text", "type": "text" }]
+      "boundElements": [
+        { "id": "p1-fe-task1-text", "type": "text" },
+        { "id": "arrow-mono-to-doc", "type": "arrow" }
+      ]
     },
     {
       "id": "p1-fe-task1-text",
@@ -274,7 +277,10 @@ A quarterly roadmap with 2 swimlanes (Frontend / Backend), 3 phases, priority co
       "roughness": 1,
       "roundness": { "type": 3 },
       "seed": 102,
-      "boundElements": [{ "id": "p2-fe-task1-text", "type": "text" }]
+      "boundElements": [
+        { "id": "p2-fe-task1-text", "type": "text" },
+        { "id": "arrow-mono-to-doc", "type": "arrow" }
+      ]
     },
     {
       "id": "p2-fe-task1-text",
