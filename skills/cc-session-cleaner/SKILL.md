@@ -3,6 +3,8 @@ name: tooyoung:cc-session-cleaner
 description: "清理当前项目的 Claude Code 会话：列出 ~/.claude/projects 下最近会话，按序号或 sessionId 选择，经二次确认后删除对应 .jsonl 与同名附件目录。Trigger words: 清理 cc 会话, 删除历史会话, cc resume 会话, clean cc sessions, cc session cleaner"
 metadata:
   version: "1.3.0"
+  author: shiqkuangsan
+  visibility: public
 ---
 
 # CC Session Cleaner — CC 会话清理

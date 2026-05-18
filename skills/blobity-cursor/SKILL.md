@@ -3,6 +3,8 @@ name: tooyoung:blobity-cursor
 description: "Add Blobity canvas cursor effects to desktop landing pages. Supports HTML, React, Vue 3, Vue 2, and Astro, with light/dark themes, tooltip mode, touch-device skipping, and cleanup patterns. Trigger words: blobity, cursor effect, landing page cursor, Astro cursor, 光标特效"
 metadata:
   version: "1.0.1"
+  author: shiqkuangsan
+  visibility: public
 ---
 
 # Blobity Cursor

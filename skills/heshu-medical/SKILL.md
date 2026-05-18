@@ -3,6 +3,8 @@ name: tooyoung:heshu-medical
 description: "鹤叔（仙鹤大叔）民间皮肤与表面护理科普笔记参考库，非专业医学指南；回答时必须附非诊断免责声明并遵守就医红线。触发：湿疹、痤疮、痱子、荨麻疹、水痘、带状疱疹、脚气、灰指甲、头皮屑、扁平疣、皮炎、倒刺、唇炎、碘伏、黄连素、乐肤液、十滴水、鹤叔、仙鹤大叔"
 metadata:
   version: "1.0.2"
+  author: shiqkuangsan
+  visibility: public
 ---
 
 # Heshu Medical — 鹤叔生活医疗科普

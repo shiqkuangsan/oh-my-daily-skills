@@ -3,6 +3,8 @@ name: tooyoung:threejs-builder
 description: "Create simple Three.js web apps with scene setup, lighting, geometries, materials, animations, OrbitControls, particles, and responsive rendering. Use for Three.js scenes, WebGL demos, 3D showcases, and interactive 3D web content. Trigger: threejs, Three.js, 3D scene, WebGL, 三维展示, 3D showcase, interactive 3D"
 metadata:
   version: "1.0.2"
+  author: shiqkuangsan
+  visibility: public
 ---
 
 # Three.js Builder

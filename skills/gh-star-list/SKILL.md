@@ -3,6 +3,8 @@ name: tooyoung:gh-star-list
 description: "Organize GitHub starred repositories into GitHub Lists using AI-assisted categorization. Supports full batch mode and selective mode (specific repos or latest N stars), proposes a plan, then applies it after user confirmation. Use when the user wants to organize, categorize, sort, or assign GitHub stars to Lists. Trigger phrases: organize my stars, categorize stars, GitHub Lists, 整理 stars, stars 分类, gh-star-list."
 metadata:
   version: "1.0.1"
+  author: shiqkuangsan
+  visibility: public
 ---
 
 # GitHub Star List

@@ -1,11 +1,11 @@
 {
   "name": "oh-my-daily-skills",
-  "version": "3.0.6",
-  "description": "Daily-driver skills for Claude Code — URL reading, diagram drawing, LLM benchmarking, 3D scenes, chat demos, and more.",
+  "version": "4.0.0",
+  "description": "Daily-driver public skills for Claude Code — URL reading, diagram drawing, web design, 3D scenes, GitHub star organization, and more.",
   "author": {
     "name": "shiqkuangsan"
   },
   "repository": "https://github.com/shiqkuangsan/oh-my-daily-skills",
   "license": "MIT",
-  "keywords": ["skills", "claude-code", "productivity", "url-reading", "diagramming", "web-design", "docs-i18n", "github-stars", "cc-features", "cc-session-cleaner", "ink-reader", "excalidraw", "frontend-slides", "neoblo", "persona"]
+  "keywords": ["skills", "claude-code", "productivity", "url-reading", "diagramming", "web-design", "github-stars", "cc-features", "cc-session-cleaner", "ink-reader", "excalidraw", "frontend-slides", "neoblo", "persona", "threejs"]
 }

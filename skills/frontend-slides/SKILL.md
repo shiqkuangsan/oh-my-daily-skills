@@ -3,6 +3,8 @@ name: tooyoung:frontend-slides
 description: "Create viewport-fitted single-file HTML slide decks with 8 curated visual themes, system font fallbacks, and scroll-snap navigation. Use for web/HTML presentations, not .pptx export. Trigger: HTML slides, web slides, single-file presentation, slidedeck, pitch deck as HTML, 做 HTML 幻灯片, 网页版 PPT"
 metadata:
   version: "1.0.2"
+  author: shiqkuangsan
+  visibility: public
 ---
 
 # Frontend Slides

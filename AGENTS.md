@@ -4,7 +4,7 @@ This file provides guidance to Codex (Codex.ai/code) when working with code in t
 
 ## Repository Overview
 
-This is a Codex plugin repository containing a collection of skills. Skills are markdown-based knowledge files that extend Codex's capabilities for specific tasks.
+This is a public Codex plugin repository containing reusable skills. Private and local-only skills are maintained in the private source repository and are not kept here.
 
 ## Skill Structure
 
@@ -24,31 +24,34 @@ description: "Single line description of what the skill does."
 compatibility: Optional environment requirements
 metadata:
   version: "0.1.0"
+  author: shiqkuangsan
+  visibility: public
 ---
 ```
 
-| Field            | Required | Description                        |
-| ---------------- | -------- | ---------------------------------- |
-| name             | Yes      | 技能名称，格式 `prefix:skill-name` |
-| description      | Yes      | 单行描述，最大 1024 字符           |
-| compatibility    | No       | 环境要求（如 Docker、特定路径）    |
-| metadata.version | Yes      | 语义化版本号                       |
+| Field               | Required | Description                        |
+| ------------------- | -------- | ---------------------------------- |
+| name                | Yes      | 技能名称，格式 `prefix:skill-name` |
+| description         | Yes      | 单行描述，最大 1024 字符           |
+| compatibility       | No       | 环境要求（如 Docker、特定路径）    |
+| metadata.version    | Yes      | 语义化版本号                       |
+| metadata.author     | Yes      | 作者标识                           |
+| metadata.visibility | Yes      | 本仓库内必须为 `public`            |
 
 ### Naming Convention
 
-| Type           | Directory              | Example                |
-| -------------- | ---------------------- | ---------------------- |
-| General skill  | `skills/skill-name/`   | `skills/ink-reader/`   |
-| Personal skill | `personal/skill-name/` | `personal/mac-docker/` |
+| Type         | Directory            | Example              |
+| ------------ | -------------------- | -------------------- |
+| Public skill | `skills/skill-name/` | `skills/ink-reader/` |
 
-General skills 通过 plugin 和 `npx skills` 分发。Personal skills 在 `personal/` 目录下，不参与分发，仅作为配置模板参考。
+Only public reusable skills live in this repository. Do not add private templates or local-only workflow notes here.
 
 ## Key Guidelines
 
 - Description 必须是单行（不使用 YAML 多行语法 `>` 或 `|`），且**必须用双引号包裹**（YAML 中冒号+空格是特殊语法，不加引号会导致 `npx skills` 解析失败）
 - Description 中如有双引号，改为单引号：`'example text'`
-- version 字段放在 `metadata` 下，值用引号包裹
-- Personal skills 使用 `compatibility` 字段说明环境要求
+- `version`、`author`、`visibility` 字段放在 `metadata` 下；`version` 值用引号包裹
+- 本 public repo 只接受 `metadata.visibility: public`
 - SKILL.md 保持精简，高级内容移至 `references/` 目录
 
 ## Versioning

@@ -3,6 +3,8 @@ name: tooyoung:excalidraw-artist
 description: "Create or edit Excalidraw hand-drawn diagrams, including style-preserving edits to existing Obsidian Excalidraw Markdown drawings, architecture, flowchart, swimlane/timeline, sequence, wireframe, ERD/data model, state machine, matrix, tree, hierarchy, and CI/CD pipeline."
 metadata:
   version: "1.6.0"
+  author: shiqkuangsan
+  visibility: public
 ---
 
 # Excalidraw Artist

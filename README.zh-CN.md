@@ -2,16 +2,15 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
-Claude Code 日常技能合集 — URL 阅读、图表绘制、LLM 测试、3D 场景、对话 Demo 等。
+Claude Code 日常公开技能合集 — URL 阅读、图表绘制、网页设计、3D 场景、GitHub Stars 整理等。
 
 ## 标准规范
 
 本项目遵循 [Agent Skills 规范](https://agentskills.io/specification)，确保技能格式标准化和互操作性：
 
-- ✅ **标准 YAML Frontmatter** - 每个技能包含 `name`、`description` 和 `metadata.version`
+- ✅ **标准 YAML Frontmatter** - 每个技能包含 `name`、`description`、`metadata.version`、`metadata.author` 和 `metadata.visibility`
 - ✅ **语义化版本** - 遵循 [semver](https://semver.org/) 进行版本管理
-- ✅ **兼容性字段** - 个人技能声明环境要求
-- ✅ **结构化组织** - 通用技能与个人技能明确分离
+- ✅ **公开技能集** - 本仓库只保留可公开、可复用的技能
 
 ## 安装
 
@@ -37,7 +36,7 @@ claude --plugin-dir /path/to/oh-my-daily-skills
 
 ### 手动安装
 
-将单个技能目录复制到 `~/.claude/skills/` 即可使用。
+将单个技能目录复制到本机 skills 目录即可使用。
 
 ## 更新
 
@@ -51,42 +50,22 @@ npx skills update
 
 ## 技能列表
 
-### 通用技能 (`tooyoung:`)
+### 公开技能 (`tooyoung:`)
 
 | 技能                | 命令                            | 描述                                      |
 | ------------------- | ------------------------------- | ----------------------------------------- |
 | blobity-cursor      | `/tooyoung:blobity-cursor`      | 为桌面落地页添加 Blobity 光标特效         |
 | cc-features         | `/tooyoung:cc-features`         | 查看 Claude Code 发布亮点速览（中文）     |
 | cc-session-cleaner  | `/tooyoung:cc-session-cleaner`  | 清理当前项目中选中的 Claude Code 会话     |
-| chainlit-builder    | `/tooyoung:chainlit-builder`    | 用 OpenAI 兼容模式搭建 Chainlit 对话 Demo |
 | codebase-stats      | `/tooyoung:codebase-stats`      | 按文件类型和自动检测模块统计源码行数      |
-| docs-i18n-pr        | `/tooyoung:docs-i18n-pr`        | 翻译开源文档并经确认准备 i18n PR          |
-| easy-openrouter     | `/tooyoung:easy-openrouter`     | 通过 OpenRouter 测试单个 LLM 模型         |
 | excalidraw-artist   | `/tooyoung:excalidraw-artist`   | 创建或保留原风格编辑 Excalidraw 手绘图表  |
 | frontend-slides     | `/tooyoung:frontend-slides`     | 创建适配视口的单文件 HTML 幻灯片          |
 | gh-star-list        | `/tooyoung:gh-star-list`        | 经确认将 GitHub Stars 分类整理到 Lists    |
 | heshu-medical       | `/tooyoung:heshu-medical`       | 鹤叔民间皮肤与表面护理笔记（含安全边界）  |
 | ink-reader          | `/tooyoung:ink-reader`          | 将可访问 URL 读取为 Markdown，含兜底策略  |
-| ming-court-code     | `/tooyoung:ming-court-code`     | 明廷典：口谕/廷议/早朝三档开发工作流协议  |
-| nano-banana-builder | `/tooyoung:nano-banana-builder` | 构建 Next.js Nano Banana 图像生成应用     |
 | neoblo-landing-page | `/tooyoung:neoblo-landing-page` | 构建 Neobrutalism + Blobity 风格落地页    |
 | persona-define      | `/tooyoung:persona-define`      | 为 Claude Code 定义个性化身份风格（人设） |
 | threejs-builder     | `/tooyoung:threejs-builder`     | 创建简单 Three.js / WebGL 3D Web 应用     |
-
-### 个人技能（模板）
-
-> ⚠️ **不可直接使用** — 这是 `personal/` 目录下的个人配置参考模板，包含占位符路径，不会通过 plugin 或 `npx skills` 分发。使用前需：
->
-> 1. 复制到你的 `~/.claude/skills/` 目录
-> 2. 将 `$BASE_PATH` 等占位符替换为实际路径
-
-| 技能            | 描述                                   |
-| --------------- | -------------------------------------- |
-| expense-receipt | AI 订阅报销收据识别（个人版）          |
-| mac-docker      | Docker 服务管理配置模板                |
-| media-summarize | 视频/音频/播客/链接总结为中文 Markdown |
-| mole            | Mac 深度清理优化命令顾问               |
-| shitcode        | 编写"烂代码"用于教学或娱乐演示         |
 
 ## 本地配置
 
@@ -114,36 +93,24 @@ oh-my-daily-skills/
 │   ├── blobity-cursor/
 │   ├── cc-features/
 │   ├── cc-session-cleaner/
-│   ├── chainlit-builder/
 │   ├── codebase-stats/
-│   ├── docs-i18n-pr/
-│   ├── easy-openrouter/
 │   ├── excalidraw-artist/
 │   ├── frontend-slides/
 │   ├── gh-star-list/
 │   ├── heshu-medical/
 │   ├── ink-reader/
-│   ├── ming-court-code/
-│   ├── nano-banana-builder/
 │   ├── neoblo-landing-page/
 │   ├── persona-define/
 │   └── threejs-builder/
-├── personal/                # 个人模板（不分发）
-│   ├── expense-receipt/
-│   ├── mac-docker/
-│   ├── media-summarize/
-│   ├── mole/
-│   └── shitcode/
-├── CLAUDE.md
+├── AGENTS.md
 └── README.md
 ```
 
 ## 命名规范
 
-| 类型     | 目录                   | 示例                   |
-| -------- | ---------------------- | ---------------------- |
-| 通用技能 | `skills/skill-name/`   | `skills/ink-reader/`   |
-| 个人技能 | `personal/skill-name/` | `personal/mac-docker/` |
+| 类型     | 目录                 | 示例                 |
+| -------- | -------------------- | -------------------- |
+| 公开技能 | `skills/skill-name/` | `skills/ink-reader/` |
 
 ## 版本规范
 
@@ -158,7 +125,6 @@ oh-my-daily-skills/
 ## 致谢
 
 - [zarazhangrui/frontend-slides](https://github.com/zarazhangrui/frontend-slides) — 原版 frontend-slides skill，设计品味优秀。我们的 `tooyoung:frontend-slides` 基于此重新设计，优化了 token 效率和主题架构。
-- [cft0808/edict](https://github.com/cft0808/edict) — 唐朝三省六部制多 Agent 协作框架，其制度化设计哲学启发了 `tooyoung:ming-court-code`，我们以明朝朝廷制度重新构想了 Claude Code 开发工作流协议。
 
 ## 开源协议
 

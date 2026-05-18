@@ -3,6 +3,8 @@ name: tooyoung:ink-reader
 description: "Read public or accessible URLs into clean Markdown using platform-aware fallback strategies. Covers common Chinese platforms, X/Twitter, and generic websites; login or anti-bot pages are best-effort. Trigger words: read url, read link, fetch article, extract content, clean markdown, WeChat article, 搜公众号文章, ink-reader"
 metadata:
   version: "1.1.1"
+  author: shiqkuangsan
+  visibility: public
 ---
 
 # Ink Reader
