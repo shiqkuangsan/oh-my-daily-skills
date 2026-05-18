@@ -1,8 +1,10 @@
 {
   "name": "oh-my-daily-skills",
-  "version": "1.0.0",
+  "version": "4.0.0",
   "private": true,
-  "description": "A collection of daily-use skills for Claude Code",
+  "description": "Daily-driver public skills for Claude Code: URL reading, diagram drawing, web design, 3D scenes, GitHub star organization, and more.",
+  "author": "shiqkuangsan",
+  "repository": "https://github.com/shiqkuangsan/oh-my-daily-skills",
   "scripts": {
     "lint": "markdownlint-cli2 '**/*.md'",
     "lint:fix": "markdownlint-cli2 --fix '**/*.md'",
