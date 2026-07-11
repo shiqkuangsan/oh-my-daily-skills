@@ -1,212 +1,87 @@
 ---
 name: tooyoung:cc-session-cleaner
-description: "清理当前项目的 Claude Code 会话：列出 ~/.claude/projects 下最近会话，按序号或 sessionId 选择，经二次确认后删除对应 .jsonl 与同名附件目录。Trigger words: 清理 cc 会话, 删除历史会话, cc resume 会话, clean cc sessions, cc session cleaner"
+description: "Use when the user wants to inspect or delete Claude Code sessions for the current project, clean entries shown by cc resume, or remove sessions selected by index, sessionId, or exact custom title."
 metadata:
-  version: "1.3.0"
+  version: "1.3.1"
   author: shiqkuangsan
   visibility: public
 ---
 
-# CC Session Cleaner — CC 会话清理
+# Claude Code Session Cleaner
 
-清理 Claude Code `~/.claude/projects/<project-slug>/` 下不再需要的会话文件。默认不是按标题自动删除，而是先列出当前项目最近会话，让用户挑选后再删除。
+Safely preview and delete project-scoped Claude Code session artifacts under `~/.claude/projects/<project-slug>/`.
 
-## 背景知识
+## Resources
 
-每个 CC 会话在 `~/.claude/projects/<project-slug>/` 下通常对应两类路径：
+- `scripts/preview_sessions.py`: parses `.jsonl` files and renders the selection table.
+- `scripts/delete_sessions.py`: validates session IDs, removes the selected `.jsonl` and same-name attachment directory, then checks for residue.
 
-```text
-<session-id>.jsonl   ← 会话消息流（可能含 custom-title 行）
-<session-id>/        ← 同名子目录：附件、shell snapshot 等
-```
+Use the scripts instead of reimplementing JSONL parsing or deletion.
 
-`cc resume` 列表里的标题来自 `.jsonl` 中的 `custom-title` 行：
+## Workflow
 
-```json
-{ "type": "custom-title", "customTitle": "xxx", "sessionId": "<session-id>" }
-```
+1. Locate the current project's Claude directory.
+2. Preview the latest 30 sessions by default; use `--limit all` only when requested.
+3. Let the user select rows by preview index or `sessionId`.
+4. Render the exact deletion set, including `.jsonl` and attachment directory paths.
+5. Ask for a second, explicit confirmation.
+6. Delete only the confirmed IDs and verify no selected path remains.
 
-## 触发场景
+The only accepted confirmation phrases are `确认删除`, `确认清理`, `confirm delete`, or `yes delete`. A request containing “直接删” is still the initial request, not the second confirmation.
 
-用户说出以下任一意图即触发：
+## Project Directory
 
-- "清理 cc 会话" / "清理会话" / "删除一些历史会话"
-- "看看最近有哪些会话可以删" / "列出没必要的会话"
-- "cc resume 里有些会话想删掉"
-- "cc session cleaner" / "clean cc sessions" / "clean marked sessions"
-- "清理标题是 xxx 的会话" / "看看有哪些标了待删除"
+Claude Code project slugs have changed over time. Probe these exact transforms of the current absolute cwd and accept only existing directories:
 
-## 默认工作流
+- replace `/` with `-`
+- additionally replace `.` with `-`
+- additionally replace spaces with `-`
 
-默认走**交互挑选模式**：
+If none exists, list candidate directories under `~/.claude/projects/` and ask the user to identify the project. Do not fuzzy-match and delete.
 
-1. **定位项目目录**：按「项目目录推导」探测当前 cwd 对应的 `~/.claude/projects/<project-slug>/`。
-2. **列出会话**：默认展示最近 30 条 `.jsonl`，按 mtime 倒序排列；用户明确要求"全部"/`all` 时展示全部会话。
-3. **等待用户挑选**：用户用序号或 sessionId 指定要删除的会话，例如 `删除 1 3 8` 或 `删除 abc def`。
-4. **复述删除清单**：列出将删除的 `.jsonl` 与同名子目录；如果用户选中当前会话，保留在提示中但标记为不可删除并剔除。
-5. **二次确认后删除**：只在收到强确认后删除可删除项。
-6. **核验残留**：删除后确认 `.jsonl` 与同名目录均不存在。
-
-## 输出字段
-
-预览表必须包含：
-
-| 字段                 | 说明                                                                 |
-| -------------------- | -------------------------------------------------------------------- |
-| `#`                  | 本次预览序号，用于用户选择                                           |
-| `current`            | 当前会话标记；匹配显式 current session id 时显示 `CURRENT`，否则为空 |
-| `sessionId`          | `.jsonl` 文件名去掉后缀                                              |
-| `title`              | 最近一条 `custom-title`，没有则为空                                  |
-| `mtime`              | `.jsonl` 修改时间                                                    |
-| `size`               | `.jsonl` 大小，按 B/KB/MB/GB 自动切换                                |
-| `first user prompt`  | 首条非 caveat 的 user prompt，截断 80 字                             |
-| `recent user prompt` | 最近一条非 caveat 的 user prompt，截断 80 字                         |
-
-## 表格展示要求
-
-预览和删除复述都必须优先使用 Markdown 表格，避免用散乱项目符号代替关键清单：
-
-- **最终回复必须是渲染后的 Markdown 表格**：脚本输出可以作为数据源，但不要把原始终端输出或代码块当作最终预览交给用户。
-- 预览会话时，先用一句话说明项目目录与命中数量，再输出完整预览表；列顺序固定为 `#`、`current`、`sessionId`、`title`、`mtime`、`size`、`first user prompt`、`recent user prompt`。
-- 复述将删除的会话时，必须使用表格列出 `sessionId`、`jsonl path`、`attachment dir`、`status`。
-- 如果选中当前会话，仍在复述表中展示，但 `status` 必须标为 `不可删除：当前会话`，且不得传入删除脚本。
-- 表格单元格内容应压缩到可读长度；prompt 已由预览脚本截断，路径可完整展示以便用户确认。
-
-## 用法示例
-
-| 用户口谕                      | 行为                                       |
-| ----------------------------- | ------------------------------------------ |
-| "清理一下 cc 会话"            | 列出当前项目最近 30 条会话，等待选择       |
-| "列出最近 50 条会话"          | 列出当前项目最近 50 条会话                 |
-| "列出全部会话" / "list all"   | 列出当前项目全部会话                       |
-| "删除 1 3 8"                  | 复述序号 1、3、8 对应会话，等待 `确认删除` |
-| "删除 sid=abc sid=xyz"        | 复述指定 sessionId，等待 `确认删除`        |
-| "看看 title 是 待删除 的会话" | 严格筛选 `customTitle == "待删除"` 后展示  |
-
-## 二次确认协议（删除红线）
-
-**任何形态的删除一律走两步，即便用户首条口谕已显含"删除"语义：**
-
-```text
-Step 1. AI 列表/解析选择 → 复述将删除的路径 → 询问：「是否执行删除？请回复『确认删除』或『取消』。」
-Step 2. AI 等待 → 仅当用户回复强确认词才执行删除。
-```
-
-**视为有效的强确认：**
-
-- 中文：`确认删除` / `确认清理`
-- 英文：`confirm delete` / `yes delete`
-
-**不视为确认：**
-
-- 模糊回应：`好` / `嗯` / `ok` / `行` / `知道了` / `继续` / `执行` / `删`
-- 沉默 / 切换话题 / 重新提其他要求
-- 反问：`这些是什么时候的？` / `能恢复吗？`
-
-用户说"直接删"、"不用预览"、"不用确认"也不能绕过预览和二次确认。CC 会话删除后不可由本 skill 恢复。
-
-## 项目目录推导（多候选探测 + 兜底）
-
-CC 把每个项目的会话存在 `~/.claude/projects/<slug>/`，但 slug 规则随 CC 版本演进，磁盘上可能多代命名并存：
-
-| 路径片                      | 旧规则 | 新规则 |
-| --------------------------- | ------ | ------ |
-| `/`                         | `-`    | `-`    |
-| `.`（隐藏目录如 `.config`） | 保留   | `-`    |
-| 空格                        | 保留   | `-`    |
-
-**没有可靠的 `$CLAUDE_PROJECT_DIR` 环境变量可直接使用**，必须自行推导。
+## Preview
 
 ```bash
-derive_projdir() {
-  local cwd="${1:-$PWD}"
-  local base="$HOME/.claude/projects"
-  local c1="$base/$(printf '%s' "$cwd" | sed 's|/|-|g')"
-  local c2="$base/$(printf '%s' "$cwd" | sed -e 's|/|-|g' -e 's|\.|-|g')"
-  local c3="$base/$(printf '%s' "$cwd" | sed -e 's|/|-|g' -e 's|\.|-|g' -e 's| |-|g')"
-  for cand in "$c1" "$c2" "$c3"; do
-    [ -d "$cand" ] && { echo "$cand"; return 0; }
-  done
-  return 1
-}
+python3 "${SKILL_DIR}/scripts/preview_sessions.py" \
+  "$PROJECT_DIR" \
+  --limit 30 \
+  --current-session-id "${CLAUDE_SESSION_ID:-}"
 ```
 
-候选全空时，列出 `~/.claude/projects/` 目录请用户确认，**不要擅自模糊匹配**。
-
-## 推荐脚本结构
-
-按 Agent Skills 标准结构，长脚本应拆到 skill 目录下的 `scripts/`：
-
-```text
-skills/cc-session-cleaner/
-├── SKILL.md
-└── scripts/
-    ├── preview_sessions.py
-    └── delete_sessions.py
-```
-
-- `scripts/preview_sessions.py`：列出会话，输出 Markdown 表格数据。
-- `scripts/delete_sessions.py`：仅在强确认后删除指定 sessionId 的 `.jsonl` 与同名目录。
-- `SKILL.md` 只保留流程、参数约定、安全红线和展示要求。
-
-## 推荐预览命令
+Optional exact-title filter:
 
 ```bash
-PROJDIR="${1:-$(derive_projdir)}" || { echo "无法定位项目目录，请显式指定" >&2; exit 1; }
-LIMIT="${2:-30}"
-MARK="${3:-}"
-CURRENT_SESSION_ID="${4:-${CLAUDE_SESSION_ID:-}}"
-python3 skills/cc-session-cleaner/scripts/preview_sessions.py "$PROJDIR" --limit "$LIMIT" --mark "$MARK" --current-session-id "$CURRENT_SESSION_ID"
+python3 "${SKILL_DIR}/scripts/preview_sessions.py" "$PROJECT_DIR" --limit all --mark "待删除"
 ```
 
-当前会话说明：每个 Claude Code 会话都有 sessionId；如果 shell 中没有 `$CLAUDE_SESSION_ID`，只表示脚本没有拿到当前会话 id，不表示当前会话没有 id。若用户从 `/status` 或其它可靠来源提供当前 sessionId，应作为 `--current-session-id` 传入并用于 `CURRENT` 标记。
+Present the script output as a rendered Markdown table with these columns: `#`, `current`, `sessionId`, `title`, `mtime`, `size`, `first user prompt`, `recent user prompt`.
 
-## 选择解析规则
+Only IDs from the most recent preview are eligible. Normalize mixed indices and IDs back to `sessionId` values before confirmation.
 
-- 用户可以用本次预览的序号选择：`删除 1 3 8`。
-- 用户可以用 sessionId 选择：`删除 abc123 def456`。
-- 只允许删除本次预览表里出现过的 sessionId；未出现在预览表里的 id 必须重新预览或要求用户确认来源。
-- 如果用户混用序号和 sessionId，AI 需要归一化成 sessionId 并复述。
-- 预览表可以列出当前会话；如果用户选择当前会话，必须明确提示"当前会话不能删除"，并把它从实际删除清单中剔除。
-- 预览表必须包含 `current` 列；如果拿到显式 current session id（例如用户从 `/status` 提供，或环境变量 `$CLAUDE_SESSION_ID` 可用），匹配行显示 `CURRENT`。
-- 如果无法取得当前 session id，不要声称已自动识别当前会话；只能说明当前会话 id 未传入或未暴露给脚本。
+## Confirmation Table
 
-## 当前会话保护
+Before deletion, show:
 
-- 当前会话也可以出现在预览表里，方便用户理解 `cc resume` 中看到的完整候选集。
-- 每个 Claude Code 会话都有 sessionId；`$CLAUDE_SESSION_ID` 为空只表示脚本没拿到当前会话 id，不表示当前会话没有 id。
-- 预览时如能从显式参数或 `$CLAUDE_SESSION_ID` 识别当前会话，必须在 `current` 列标记为 `CURRENT`。
-- 删除前如能识别当前会话，且用户选中了它，必须在复述清单中单独列为"不可删除"。
-- 不可删除项不得传入删除脚本；如果用户只选择了当前会话，不执行删除，并说明需要选择其他会话。
-- 如果无法取得当前 sessionId，不要声称已识别当前会话，也不要基于标题、mtime 或 prompt 猜测当前会话。
+| sessionId | jsonl path | attachment dir | status |
+| --------- | ---------- | -------------- | ------ |
 
-## 删除命令（仅在强确认后执行）
+If the current session is identifiable and selected, keep it in the table as `不可删除：当前会话`, but exclude it from the command. Never infer the current session from title, mtime, or prompts.
+
+## Delete
+
+After explicit second confirmation only:
 
 ```bash
-PROJDIR="$HOME/.claude/projects/<slug>"
-python3 skills/cc-session-cleaner/scripts/delete_sessions.py "$PROJDIR" sid1 sid2 sid3
+python3 "${SKILL_DIR}/scripts/delete_sessions.py" \
+  "$PROJECT_DIR" sid1 sid2 \
+  --current-session-id "${CLAUDE_SESSION_ID:-}"
 ```
 
-## 安全护栏（红线）
+## Hard Boundaries
 
-- ❌ **未经二次确认不可删除**：必须先预览或复述删除清单，再等强确认。
-- ❌ **不得默认跨项目删除**：除非用户明确指定其他项目目录，否则只动当前项目目录。
-- ❌ **不得自动按时间批量删除**：本 skill 只列出候选并让用户挑选。
-- ❌ **不得 fuzzy 匹配标题**：标题筛选必须 `customTitle == MARK` 严格相等。
-- ❌ **不得删除预览表外的会话**：用户输入序号或 sessionId 后，必须映射到已展示候选。
-- ❌ **不得删除当前会话**：当前会话可展示但不可删除；选中时必须提示并剔除。
-- ❌ **不得扩大确认范围**：多个项目目录必须分别预览、分别确认。
-
-## 边界情况
-
-- **零会话**：告知当前项目没有可展示的 `.jsonl` 会话。
-- **用户只说"清理"**：只展示最近会话，不删除。
-- **用户选择不存在的序号**：指出无效序号并要求重新选择。
-- **当前会话被选中**：如能识别当前 sessionId，提示当前会话不能删除，并从实际删除清单剔除。
-- **目录不存在**：明确告知项目目录不存在，请用户提供正确路径。
-
-## 与相关 skill 的边界
-
-- 本 skill 只清理 Claude Code 会话 `.jsonl` 与同名附件目录。
-- 本 skill 不动 memory 系统（`memory/MEMORY.md` 等）。
-- 如果系统里装了 claude-mem 等基于 `.jsonl` 建索引的插件，删除前提醒：相关 observations / corpus 引用可能指向已删除原文，但记忆数据本身仍在。
+- Never delete without preview, exact path disclosure, and second confirmation.
+- Never delete outside the selected project directory.
+- Never delete IDs absent from the latest preview.
+- Never use fuzzy title matching or automatic age-based cleanup.
+- Never delete the identifiable current session.
+- This skill does not touch Claude memory files or third-party indexes.

@@ -1,188 +1,89 @@
 ---
 name: tooyoung:codex-features
-description: "Show OpenAI Codex release highlights in Chinese. Fetch GitHub release notes, summarize feature-level changes, skip bug-fix/chore noise by default, and append a mandatory highlights section. Trigger words: Codex updates, Codex features, Codex 新功能, Codex 更新, OpenAI Codex releases"
+description: "Use when the user asks what changed in OpenAI Codex, requests release highlights for versions or ranges, or wants updates since the installed Codex version. Triggers: Codex updates, Codex features, Codex 新功能, Codex 更新."
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   author: shiqkuangsan
   visibility: public
 ---
 
-# Codex Features - OpenAI Codex 功能更新速览
+# OpenAI Codex Release Highlights
 
-Extract feature-level changes from OpenAI Codex release notes, translate to Chinese, and present the changes that matter to daily usage.
+Turn official Codex release notes into a concise Chinese feature digest. This skill defines retrieval, version selection, filtering, and presentation; it does not duplicate general summarization guidance.
 
-## Data Source
+## Source and Version Resolution
 
-Primary source: GitHub Releases for `openai/codex`.
-
-Prefer authenticated tools when available:
+Use official GitHub Releases for `openai/codex`. Prefer `gh` when available:
 
 ```bash
-# List recent releases
-gh release list --repo openai/codex --limit 50 --json tagName,name,publishedAt,isLatest
-
-# Get release notes for a specific tag
+gh release list --repo openai/codex --limit 50 --json tagName,name,publishedAt,isPrerelease
 gh release view rust-v{version} --repo openai/codex --json tagName,name,publishedAt,body
 ```
 
-Fallback when `gh` is unavailable:
+If `gh` is unavailable or rate-limited, read <https://github.com/openai/codex/releases> with an available web/browser tool. Current release data must be fetched, not recalled.
+
+Normalize display versions by stripping `rust-v` or `v`. Accept either form from the user.
+
+| Input                            | Selection                                                                            |
+| -------------------------------- | ------------------------------------------------------------------------------------ |
+| empty                            | Stable releases newer than installed Codex; if none, show the current stable release |
+| `0.144.0` / `rust-v0.144.0`      | One release                                                                          |
+| `0.142.0,0.144.0`                | Explicit releases                                                                    |
+| `0.140.0..0.144.0`               | Inclusive range resolved from actual tags                                            |
+| `latest` / `last 3`              | Latest N stable releases                                                             |
+| `prerelease` / `including alpha` | Include alpha/prerelease tags                                                        |
+
+Detect the installed version with:
 
 ```bash
-# List recent releases. Use GITHUB_TOKEN if present to avoid low unauthenticated rate limits.
-if [ -n "$GITHUB_TOKEN" ]; then
-  curl -fsSL -H "Accept: application/vnd.github+json" -H "User-Agent: codex-features" \
-    -H "Authorization: Bearer $GITHUB_TOKEN" \
-    "https://api.github.com/repos/openai/codex/releases?per_page=50"
-else
-  curl -fsSL -H "Accept: application/vnd.github+json" -H "User-Agent: codex-features" \
-    "https://api.github.com/repos/openai/codex/releases?per_page=50"
-fi
+"${CODEX_CLI_PATH:-codex}" --version 2>/dev/null
 ```
 
-If the API is rate-limited or inaccessible, use the GitHub releases page directly:
+Extract the SemVer from output such as `codex-cli 0.145.0-alpha.1`. A local prerelease maps to its base stable line for default comparison; include prerelease notes only when explicitly requested. If detection fails, use the latest 3 stable releases and say so once.
 
-```text
-https://github.com/openai/codex/releases
-```
+## Extract and Rank
 
-## Detect Installed Codex Version
+Keep:
 
-Use the active Codex CLI path when available:
+- New Features / Features / Added
+- Improvements / Enhancements / Performance
+- Changed / Breaking Changes / Behavior Changes
+- Deprecated / Removed
+- Security changes with user impact
 
-```bash
-${CODEX_CLI_PATH:-codex} --version 2>/dev/null
-```
+Skip Bug Fixes, Documentation, Tests, ordinary Chores, and full PR-by-PR Changelog sections by default. Keep an otherwise skipped item when it materially changes installers, package layout, authentication, permissions, sandboxing, runtime compatibility, or migrations.
 
-Expected output may look like `codex-cli 0.133.0-alpha.1`.
+Prioritize CLI/TUI/app behavior, permissions and sandboxing, plugins/skills/MCP, remote workflows, SDK/API automation, and installation. Breaking changes and removals are mandatory.
 
-Normalize versions before comparison:
+## Output Contract
 
-- Strip command labels such as `codex-cli`
-- Strip tag prefixes such as `rust-v` and `v`
-- For prerelease local versions like `0.133.0-alpha.1`, treat the base `0.133.0` as the current release unless the user explicitly asks about prereleases
-
-## Version Range Logic
-
-Parse the user's arguments to determine what to fetch:
-
-| Argument                                | Behavior                                                                                                                                 |
-| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| empty                                   | Detect installed Codex version, list releases newer than it, and show those. If already latest, show the current version's release notes |
-| `0.133.0`                               | Single release. Resolve either `0.133.0` or `rust-v0.133.0`                                                                              |
-| `rust-v0.133.0`                         | Single release by exact tag                                                                                                              |
-| `0.131.0 0.133.0` or `0.131.0,0.133.0`  | Multiple specific releases                                                                                                               |
-| `0.130.0-0.133.0` or `0.130.0..0.133.0` | Inclusive range, resolved from the release list rather than assuming every version exists                                                |
-| `latest` or `last 3`                    | Latest N releases                                                                                                                        |
-| `all` or `full changelog`               | Include all sections and PR-level changelog items; otherwise keep the default feature-level filter                                       |
-
-## Section Filtering
-
-Codex release notes are usually grouped by sections such as:
-
-- `New Features`
-- `Bug Fixes`
-- `Documentation`
-- `Chores`
-- `Changelog`
-
-By default, KEEP feature-level sections:
-
-- `New Features`, `Features`, `Added` -> 新功能
-- `Improvements`, `Enhancements`, `Performance` -> 增强
-- `Changed`, `Breaking Changes`, `Behavior Changes` -> 变更
-- `Deprecated`, `Removed` -> 废弃/移除
-- `Security` -> 安全
-
-By default, DISCARD noise sections:
-
-- `Bug Fixes` / `Fixes`
-- `Documentation`
-- `Tests`
-- ordinary `Chores`
-- long PR-by-PR `Changelog`
-
-Exception: keep `Chores` items only when they materially affect users, such as installers, package layout, runtime packaging, CLI distribution, sandbox behavior, permissions, authentication, or migration requirements.
-
-## Priority Rules
-
-When choosing what to summarize and highlight, prioritize:
-
-1. User-visible CLI/TUI/app behavior
-2. Permission, sandbox, approval, and workspace-root behavior
-3. Plugins, skills, MCP, extensions, and tool lifecycle changes
-4. Remote control, app-server, exec-server, and background workflow changes
-5. SDK/API changes that affect automation or agent development
-6. Installation, packaging, platform support, and runtime changes
-7. Internal refactors only when they change behavior or operational risk
-
-Breaking changes, deprecations, removed behavior, and migration requirements must always be included and marked with `⚠️`.
-
-## Output Format
-
-For each release, output in Chinese:
+Write Chinese and keep technical identifiers in English.
 
 ```markdown
 ## {version}（{date}）
 
-- **新功能**：xxx（translated to Chinese, keep technical terms in English）
-- **增强**：xxx
-- **变更**：xxx
-- **安全**：xxx
-- **废弃/移除**：xxx
+- **新功能**：...
+- **增强**：...
+- **变更**：...
+- **安全**：...
+- **废弃/移除**：...
 ```
 
-Rules:
+Omit empty categories. If filtering removes everything, state that the release contains only fixes, docs, or maintenance.
 
-- Group items by type within each release
-- Keep technical terms in English: command names, flags, APIs, file names, model names, config keys, package names
-- Preserve important commands in backticks
-- Do not translate PR numbers or contributor names unless needed for clarity
-- If no feature-level items remain after filtering, show: `（本版本无功能级变更，均为 bug 修复、文档或内部维护）`
+Finish with `## 本次更新亮点`:
 
-## Highlight Summary (必出)
+- At most 3 highlights per release and 10 total.
+- Explain impact on actual Codex usage.
+- Prefix breaking or migration-sensitive items with `⚠️`.
+- Group by theme for 5+ releases.
+- Do not pad the list when few items matter.
 
-After listing all requested releases, append this section. It is mandatory.
+Include the official release link used.
 
-```markdown
-## 本次更新亮点
+## Failure Rules
 
-> 从以上 {N} 个版本 / {M} 条功能级变更中，挑出最值得关注的 {K} 项：
-
-- **{亮点标题}**（{version}）：{为什么值得关注 / 对用户的影响}
-- **⚠️ {破坏性变化标题}**（{version}）：{影响和需要注意的迁移点}
-```
-
-Selection rules:
-
-- Each release contributes at most 3 highlights
-- Hard cap: 10 highlights total
-- Quality over count; do not pad weak items
-- If all releases have zero feature-level changes, replace the whole section with:
-
-```markdown
-## 本次更新亮点
-
-> 本次范围内无功能级更新，全部为 bug 修复、文档或内部维护。
-```
-
-When listing 5 or more releases, cluster highlights by theme, such as "CLI/TUI", "权限与沙箱", "Plugins/Skills/MCP", "SDK/API", and "安装与运行时".
-
-## Execution Steps
-
-1. Parse the user's requested versions or range
-2. If no arguments were provided, detect the installed Codex version and list releases newer than it; if detection fails, default to `last 3`
-3. Fetch release metadata from GitHub Releases
-4. Normalize tags for comparison and display
-5. Resolve ranges from actual release list order, not by arithmetic version guessing
-6. Fetch each selected release body
-7. Parse markdown sections; keep feature-level items and discard default noise sections
-8. Translate and present grouped Chinese output
-9. Append the mandatory highlight summary
-
-## Error Handling
-
-- `gh` missing -> use GitHub API via `curl` or the releases page
-- GitHub API rate-limited -> retry with `GITHUB_TOKEN`, `gh auth login`, or the releases page
-- Version not found -> report `（未找到 {version} 的 release）` and continue with other requested versions
-- Installed version cannot be detected -> default to `last 3` and say so once
-- Already latest -> show current release notes with header `（当前已是最新版本，以下为 {version} 的更新内容）`
+- Resolve ranges from actual release ordering, not version arithmetic.
+- Skip missing versions with a note and continue.
+- Prefer browser/web fallback over asking the user to install `gh`.
+- Never mix prereleases into `latest N` unless requested.

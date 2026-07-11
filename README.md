@@ -2,7 +2,7 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
-Daily-driver public skills for Claude Code — URL reading, diagram drawing, web design, 3D scenes, GitHub star organization, and more.
+Daily-driver public skills for release highlights, URL reading, diagram drawing, web design, GitHub star organization, and more.
 
 ## Specification
 
@@ -57,15 +57,12 @@ npx skills update
 | blobity-cursor      | `/tooyoung:blobity-cursor`      | Add desktop Blobity cursor effects to landing pages         |
 | cc-features         | `/tooyoung:cc-features`         | Show Claude Code release highlights in Chinese              |
 | cc-session-cleaner  | `/tooyoung:cc-session-cleaner`  | Clean selected Claude Code sessions for current project     |
-| codebase-stats      | `/tooyoung:codebase-stats`      | Count source lines by file type and detected module         |
+| codex-features      | `/tooyoung:codex-features`      | Show OpenAI Codex release highlights in Chinese             |
 | excalidraw-artist   | `/tooyoung:excalidraw-artist`   | Create or style-preserve Excalidraw diagrams                |
-| frontend-slides     | `/tooyoung:frontend-slides`     | Create viewport-fitted single-file HTML slide decks         |
 | gh-star-list        | `/tooyoung:gh-star-list`        | Organize GitHub starred repos into Lists after confirmation |
-| heshu-medical       | `/tooyoung:heshu-medical`       | Folk skin and surface-care notes with safety boundaries     |
 | ink-reader          | `/tooyoung:ink-reader`          | Read accessible URLs into Markdown with fallback strategies |
 | neoblo-landing-page | `/tooyoung:neoblo-landing-page` | Build Neobrutalism + Blobity landing pages from scratch     |
 | persona-define      | `/tooyoung:persona-define`      | Define personalized identity style for Claude Code          |
-| threejs-builder     | `/tooyoung:threejs-builder`     | Create simple Three.js and WebGL 3D web apps                |
 
 ## Local Configuration
 
@@ -93,15 +90,12 @@ oh-my-daily-skills/
 │   ├── blobity-cursor/
 │   ├── cc-features/
 │   ├── cc-session-cleaner/
-│   ├── codebase-stats/
+│   ├── codex-features/
 │   ├── excalidraw-artist/
-│   ├── frontend-slides/
 │   ├── gh-star-list/
-│   ├── heshu-medical/
 │   ├── ink-reader/
 │   ├── neoblo-landing-page/
-│   ├── persona-define/
-│   └── threejs-builder/
+│   └── persona-define/
 ├── AGENTS.md
 └── README.md
 ```
@@ -121,10 +115,6 @@ Following [Semantic Versioning](https://semver.org/):
 | x.0.0 (MAJOR) | Breaking changes   | Refactor skill structure, remove features |
 | 0.x.0 (MINOR) | New features       | Add new commands, new sections            |
 | 0.0.x (PATCH) | Fixes/Improvements | Doc fixes, formatting adjustments         |
-
-## Thanks To
-
-- [zarazhangrui/frontend-slides](https://github.com/zarazhangrui/frontend-slides) — The original frontend-slides skill with excellent design taste. Our `tooyoung:frontend-slides` is a redesigned version with token-efficient architecture and curated themes.
 
 ## License
 

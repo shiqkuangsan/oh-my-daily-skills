@@ -1,8 +1,8 @@
 {
   "name": "oh-my-daily-skills",
-  "version": "4.1.0",
+  "version": "5.0.0",
   "private": true,
-  "description": "Daily-driver public skills for Claude Code: URL reading, diagram drawing, web design, 3D scenes, GitHub star organization, and more.",
+  "description": "Daily-driver public skills for release highlights, URL reading, diagram drawing, web design, GitHub star organization, and more.",
   "author": "shiqkuangsan",
   "repository": "https://github.com/shiqkuangsan/oh-my-daily-skills",
   "scripts": {
