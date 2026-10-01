@@ -3,11 +3,12 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const files = process.argv.slice(2);
+const layout = process.argv.includes("--layout");
+const files = process.argv.slice(2).filter((arg) => arg !== "--layout");
 
 if (files.length === 0) {
   console.error(
-    "Usage: node skills/excalidraw-artist/scripts/validate-excalidraw.mjs <file.excalidraw> [...]",
+    "Usage: node scripts/validate-excalidraw.mjs [--layout] <file.excalidraw> [...]",
   );
   process.exit(2);
 }
@@ -24,6 +25,7 @@ function hasBoundElement(element, id, type) {
 function validateFile(file) {
   const absolute = path.resolve(file);
   const errors = [];
+  const warnings = [];
   let doc;
 
   try {
@@ -33,6 +35,9 @@ function validateFile(file) {
     return { file: absolute, errors };
   }
 
+  if (!doc || typeof doc !== "object" || Array.isArray(doc)) {
+    return { file: absolute, errors: ["expected a scene object"] };
+  }
   if (doc.type !== "excalidraw") {
     errors.push(
       `expected top-level type "excalidraw", got ${JSON.stringify(doc.type)}`,
@@ -43,6 +48,38 @@ function validateFile(file) {
     errors.push("expected top-level elements array");
     return { file: absolute, errors };
   }
+
+  if (doc.elements.some((e) => !e || typeof e !== "object" || Array.isArray(e))) {
+    return { file: absolute, errors: [...errors, "elements must contain objects"] };
+  }
+
+  const ids = new Set();
+  for (const e of doc.elements) {
+    if (typeof e.id !== "string" || !e.id) errors.push("element has missing or invalid id");
+    else if (ids.has(e.id)) errors.push(`duplicate element id ${e.id}`);
+    ids.add(e.id);
+    if (e.isDeleted) continue;
+    for (const key of ["x", "y", "width", "height"]) {
+      if (!Number.isFinite(e[key])) errors.push(`${e.id}.${key} must be finite`);
+    }
+    if (e.width < 0 || e.height < 0) errors.push(`${e.id} has negative dimensions`);
+    if (e.boundElements != null && (!Array.isArray(e.boundElements)
+      || e.boundElements.some(b => !b || typeof b.id !== "string" || !["text", "arrow"].includes(b.type)))) {
+      errors.push(`${e.id}.boundElements is malformed`);
+    }
+    if (["arrow", "line"].includes(e.type) && (!Array.isArray(e.points) || e.points.length < 2
+      || e.points.some(p => !Array.isArray(p) || p.length !== 2 || !p.every(Number.isFinite)))) {
+      errors.push(`${e.id} needs at least two finite [x,y] points`);
+    }
+    if (e.type === "text" && (typeof e.text !== "string" || !Number.isFinite(e.fontSize) || e.fontSize <= 0)) {
+      errors.push(`${e.id} has invalid text or fontSize`);
+    }
+    if (e.type === "image" && (!e.fileId || !doc.files?.[e.fileId])) {
+      errors.push(`${e.id} references a missing image asset`);
+    }
+  }
+  // Stop before traversing malformed binding objects.
+  if (errors.length) return { file: absolute, errors };
 
   const byId = new Map(
     doc.elements
@@ -115,6 +152,9 @@ function validateFile(file) {
         );
         continue;
       }
+      if (target.type !== bound.type) {
+        errors.push(`${element.id} expects ${bound.id} to be ${bound.type}, found ${target.type}`);
+      }
       if (bound.type === "text" && target.containerId !== element.id) {
         errors.push(
           `${element.id}.boundElements includes text ${bound.id}, but that text containerId is ${JSON.stringify(target.containerId)}`,
@@ -132,11 +172,25 @@ function validateFile(file) {
     }
   }
 
-  return { file: absolute, errors };
+  if (layout) {
+    for (const e of byId.values()) {
+      if (e.type !== "text" || e.angle) continue;
+      const c = byId.get(e.containerId);
+      // Only rectangular, unrotated labels have a useful simple bounds test.
+      // Arrow labels, diamonds, font metrics and intentional overlaps need rendering.
+      if (c?.type === "rectangle" && !c.angle &&
+        (e.x < c.x - 2 || e.y < c.y - 2 || e.x + e.width > c.x + c.width + 2
+          || e.y + e.height > c.y + c.height + 2)) {
+        warnings.push(`${e.id}: text bounds extend outside ${c.id}; inspect the rendered label`);
+      }
+    }
+  }
+  return { file: absolute, errors, warnings };
 }
 
 for (const file of files) {
   const result = validateFile(file);
+  for (const warning of result.warnings ?? []) console.warn(`WARN ${warning}`);
   if (result.errors.length === 0) {
     console.log(`OK ${result.file}`);
     continue;

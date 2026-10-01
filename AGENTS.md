@@ -6,6 +6,14 @@ This file provides guidance to Codex (Codex.ai/code) when working with code in t
 
 This is a public Codex plugin repository containing reusable skills. Private and local-only skills are maintained in the private source repository and are not kept here.
 
+## Source and Publication Relationship
+
+This checkout is the public distribution repository. The maintainer's canonical source is `oh-my-daily-skills-private/skills/`; public skills are synchronized into its `public/oh-my-daily-skills` Git submodule. A standalone clone of this public repository is another checkout of the same remote, not a second authoring source.
+
+For maintainer work, change the private source first and publish through its synchronization workflow. Keep the private submodule pointer, existing standalone public clone and affected installed skills aligned. Never claim release completion based only on a private-repository push or matching version strings. Use clean fast-forward updates; never discard local changes to make copies match.
+
+This file is maintained in the private repository's `templates/public-AGENTS.md`. Public contributions can still use the ordinary PR workflow; these maintainer rules do not require contributors to access the private repository.
+
 ## Skill Structure
 
 Each skill lives in `skills/<skill-name>/` with:

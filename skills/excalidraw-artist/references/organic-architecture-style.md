@@ -16,7 +16,7 @@ If a user says they like the original style, treat style preservation as a requi
 
 ## Style DNA
 
-Organic panorama diagrams usually look like a thinking map, not a slide deck.
+For an existing organic panorama, preserve its exploratory character. The traits below describe one possible visual language, not a template for every new drawing.
 
 | Trait        | Recommended pattern                                                                                                                               |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -50,7 +50,7 @@ These colors are a useful starting point when preserving a warm hand-drawn archi
 3. Decide which content labels need to change; avoid moving containers unless the text cannot fit.
 4. Reuse existing element templates for new modules by copying a nearby box style.
 5. Preserve arrow geometry: if an arrow already expresses the relationship, keep its `points` unchanged and only update endpoint labels.
-6. For new arrows, copy the nearest arrow style and use 3-5 points to create a gentle curve instead of a straight grid connector.
+6. For new arrows, reuse the nearby visual language and route around labels. Choose straight, bent or curved routes according to the relationship; no fixed point count.
 7. Run binding validation on extracted JSON, then re-wrap into the original output format.
 
 ## What Not To Do

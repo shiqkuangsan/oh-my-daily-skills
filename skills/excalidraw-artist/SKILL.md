@@ -1,72 +1,52 @@
 ---
 name: tooyoung:excalidraw-artist
-description: "Use when creating or editing Excalidraw or Obsidian Excalidraw drawings, especially architecture, flow, sequence, swimlane, timeline, ERD, state, matrix, hierarchy, wireframe, and CI/CD diagrams."
+description: "Create and edit expressive, editable Excalidraw diagrams: architecture, flows, mind maps and relationship maps, including Obsidian Excalidraw. Prefer for standalone hand-drawn diagrams; preserve explicit Mermaid requests and existing document formats."
 metadata:
-  version: "1.6.1"
+  version: "2.0.1"
   author: shiqkuangsan
   visibility: public
 ---
 
 # Excalidraw Artist
 
-Create valid, editable `.excalidraw` JSON or Obsidian `.excalidraw.md` drawings. The critical concerns are style preservation, real bindings, readable text, and validation.
+Make a diagram that reveals the idea, not a document rearranged into boxes. Deliver a useful visual explanation and an editable scene. Let the model choose the composition; constrain correctness and delivery, not creativity.
 
-## Resource Routing
+## Design judgment
 
-- Existing organic/panorama drawing: read `references/organic-architecture-style.md`.
-- Element schema, binding formulas, grid layout, IDs, colors: read the relevant section of `references/element-ref.md`.
-- New drawing: read exactly one matching file under `references/examples/`.
-- Always use `scripts/validate-excalidraw.mjs` before completion.
+- Establish the diagram's central question and reading path from the request. Infer sensible defaults; ask only when missing information changes the meaning or scope.
+- For architecture, inspect the actual components and important relationships. Distinguish calls, data movement, ownership and deployment boundaries. A directory tree or a list of files is not an architecture. Mark proposed or unverified behavior rather than inventing connections.
+- Choose a visual structure that explains the subject: a spine with side branches, layered landscape, lifecycle loop, swimlanes, radial map or another appropriate composition. No mandatory template, grid, canvas size or node count.
+- Make the main idea visible at fit-to-screen scale; detail should reward zooming in. Use whitespace, scale and a coherent palette to establish hierarchy. Default to moderately rich, saturated fills and accents while retaining readable text and a light canvas; follow an explicit palette or an existing drawing when editing. If the result is mostly paragraphs inside equal cards, recompose it.
+- Treat “complete” as coverage of relevant responsibilities and relationships. Use named detail views when necessary, linked to the overview by stable labels. Do not compress the entire codebase into tiny text.
+- Preserve the user's visual language during edits unless redesign was requested. Use grouping, shapes, connector routes and texture purposefully; handwritten typography alone is not visual storytelling.
 
-Example mapping:
+For substantial new compositions or a visual redesign, consult [visual design](references/visual-design.md). It offers choices, not a prescribed look. Existing organic panoramas have additional [preservation guidance](references/organic-architecture-style.md).
 
-| Diagram                        | Example                                                     |
-| ------------------------------ | ----------------------------------------------------------- |
-| Flow / architecture / sequence | `01-flowchart.md` / `02-architecture.md` / `03-sequence.md` |
-| Swimlane / ERD / state         | `04-swimlane.md` / `05-erd.md` / `06-state-machine.md`      |
-| Matrix / tree / CI/CD          | `07-matrix.md` / `08-tree.md` / `09-cicd-pipeline.md`       |
-| Wireframe / timeline           | `10-wireframe.md` / `11-timeline.md`                        |
+## Editable construction
 
-## Workflow
+Use available native tools, an established CLI/MCP, or direct scene generation as appropriate. Tool choice does not determine artistic quality. Read [local workflow](references/local-workflow.md) when using a local canvas; read [element reference](references/element-ref.md) only for schema, geometry or Obsidian details.
 
-1. Determine output format and whether this is a new drawing or an edit.
-2. For edits, inspect the source's palette, roughness, fill, fonts, spacing, arrow paths, grouping, and wrapper format before changing it.
-3. Choose a layout and calculate regions/grid coordinates before emitting many elements.
-4. Build semantic elements and IDs; keep labels concise.
-5. Add real connector and container bindings.
-6. Validate extracted JSON, then inspect the rendered result when a renderer is available.
-7. Preserve or rebuild the Obsidian compressed wrapper when required.
+- Use real Excalidraw elements for meaning-bearing shapes and text. A flattened image is not an editable diagram.
+- Bind relationship arrows to their endpoints, with reciprocal `boundElements`. Bind labels to their containers. Use lines for decorative strokes; free annotations can remain free text.
+- Keep stable IDs when editing. Preserve unrelated elements, image assets and the original wrapper format.
+- Allocate space from actual labels. Break at semantic boundaries; widen, shorten or restructure before reducing text to an unreadable size. Font fallback and CJK metrics require rendered checks.
 
-## Non-Negotiable Bindings
+## Quality and delivery
 
-For every relationship arrow:
-
-- `startBinding.elementId` references the source.
-- `endBinding.elementId` references the target.
-- both endpoint elements contain the arrow in `boundElements`.
-
-For every bound label:
-
-- text has `containerId`.
-- its container contains the text element in `boundElements`.
-
-Use `line` for decoration and `arrow` only for relationships that should stay attached while editing.
-
-## Readability and Style
-
-- Preserve an existing drawing's visual language unless redesign was requested.
-- Break labels at semantic boundaries; never split Chinese words or code identifiers merely to fit.
-- Resize containers when text does not fit and keep visible padding.
-- Use consistent flow direction and spacing appropriate to the diagram rather than fixed canvas dimensions.
-- Use semantic color sparingly; do not turn every node into a different accent.
-- Split very large diagrams when one canvas would become unreadable.
-
-## Validation
+Save a durable `.excalidraw` or `.excalidraw.md` source. Reopen or reimport that saved source, render it, and inspect the result. A temporary canvas is not the deliverable.
 
 ```bash
-node "${SKILL_DIR}/scripts/validate-excalidraw.mjs" /absolute/path/drawing.excalidraw
+node "${SKILL_DIR}/scripts/validate-excalidraw.mjs" /absolute/path/diagram.excalidraw
+# Optional geometry hints; warnings need visual judgment, not automatic fixes:
+node "${SKILL_DIR}/scripts/validate-excalidraw.mjs" --layout /absolute/path/diagram.excalidraw
 ```
 
-For `.excalidraw.md`, extract/decompress the drawing JSON for validation without destroying the Markdown wrapper.
+Check three different things:
 
-Do not claim completion when bindings fail, labels overflow, elements overlap incoherently, or the output cannot be reopened by Excalidraw.
+- **Meaning:** responsibilities, arrow direction, state/sequence semantics, and scope match the evidence. No invented relationship added merely to fill space.
+- **Visual reading:** the primary path is evident at overview scale; labels remain legible at normal reading scale; connectors avoid unrelated labels; detail views do not masquerade as extra services.
+- **Editability:** validation passes, the saved scene reopens, and bindings/assets survive. For new construction methods, also move a representative node and confirm its label and connectors follow; restore the saved geometry afterward.
+
+Fix observed defects and check the affected view again. Structural checks cannot establish beauty, text metrics or factual correctness. If rendering is unavailable, deliver the source with that explicit verification gap.
+
+Deliver the editable source and a PNG or SVG preview. For a large canvas, include a readable overview preview. Keep implementation scripts and provenance separate from the visual explanation. Do not upload or share externally merely to obtain a preview.
